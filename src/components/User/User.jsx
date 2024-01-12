@@ -1,6 +1,5 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import initials from 'initials';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -34,6 +33,11 @@ const getColor = (name) => {
   return COLORS[sum % COLORS.length];
 };
 
+function stringAvatar(name) {
+  let ss = name.split(' ');
+  return(`${ss.length > 0 ? ss[0][0] : ""}${ss.length > 1 ? ss[0][0] : ""}`);
+}
+
 const User = React.memo(({ name, avatarUrl, size, isDisabled, onClick }) => {
   const contentNode = (
     <span
@@ -48,7 +52,7 @@ const User = React.memo(({ name, avatarUrl, size, isDisabled, onClick }) => {
         background: avatarUrl && `url("${avatarUrl}") center / cover`,
       }}
     >
-      {!avatarUrl && <span className={styles.initials}>{initials(name)}</span>}
+      {!avatarUrl && <span className={styles.initials}>{stringAvatar(name)}</span>}
     </span>
   );
 

@@ -52,10 +52,16 @@ const Core = React.memo(
         display: {xs: 'block', sm: 'none'},
         '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
       },
-      boxContent: {
-        flexGrow: 1,
+      boxToolbar: {
+        // flexGrow: 1,
         width: {sm: `calc(100% - ${drawerWidth}px)`},
-        marginTop: '32px',
+        marginLeft: {sm: `${drawerWidth}px`},
+      },
+      boxContent: {
+        // display: 'flex',
+        // flexGrow: 1,
+        width: {sm: `calc(100% - ${drawerWidth}px)`},
+        // marginTop: '32px',
         marginLeft: {sm: `${drawerWidth}px`},
         alignContent: 'center',
         alignItems: 'center',
@@ -95,11 +101,15 @@ const Core = React.memo(
                 <DrawerWeb/>
               </Drawer>
             </Box>
-            <Box>
+            {/* <Box> */}
+            {/*   <FixedContainer/> */}
+            {/* </Box> */}
+            {/* <Box component="nav" sx={{width: {sm: drawerWidth}, flexShrink: {sm: 768}}}> */}
+            {/* </Box> */}
+            <Box sx={ui_styles.boxToolbar}>
               <FixedContainer/>
             </Box>
             <Box sx={ui_styles.boxContent}>
-              {/* <AppBar><Toolbar/></AppBar> */}
               <StaticContainer/>
             </Box>
             {currentModal === ModalTypes.USERS && <UsersModalContainer/>}

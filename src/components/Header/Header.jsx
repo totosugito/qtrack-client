@@ -40,9 +40,9 @@ const Header = React.memo(
     const UserPopup = usePopup(UserStep, POPUP_PROPS);
 
     return (
-      // <div className={styles.wrapper}>
-      <AppBar position="static">
-        <Toolbar>
+      <div className={styles.wrapper}>
+      {/* <AppBar position="static"> */}
+      {/*   <Toolbar> */}
         {!project && (
           <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
             QTrack
@@ -99,8 +99,9 @@ const Header = React.memo(
             </UserPopup>
           </Menu.Menu>
         </Menu>
-        </Toolbar>
-      </AppBar>
+        {/* </Toolbar> */}
+      {/* </AppBar> */}
+      </div>
     );
   },
 );
