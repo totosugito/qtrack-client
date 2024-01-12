@@ -10,6 +10,7 @@ import NotificationsStep from './NotificationsStep';
 import UserStep from '../UserStep';
 
 import styles from './Header.module.scss';
+import { AppBar, Toolbar } from '@mui/material';
 
 const POPUP_PROPS = {
   position: 'bottom right',
@@ -39,7 +40,9 @@ const Header = React.memo(
     const UserPopup = usePopup(UserStep, POPUP_PROPS);
 
     return (
-      <div className={styles.wrapper}>
+      // <div className={styles.wrapper}>
+      <AppBar position="static">
+        <Toolbar>
         {!project && (
           <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
             QTrack
@@ -96,7 +99,8 @@ const Header = React.memo(
             </UserPopup>
           </Menu.Menu>
         </Menu>
-      </div>
+        </Toolbar>
+      </AppBar>
     );
   },
 );

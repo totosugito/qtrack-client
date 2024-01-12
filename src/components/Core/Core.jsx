@@ -12,6 +12,8 @@ import ProjectAddModalContainer from '../../containers/ProjectAddModalContainer'
 import Background from '../Background';
 
 import styles from './Core.module.scss';
+import { AppBar, Box, Drawer, Toolbar } from '@mui/material';
+import DrawerWeb from './component/drawer-web';
 
 const Core = React.memo(
   ({
@@ -40,6 +42,31 @@ const Core = React.memo(
       document.title = title;
     }, [currentProject, currentBoard]);
 
+    const drawerWidth = 240;
+    const ui_styles = {
+      drawer: {
+        display: {xs: 'none', sm: 'block'},
+        '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth}
+      },
+      drawerMobile: {
+        display: {xs: 'block', sm: 'none'},
+        '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+      },
+      boxContent: {
+        flexGrow: 1,
+        width: {sm: `calc(100% - ${drawerWidth}px)`},
+        marginTop: '32px',
+        marginLeft: {sm: `${drawerWidth}px`},
+        alignContent: 'center',
+        alignItems: 'center',
+        alignJustify: 'center',
+      },
+    }
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const handleDrawerToggle = () => {
+      setMobileOpen(!mobileOpen);
+    };
+
     return (
       <>
         {isInitializing ? (
@@ -53,8 +80,28 @@ const Core = React.memo(
                 imageUrl={currentProject.backgroundImage && currentProject.backgroundImage.url}
               />
             )}
-            <FixedContainer/>
-            <StaticContainer/>
+            <Box component="nav" sx={{width: {sm: drawerWidth}, flexShrink: {sm: 768}}}>
+              <Drawer
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={ui_styles.drawerMobile}>
+                <DrawerWeb/>
+              </Drawer>
+              <Drawer variant="permanent" open sx={ui_styles.drawer}>
+                <DrawerWeb/>
+              </Drawer>
+            </Box>
+            <Box>
+              <FixedContainer/>
+            </Box>
+            <Box sx={ui_styles.boxContent}>
+              {/* <AppBar><Toolbar/></AppBar> */}
+              <StaticContainer/>
+            </Box>
             {currentModal === ModalTypes.USERS && <UsersModalContainer/>}
             {currentModal === ModalTypes.USER_SETTINGS && <UserSettingsModalContainer/>}
             {currentModal === ModalTypes.PROJECT_ADD && <ProjectAddModalContainer/>}
