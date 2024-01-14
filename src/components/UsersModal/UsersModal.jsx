@@ -81,7 +81,7 @@ const UsersModal = React.memo(
     const UserAddPopupContainer = usePopup(UserAddStepContainer);
 
     return (
-      <Modal open closeIcon size="large" centered={false} onClose={onClose}>
+      <Modal open closeIcon size="large" centered={false} onClose={onClose} style={{'margin-left': '240px'}}>
         <Modal.Header>
           {t('common.users', {
             context: 'title',

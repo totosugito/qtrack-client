@@ -40,37 +40,37 @@ const Header = React.memo(
     const UserPopup = usePopup(UserStep, POPUP_PROPS);
 
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper1}>
       {/* <AppBar position="static"> */}
       {/*   <Toolbar> */}
-        {!project && (
-          <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
-            QTrack
-          </Link>
-        )}
+      {/*  {!project && (*/}
+      {/*    <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>*/}
+      {/*      trackAI*/}
+      {/*    </Link>*/}
+      {/*  )}*/}
         <Menu inverted size="large" className={styles.menu}>
-          {project && (
-            <Menu.Menu position="left">
-              <Menu.Item
-                as={Link}
-                to={Paths.ROOT}
-                className={classNames(styles.item, styles.itemHoverable)}
-              >
-                <Icon fitted name="arrow left" />
-              </Menu.Item>
-              <Menu.Item className={classNames(styles.item, styles.title)}>
-                {project.name}
-                {canEditProject && (
-                  <Button
-                    className={classNames(styles.editButton, styles.target)}
-                    onClick={handleProjectSettingsClick}
-                  >
-                    <Icon fitted name="pencil" size="small" />
-                  </Button>
-                )}
-              </Menu.Item>
-            </Menu.Menu>
-          )}
+          {/*{project && (*/}
+          {/*  <Menu.Menu position="left">*/}
+          {/*    /!*<Menu.Item*!/*/}
+          {/*    /!*  as={Link}*!/*/}
+          {/*    /!*  to={Paths.ROOT}*!/*/}
+          {/*    /!*  className={classNames(styles.item, styles.itemHoverable)}*!/*/}
+          {/*    /!*>*!/*/}
+          {/*    /!*  <Icon fitted name="arrow left" />*!/*/}
+          {/*    /!*</Menu.Item>*!/*/}
+          {/*    <Menu.Item className={classNames(styles.item, styles.title)}>*/}
+          {/*      {project.name}*/}
+          {/*      {canEditProject && (*/}
+          {/*        <Button*/}
+          {/*          className={classNames(styles.editButton, styles.target)}*/}
+          {/*          onClick={handleProjectSettingsClick}*/}
+          {/*        >*/}
+          {/*          <Icon fitted name="pencil" size="small" />*/}
+          {/*        </Button>*/}
+          {/*      )}*/}
+          {/*    </Menu.Item>*/}
+          {/*  </Menu.Menu>*/}
+          {/*)}*/}
           <Menu.Menu position="right">
             {canEditUsers && (
               <Menu.Item

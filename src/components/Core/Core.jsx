@@ -12,8 +12,11 @@ import ProjectAddModalContainer from '../../containers/ProjectAddModalContainer'
 import Background from '../Background';
 
 import styles from './Core.module.scss';
-import { AppBar, Box, Drawer, Toolbar } from '@mui/material';
-import DrawerWeb from './component/drawer-web';
+import {AppBar, Box, Drawer, Grid, IconButton, Toolbar, Typography} from '@mui/material';
+import DrawerWeb from "../../customs/project/skk/page/base-ui/component/drawer-web";
+import {Menu as MenuIcon} from "@mui/icons-material";
+import WebLogo from "../../customs/project/skk/page/base-ui/component/web-logo";
+import HeaderContainer from "../../containers/HeaderContainer";
 
 const Core = React.memo(
   ({
@@ -44,6 +47,12 @@ const Core = React.memo(
 
     const drawerWidth = 240;
     const ui_styles = {
+      boxContainer: {},
+      title: {
+        ml: 1,
+        color: 'white',
+        fontSize: '25px'
+      },
       drawer: {
         display: {xs: 'none', sm: 'block'},
         '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth}
@@ -56,12 +65,13 @@ const Core = React.memo(
         // flexGrow: 1,
         width: {sm: `calc(100% - ${drawerWidth}px)`},
         marginLeft: {sm: `${drawerWidth}px`},
+        backgroundColor: 'silver',
       },
       boxContent: {
-        // display: 'flex',
-        // flexGrow: 1,
-        width: {sm: `calc(100% - ${drawerWidth}px)`},
-        // marginTop: '32px',
+        display: 'flex',
+        flexGrow: 1,
+        // width: {sm: `calc(100% - ${drawerWidth}px)`},
+        marginTop: '180px',
         marginLeft: {sm: `${drawerWidth}px`},
         alignContent: 'center',
         alignItems: 'center',
@@ -86,26 +96,49 @@ const Core = React.memo(
                 imageUrl={currentProject.backgroundImage && currentProject.backgroundImage.url}
               />
             )}
+
+            <Box sx={ui_styles.boxContainer}>
+              <AppBar >
+                <Toolbar>
+                  <Grid container direction="row" alignItems="flex-end" justifyContent="space-between">
+                    <Grid item>
+                      <Box sx={{
+                        mr: 2,
+                        display: {sm: 'none'},
+                        alignContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                        <IconButton edge="start" onClick={handleDrawerToggle}>
+                          <MenuIcon sx={ui_styles.toolbarIcon} style={{color: 'white'}}/>
+                        </IconButton>
+                        {/*<WebLogo color={'white'}/>*/}
+                      </Box>
+                    </Grid>
+                    <Grid item>
+                      {/*<FixedContainer/>*/}
+                      <HeaderContainer />
+                    </Grid>
+                  </Grid>
+                </Toolbar>
+              </AppBar>
+            </Box>
+
             <Box component="nav" sx={{width: {sm: drawerWidth}, flexShrink: {sm: 768}}}>
               <Drawer
-                variant="temporary"
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                  keepMounted: true, // Better open performance on mobile.
-                }}
-                sx={ui_styles.drawerMobile}>
+                  variant="temporary"
+                  open={mobileOpen}
+                  onClose={handleDrawerToggle}
+                  ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                  }}
+                  sx={ui_styles.drawerMobile}>
                 <DrawerWeb/>
               </Drawer>
               <Drawer variant="permanent" open sx={ui_styles.drawer}>
                 <DrawerWeb/>
               </Drawer>
             </Box>
-            {/* <Box> */}
-            {/*   <FixedContainer/> */}
-            {/* </Box> */}
-            {/* <Box component="nav" sx={{width: {sm: drawerWidth}, flexShrink: {sm: 768}}}> */}
-            {/* </Box> */}
+
             <Box sx={ui_styles.boxToolbar}>
               <FixedContainer/>
             </Box>

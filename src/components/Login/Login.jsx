@@ -219,7 +219,7 @@ const Login = React.memo(
           >
             <div className={styles.descriptionWrapperOverlay} />
             <div className={styles.descriptionWrapper}>
-              <Header inverted as="h1" content="QTrack" className={styles.descriptionTitle} />
+              <Header inverted as="h1" content="trackAI" className={styles.descriptionTitle} />
               <Header
                 inverted
                 as="h2"

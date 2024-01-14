@@ -27,15 +27,22 @@
 
   .wrapper {
     height: 100%;
+    margin-top: -230px;
+  }
+  .wrapper1 {
+    height: 100%;
     margin-top: 50px;
   }
 
   .wrapperBoard {
     margin-top: 174px;
   }
+  .wrapperBoard1 {
+    margin-top: 10px;
+  }
 
   .wrapperFlex {
-    display: flex;
+    //display: flex;
   }
 
   .wrapperLoader {

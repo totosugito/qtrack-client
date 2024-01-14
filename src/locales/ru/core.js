@@ -15,7 +15,7 @@ export default {
 
   translation: {
     common: {
-      aboutPlanka: 'О проекте QTrack',
+      aboutPlanka: 'О проекте trackAI',
       account: 'Учетная запись',
       actions: 'Действия',
       addAttachment: 'Добавление вложения',

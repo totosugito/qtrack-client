@@ -200,7 +200,10 @@
   .wrapper {
     width: 880px;
   }
-
+  .wrapper1 {
+    margin-left: 240px;
+    //width: 880px;
+  }
   @media (max-width: 926px) {
     .wrapper {
       width: 95%;

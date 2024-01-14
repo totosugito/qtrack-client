@@ -83,7 +83,7 @@ const UserSettingsModal = React.memo(
     ];
 
     return (
-      <Modal open closeIcon size="small" centered={false} onClose={onClose}>
+      <Modal open closeIcon size="small" centered={false} onClose={onClose} style={{'margin-left': '240px'}}>
         <Modal.Content>
           <Tab
             menu={{

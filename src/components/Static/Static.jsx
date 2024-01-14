@@ -89,7 +89,7 @@ function Static({ projectId, cardId, board }) {
   }
 
   return (
-    <div className={classNames(styles.wrapper, styles.wrapperFlex, styles.wrapperBoard)}>
+    <div className={classNames(styles.wrapper1, styles.wrapperFlex, styles.wrapperBoard1)}>
       <BoardContainer />
     </div>
   );

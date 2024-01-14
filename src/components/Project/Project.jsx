@@ -9,7 +9,7 @@ import styles from './Project.module.scss';
 const Project = React.memo(({ isSettingsModalOpened }) => {
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper1}>
         <BoardsContainer />
       </div>
       {isSettingsModalOpened && <ProjectSettingsModalContainer />}

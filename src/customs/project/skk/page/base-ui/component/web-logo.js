@@ -1,5 +1,5 @@
 import {Box, Button, Stack, Typography, useTheme} from "@mui/material";
-// import logo from "../../../../../assets/image-logo.png";
+import logo from "../../../../../assets/image-logo.png";
 import React from "react";
 
 function WebLogo(props) {
@@ -22,12 +22,12 @@ function WebLogo(props) {
     return (
         <Button href={"/"}>
             <Stack direction="row" alignItems={'center'}>
-                {/* <Box */}
-                {/*     component="img" */}
-                {/*     sx={styles.avatar} */}
-                {/*     src={logo}/> */}
+                <Box
+                    component="img"
+                    sx={styles.avatar}
+                    src={logo}/>
                 <Stack>
-                    <Typography sx={styles.title} style={{color: props.color}}>KnowAI</Typography>
+                    <Typography sx={styles.title} style={{color: props.color}}>trackAI</Typography>
                     <Typography sx={styles.subtitle} style={{color: props.color}}>Knowledge Navigator</Typography>
                 </Stack>
             </Stack>

@@ -10,7 +10,7 @@ import styles from './Fixed.module.scss';
 function Fixed({ projectId, board }) {
   return (
     <div className={styles.wrapper1}>
-      <HeaderContainer />
+      {/*<HeaderContainer />*/}
       {projectId && <ProjectContainer />}
       {board && !board.isFetching && <BoardActionsContainer />}
     </div>

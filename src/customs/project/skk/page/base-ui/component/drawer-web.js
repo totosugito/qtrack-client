@@ -11,6 +11,7 @@ import {
 
 import InfoIcon from '@mui/icons-material/Info';
 import React from "react";
+import {getRouterUrl} from "../../../../../router";
 import WebLogo from "./web-logo";
 import HomeIcon from '@mui/icons-material/Home';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -54,7 +55,7 @@ export default function DrawerWeb(props) {
             <Toolbar><WebLogo mode={0}/></Toolbar>
             <Divider/>
             <List>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("skk-home")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <HomeIcon/>
@@ -62,7 +63,7 @@ export default function DrawerWeb(props) {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("skk-home-map")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <PinDropIcon/>
@@ -70,7 +71,7 @@ export default function DrawerWeb(props) {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("root")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <FolderIcon/>
@@ -78,20 +79,20 @@ export default function DrawerWeb(props) {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link underline={'none'} href="#">
-                    <ListItem disablePadding>
-                        <ListItemButton sx={styles.iconMenu}>
-                            <PeopleAltIcon/>
-                            <ListItemText sx={styles.menuText} primary={"User"}/>
-                        </ListItemButton>
-                    </ListItem>
-                </Link>
+                {/*<Link underline={'none'} href={getRouterUrl("#")}>*/}
+                {/*    <ListItem disablePadding>*/}
+                {/*        <ListItemButton sx={styles.iconMenu}>*/}
+                {/*            <PeopleAltIcon/>*/}
+                {/*            <ListItemText sx={styles.menuText} primary={"User"}/>*/}
+                {/*        </ListItemButton>*/}
+                {/*    </ListItem>*/}
+                {/*</Link>*/}
             </List>
 
             <Divider/>
             <List>
                 <ListItemText primary={"INFO"} sx={styles.title}/>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("#")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <MarkChatReadIcon/>
@@ -99,7 +100,7 @@ export default function DrawerWeb(props) {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("#")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <ApartmentIcon/>
@@ -107,7 +108,7 @@ export default function DrawerWeb(props) {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("#")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <MarkEmailUnreadIcon/>
@@ -115,7 +116,7 @@ export default function DrawerWeb(props) {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link underline={'none'} href="#">
+                <Link underline={'none'} href={getRouterUrl("#")}>
                     <ListItem disablePadding>
                         <ListItemButton sx={styles.iconMenu}>
                             <InfoIcon/>
