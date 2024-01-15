@@ -8,8 +8,9 @@ import ProjectsContainer from '../../containers/ProjectsContainer';
 import BoardContainer from '../../containers/BoardContainer';
 
 import styles from './Static.module.scss';
+import DemoKanban from "../../customs/project/skk/demo/DemoKanban";
 
-function Static({ projectId, cardId, board }) {
+function Static({ projectId, cardId, kanbanId, board }) {
   const [t] = useTranslation();
 
   if (projectId === undefined) {
@@ -32,6 +33,14 @@ function Static({ projectId, cardId, board }) {
         </div>
       </div>
     );
+  }
+
+  if(kanbanId !== undefined) {
+    return (
+        <div className={classNames(styles.wrapper2)}>
+          <DemoKanban/>
+        </div>
+    )
   }
 
   if (board === null) {

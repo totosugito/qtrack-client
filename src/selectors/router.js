@@ -51,6 +51,22 @@ export const selectPath = createReduxOrmSelector(
             projectId: boardModel.projectId,
           };
         }
+        case Paths.KANBAN: {
+          const boardModel = Board.withId(pathsMatch.params.id);
+
+          if (!boardModel || !boardModel.isAvailableForUser(currentUserId)) {
+            return {
+              boardId: null,
+              kanbanId: null,
+              projectId: null,
+            };
+          }
+          return {
+            boardId: null,
+            kanbanId: boardModel.id,
+            projectId: boardModel.projectId,
+          };
+        }
         case Paths.CARDS: {
           const cardModel = Card.withId(pathsMatch.params.id);
 

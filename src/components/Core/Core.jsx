@@ -12,10 +12,9 @@ import ProjectAddModalContainer from '../../containers/ProjectAddModalContainer'
 import Background from '../Background';
 
 import styles from './Core.module.scss';
-import {AppBar, Box, Drawer, Grid, IconButton, Toolbar, Typography} from '@mui/material';
+import {AppBar, Box, Drawer, Grid, IconButton, Toolbar} from '@mui/material';
 import DrawerWeb from "../../customs/project/skk/page/base-ui/component/drawer-web";
 import {Menu as MenuIcon} from "@mui/icons-material";
-import WebLogo from "../../customs/project/skk/page/base-ui/component/web-logo";
 import HeaderContainer from "../../containers/HeaderContainer";
 
 const Core = React.memo(
@@ -111,11 +110,9 @@ const Core = React.memo(
                         <IconButton edge="start" onClick={handleDrawerToggle}>
                           <MenuIcon sx={ui_styles.toolbarIcon} style={{color: 'white'}}/>
                         </IconButton>
-                        {/*<WebLogo color={'white'}/>*/}
                       </Box>
                     </Grid>
                     <Grid item>
-                      {/*<FixedContainer/>*/}
                       <HeaderContainer />
                     </Grid>
                   </Grid>

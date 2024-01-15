@@ -13,8 +13,8 @@ const middlewares = [sagaMiddleware, createRouterMiddleware(history)];
 let compose = reduxCompose;
 
 if (process.env.NODE_ENV !== 'production') {
-  const { logger } = require('redux-logger'); // eslint-disable-line global-require
-  middlewares.push(logger);
+  // const { logger } = require('redux-logger'); // eslint-disable-line global-require
+  // middlewares.push(logger);
 
   // Enable Redux Devtools in development
   // https://github.com/zalmoxisus/redux-devtools-extension

@@ -5,6 +5,7 @@ const LOGIN = `${Config.BASE_PATH}/login`;
 const OIDC_CALLBACK = `${Config.BASE_PATH}/oidc-callback`;
 const PROJECTS = `${Config.BASE_PATH}/projects/:id`;
 const BOARDS = `${Config.BASE_PATH}/boards/:id`;
+const KANBAN = `${Config.BASE_PATH}/kanban/:id`;
 const CARDS = `${Config.BASE_PATH}/cards/:id`;
 
 export default {
@@ -13,5 +14,6 @@ export default {
   OIDC_CALLBACK,
   PROJECTS,
   BOARDS,
+  KANBAN,
   CARDS,
 };
