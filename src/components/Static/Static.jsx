@@ -8,11 +8,10 @@ import ProjectsContainer from '../../containers/ProjectsContainer';
 import BoardContainer from '../../containers/BoardContainer';
 
 import styles from './Static.module.scss';
-import DemoKanban from "../../customs/project/skk/demo/DemoKanban";
+import DemoGantt from "../../customs/project/skk/demo/DemoGantt";
 
-function Static({ projectId, cardId, kanbanId, board }) {
+function Static({ projectId, cardId, ganttId, board }) {
   const [t] = useTranslation();
-
   if (projectId === undefined) {
     return (
       <div className={styles.wrapper}>
@@ -35,10 +34,10 @@ function Static({ projectId, cardId, kanbanId, board }) {
     );
   }
 
-  if(kanbanId !== undefined) {
+  if(ganttId !== undefined) {
     return (
         <div className={classNames(styles.wrapper2)}>
-          <DemoKanban/>
+          <DemoGantt ganttId={ganttId}/>
         </div>
     )
   }

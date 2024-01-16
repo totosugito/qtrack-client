@@ -7,12 +7,12 @@ import BoardActionsContainer from '../../containers/BoardActionsContainer';
 
 import styles from './Fixed.module.scss';
 
-function Fixed({ projectId, kanbanId, board }) {
+function Fixed({ projectId, ganttId, board }) {
   return (
     <div className={styles.wrapper1}>
       {/*<HeaderContainer />*/}
-      {kanbanId && <></>}
-      {!kanbanId &&
+      {ganttId && <></>}
+      {!ganttId &&
         <>
         {projectId && <ProjectContainer />}
         {board && !board.isFetching && <BoardActionsContainer />}

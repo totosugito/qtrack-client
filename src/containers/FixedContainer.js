@@ -4,12 +4,12 @@ import selectors from '../selectors';
 import Fixed from '../components/Fixed';
 
 const mapStateToProps = (state) => {
-  const { projectId, kanbanId } = selectors.selectPath(state);
+  const { projectId, ganttId } = selectors.selectPath(state);
   const currentBoard = selectors.selectCurrentBoard(state);
 
   return {
     projectId,
-    kanbanId,
+    ganttId,
     board: currentBoard,
   };
 };

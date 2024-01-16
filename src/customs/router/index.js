@@ -12,6 +12,7 @@ export function getRouterUrl(key, prefix="/", param={}) {
         "skk-project-edit": prefix + "skk/project-edit/" + (("id" in param) ? `${param["id"]}` : ":id"),
         "skk-project-kanban": prefix + "skk/project-kanban/" + (("id" in param) ? `${param["id"]}` : ":id"),
         "skk-project-gantt": prefix + "skk/project-gantt/" + (("id" in param) ? `${param["id"]}` : ":id"),
+        "demo-boards": prefix + "boards/" + (("id" in param) ? `${param["id"]}` : ":id"),
 
         "ui-input-csv": prefix + 'ui-input-csv',
         "ui-syncfusion-kanban": prefix + 'ui-syncfusion-kanban',

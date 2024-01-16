@@ -6,6 +6,8 @@ import Memberships from '../Memberships';
 import BoardMembershipPermissionsSelectStep from '../BoardMembershipPermissionsSelectStep';
 
 import styles from './BoardActions.module.scss';
+import {Button, Link} from "@mui/material";
+import Paths from "../../constants/Paths";
 
 const BoardActions = React.memo(
   ({
@@ -59,6 +61,7 @@ const BoardActions = React.memo(
               onLabelDelete={onLabelDelete}
             />
           </div>
+            <Link underline={'none'} href={Paths.GANTT.replace(':id', memberships[0]["boardId"])}>Gantt</Link>
         </div>
       </div>
     );

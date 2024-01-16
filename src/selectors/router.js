@@ -51,19 +51,19 @@ export const selectPath = createReduxOrmSelector(
             projectId: boardModel.projectId,
           };
         }
-        case Paths.KANBAN: {
+        case Paths.GANTT: {
           const boardModel = Board.withId(pathsMatch.params.id);
 
           if (!boardModel || !boardModel.isAvailableForUser(currentUserId)) {
             return {
               boardId: null,
-              kanbanId: null,
+              ganttId: null,
               projectId: null,
             };
           }
           return {
             boardId: null,
-            kanbanId: boardModel.id,
+            ganttId: boardModel.id,
             projectId: boardModel.projectId,
           };
         }

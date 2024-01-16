@@ -27,7 +27,7 @@ function Root({ store, history }) {
           <Route path={Paths.ROOT} element={<CoreContainer />} />
           <Route path={Paths.PROJECTS} element={<CoreContainer />} />
           <Route path={Paths.BOARDS} element={<CoreContainer />} />
-          <Route path={Paths.KANBAN} element={<CoreContainer />} />
+          <Route path={Paths.GANTT} element={<CoreContainer />} />
           <Route path={Paths.CARDS} element={<CoreContainer />} />
           <Route path="*" element={<NotFound />} />
           <Route path={getRouterUrl("skk-home")} element={<SkkHome/>}/>
