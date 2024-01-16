@@ -24,12 +24,13 @@ import '../../../../../node_modules/@syncfusion/ej2-grids/styles/material.css';
 import '../../../../../node_modules/@syncfusion/ej2-treegrid/styles/material.css';
 import '../../../../../node_modules/@syncfusion/ej2-react-gantt/styles/material.css';
 import {registerLicense} from "@syncfusion/ej2-base";
-import {Box, Breadcrumbs, Button, useTheme} from "@mui/material";
+import {Box, Breadcrumbs, Button, Typography, useTheme} from "@mui/material";
 import {BrLabel, BrProjectList} from "../component";
 import dummy_data from "../../skk/data/demo_project.json"
 import BrLink from "../component/breadcrumbs/br-link";
 import {getRouterUrl} from "../../../router";
 import {read, utils} from "xlsx";
+import LTT from "list-to-tree";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NHaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZiWH1ZcHdQRWJZWE12Xg==");
 const DemoGantt = ({ganttId}) => {
@@ -62,7 +63,7 @@ const DemoGantt = ({ganttId}) => {
     const toolbarClick = (args) => {
         if (args.item.id === 'pdf_export') {
             let exportProperties= {
-                includeHiddenColumn: false,
+                includeHiddenColumn: true,
                 pageOrientation: 'Landscape',
                 pageSize: 'A1',
                 fitToWidthSettings: {
@@ -76,60 +77,6 @@ const DemoGantt = ({ganttId}) => {
         }
     }
 
-    const reformatXlsx = (inputData) => {
-        const transformedData = {
-            data: []
-        };
-
-        let currentParent = null;
-        let currentChild = null;
-
-        inputData.forEach(item => {
-            const titleTrimmed = item.TaskName.trim();
-
-            if (titleTrimmed.startsWith('Parent')) {
-                // New Parent
-                if (currentChild !== null) {
-                    currentParent.subtasks.push(currentChild);
-                    currentChild = null;
-                }
-
-                if (currentParent !== null) {
-                    transformedData.data.push(currentParent);
-                }
-
-                currentParent = {
-                    TaskId: item.TaskId,
-                    TaskName: titleTrimmed,
-                    subtasks: []
-                };
-            } else {
-                // Child
-                if (currentChild !== null) {
-                    currentParent.subtasks.push(currentChild);
-                }
-
-                currentChild = {
-                    TaskId: item.TaskId,
-                    TaskName: titleTrimmed,
-                    subtasks: []
-                };
-            }
-        });
-
-        // Add the last parent and child
-        if (currentParent !== null) {
-            if (currentChild !== null) {
-                currentParent.subtasks.push(currentChild);
-            }
-            transformedData.data.push(currentParent);
-        } else if (currentChild !== null) {
-            transformedData.data.push(currentChild);
-        }
-
-        return(transformedData["data"]);
-    }
-
     const handleImport = ($event) => {
         const files = $event.target.files;
         if (files.length) {
@@ -141,7 +88,12 @@ const DemoGantt = ({ganttId}) => {
 
                 if (sheets.length) {
                     const rows = utils.sheet_to_json(wb.Sheets[sheets[0]]);
-                    setGantt(reformatXlsx(rows));
+                    let ltt = new LTT(rows, {
+                        key_id: 'TaskID',
+                        key_parent: 'ParentID',
+                    });
+                    let tree = ltt.GetTree();
+                    setGantt(tree);
                 }
             }
             reader.readAsArrayBuffer(file);
@@ -158,13 +110,15 @@ const DemoGantt = ({ganttId}) => {
                 </Breadcrumbs>
 
                 <Box sx={{mb: 1}}>
-                    <Button variant={'outlined'} onClick={()=> createDummyData()}>Dummy Data</Button>
+                    {/*<Button variant={'outlined'} onClick={()=> createDummyData()}>Dummy Data</Button>*/}
 
-                    {/*<Box sx={{p: 1}}>*/}
-                    {/*    <input type="file" name="file" className="custom-file-input" id="inputGroupFile"*/}
-                    {/*           required onChange={handleImport}*/}
-                    {/*           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>*/}
-                    {/*</Box>*/}
+                    <Typography sx={{fontSize: '80%'}}>Import XLSX file : </Typography>
+                    <Button variant={'outlined'}>
+                        {/*<label htmlFor="files" className="btn">Select Image</label>*/}
+                        <input id="files" type="file" name="file" className="custom-file-input"
+                               required onChange={handleImport}
+                               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                    </Button>
                 </Box>
                 {gantt !== undefined &&
                     <GanttComponent style={styles.gantt} ref={ganttRef => ganttChart = ganttRef} dataSource={gantt} treeColumnIndex={1}
@@ -201,7 +155,7 @@ const DemoGantt = ({ganttId}) => {
                                         duration: 'Duration',
                                         progress: 'Progress',
                                         dependency: 'Predecessor',
-                                        child: 'subtasks'
+                                        child: 'child'
                                     }}
                                     editSettings={{
                                         allowAdding: true,
