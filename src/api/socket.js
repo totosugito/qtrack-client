@@ -11,30 +11,46 @@ io.sails.reconnection = true;
 io.sails.useCORSRouteToGetCookie = false;
 io.sails.environment = process.env.NODE_ENV;
 
-const { socket } = io;
+const {socket} = io;
 
 socket.path = `${Config.BASE_PATH}/socket.io`;
 socket.connect = socket._connect; // eslint-disable-line no-underscore-dangle
 
 ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].forEach((method) => {
-  socket[method.toLowerCase()] = (url, data, headers) =>
-    new Promise((resolve, reject) => {
-      socket.request(
-        {
-          method,
-          data,
-          headers,
-          url: `/api${url}`,
-        },
-        (_, { body, error }) => {
-          if (error) {
-            reject(body);
-          } else {
-            resolve(body);
-          }
-        },
-      );
-    });
+    socket[method.toLowerCase()] = (url, data, headers) =>
+        new Promise((resolve, reject) => {
+            let dbgInp = {
+                "proc": ">",
+                "url": `/api${url}`,
+                "type": "socket",
+                "method": method,
+                "headers": headers,
+                "data": data
+            }
+            console.log(dbgInp)
+
+            socket.request(
+                {
+                    method,
+                    data,
+                    headers,
+                    url: `/api${url}`,
+                },
+                (_, {body, error}) => {
+                    if (error) {
+                        reject(body);
+                    } else {
+                        let dbgOut = {
+                            "proc": "<",
+                            "url": `/api${url}`,
+                            "data": body
+                        }
+                        console.log(dbgOut)
+                        resolve(body);
+                    }
+                },
+            );
+        });
 });
 
 export default socket;

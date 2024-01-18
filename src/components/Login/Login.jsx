@@ -103,6 +103,7 @@ const Login = React.memo(
         return;
       }
 
+      console.log(cleanData)
       onAuthenticate(cleanData);
     }, [onAuthenticate, data]);
 
