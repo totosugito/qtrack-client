@@ -19,15 +19,17 @@ socket.connect = socket._connect; // eslint-disable-line no-underscore-dangle
 ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].forEach((method) => {
     socket[method.toLowerCase()] = (url, data, headers) =>
         new Promise((resolve, reject) => {
-            let dbgInp = {
-                "proc": ">",
-                "url": `/api${url}`,
-                "type": "socket",
-                "method": method,
-                "headers": headers,
-                "data": data
+            if (Config.SHOW_DEBUG_API) {
+                let dbgInp = {
+                    "type": "socket",
+                    "proc": ">",
+                    "url": `/api${url}`,
+                    "method": method,
+                    "headers": headers,
+                    "data": data
+                }
+                console.log(dbgInp)
             }
-            console.log(dbgInp)
 
             socket.request(
                 {
@@ -40,12 +42,15 @@ socket.connect = socket._connect; // eslint-disable-line no-underscore-dangle
                     if (error) {
                         reject(body);
                     } else {
-                        let dbgOut = {
-                            "proc": "<",
-                            "url": `/api${url}`,
-                            "data": body
+                        if (Config.SHOW_DEBUG_API) {
+                            let dbgOut = {
+                                "type": "socket",
+                                "proc": "<",
+                                "url": `/api${url}`,
+                                "data": body
+                            }
+                            console.log(dbgOut)
                         }
-                        console.log(dbgOut)
                         resolve(body);
                     }
                 },
