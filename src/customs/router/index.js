@@ -1,10 +1,12 @@
 import {baseURL, isDebug} from "../config"
+import Config from "../../constants/Config";
 
 export function getRouterUrl(key, prefix="/", param={}) {
     let routers = {
         "404": prefix + "error-404",
         "root": prefix,
         "skk-home": prefix + "skk/home",
+        "page-login": prefix + "login",
         "skk-home-map": prefix + "skk/home-map",
         "skk-project-list": prefix + "skk/project-list",
         "skk-project-create": prefix + "skk/project-create",
@@ -40,9 +42,8 @@ export function getRouterUrl(key, prefix="/", param={}) {
 
 export function getRouterApi(key, param={}) {
     let apis = {
-        "dummy-job-predict": baseURL + "/api/ccdp/predict-json-list",
-        "dummy-task-create": baseURL + "/api/dummy/start",
-        "dummy-task-status": baseURL + `/api/dummy/status/${param['id']}` ,
+        "dummy-task-status": Config.SERVER_BASE_URL + `/api/dummy/status/${param['id']}` ,
+        "api-config": Config.SERVER_BASE_URL + "/api/config" ,
     }
     let url = apis[key]
     if (isDebug)

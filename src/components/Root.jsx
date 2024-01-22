@@ -14,7 +14,7 @@ import 'photoswipe/dist/photoswipe.css';
 import '../lib/easymde-2.18.0/easymde.min.css';
 import '../lib/custom-ui/styles.css';
 import '../styles.module.scss';
-import {SkkHome, SkkHomeMap} from "../customs/project/skk";
+import {PageUiLogin, SkkHome, SkkHomeMap} from "../customs/project/skk";
 import {getRouterUrl} from "../customs/router";
 
 function Root({ store, history }) {
@@ -30,6 +30,7 @@ function Root({ store, history }) {
           <Route path={Paths.GANTT} element={<CoreContainer />} />
           <Route path={Paths.CARDS} element={<CoreContainer />} />
           <Route path="*" element={<NotFound />} />
+          <Route path={getRouterUrl("page-login")} element={<PageUiLogin/>}/>
           <Route path={getRouterUrl("skk-home")} element={<SkkHome/>}/>
           <Route path={getRouterUrl("skk-home-map")} element={<SkkHomeMap/>}/>
         </Routes>

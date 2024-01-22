@@ -25,6 +25,7 @@
     "@juggle/resize-observer": "^3.4.0",
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
+    "@reduxjs/toolkit": "^2.0.1",
     "@syncfusion/ej2-base": "^23.2.4",
     "@syncfusion/ej2-react-gantt": "^23.2.4",
     "@syncfusion/ej2-react-kanban": "^23.2.4",

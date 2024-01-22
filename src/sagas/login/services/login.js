@@ -10,8 +10,7 @@ import Paths from '../../../constants/Paths';
 
 export function* initializeLogin() {
   const { item: config } = yield call(api.getConfig); // TODO: handle error
-
-  yield put(actions.initializeLogin(config));
+    yield put(actions.initializeLogin(config));
 }
 
 export function* authenticate(data) {
