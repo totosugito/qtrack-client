@@ -27,11 +27,11 @@ export const httpGet = async (url, config = {}) => {
             console.log(dbgOut)
         }
 
-        return ({isError: false, data: response.data, message: ""});
+        return ({hasErrors: response.status !== 200, data: response.data});
     } catch (err) {
         const message =
-            err.response && err.response.data.message
-                ? err.response.data.message
+            err.response && err.response.data
+                ? err.response.data
                 : err.message;
 
         if (Config.SHOW_DEBUG_API) {
@@ -39,50 +39,82 @@ export const httpGet = async (url, config = {}) => {
                 "type": "http",
                 "proc": "<<",
                 "url": url,
-                "data": err
+                "data": err.message
             }
             console.log(dbgOut)
         }
-        return ({isError: true, data: {}, message: message});
+        return ({hasErrors: true, data: message});
     }
 }
 
 export const httpPost = async (url, data={}, config={}) => {
+    if (Config.SHOW_DEBUG_API) {
+        let dbgInp = {
+            "type": "http",
+            "proc": ">>",
+            "url": url,
+            "method": "POST",
+            "headers": config,
+            "data": data
+        }
+        console.log(dbgInp)
+    }
+
     try {
         let response = await axios.post(url, data, config)
-        return ({isError: false, data: response.data, message: ""});
+        if (Config.SHOW_DEBUG_API) {
+            let dbgOut = {
+                "type": "http",
+                "proc": "<<",
+                "url": url,
+                "data": response.data
+            }
+            console.log(dbgOut)
+        }
+
+        return ({hasErrors: response.status !== 200, data: response.data});
     } catch (err) {
         const message =
-            err.response && err.response.data.message
-                ? err.response.data.message
+            err.response && err.response.data
+                ? err.response.data
                 : err.message;
-        return ({isError: true, data: {}, message: message});
+
+        if (Config.SHOW_DEBUG_API) {
+            let dbgOut = {
+                "type": "http",
+                "proc": "<<",
+                "url": url,
+                "data": message
+            }
+            console.log(dbgOut)
+        }
+        return ({hasErrors: true, data: message});
     }
 }
 
 export const httpPut = async (url, data={}, config={}) => {
     try {
         let response = await axios.put(url, data, config)
-        return ({isError: false, data: response.data, message: ""});
+        return ({hasErrors: false, data: response.data});
     } catch (err) {
         const message =
             err.response && err.response.data.message
                 ? err.response.data.message
                 : err.message;
-        return ({isError: true, data: {}, message: message});
+        return ({hasErrors: true, data: message});
     }
 }
 
 export const httpDelete = async (url, config = {}) => {
     try {
         let response = await axios.delete(url, config)
-        return ({isError: false, data: response.data, message: ""});
+        return ({hasErrors: false, data: response.data});
     } catch (err) {
         const message =
             err.response && err.response.data.message
                 ? err.response.data.message
                 : err.message;
-        return ({isError: true, data: {}, message: message});
+        return ({hasErrors: true, data: message});
     }
 }
 

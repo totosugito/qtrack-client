@@ -5,7 +5,6 @@ import LoginWrapper from '../components/LoginWrapper';
 
 const mapStateToProps = (state) => {
   const isInitializing = selectors.selectIsInitializing(state);
-
   return {
     isInitializing,
   };

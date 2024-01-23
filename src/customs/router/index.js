@@ -43,7 +43,8 @@ export function getRouterUrl(key, prefix="/", param={}) {
 export function getRouterApi(key, param={}) {
     let apis = {
         "dummy-task-status": Config.SERVER_BASE_URL + `/api/dummy/status/${param['id']}` ,
-        "api-config": Config.SERVER_BASE_URL + "/api/config" ,
+        "config": Config.SERVER_BASE_URL + "/api/config",
+        "access-tokens": Config.SERVER_BASE_URL + "/api/access-tokens",
     }
     let url = apis[key]
     if (isDebug)

@@ -1,4 +1,4 @@
-import {Box, Button, Card, Grid, Link, Stack, TextField, Typography} from "@mui/material";
+import {Alert, Box, Button, Card, Grid, Link, Stack, TextField, Typography} from "@mui/material";
 import React, {useState} from "react";
 
 const LoginForm = (props) => {
@@ -13,14 +13,14 @@ const LoginForm = (props) => {
         }
     }
 
-    const [project, setProject] = useState({
-        email: "demo@demo.demo",
+    const [authParam, setAuthParam] = useState({
+        emailOrUsername: "demo@demo.demo",
         password: "demo"
     })
-    const {email, password} = project
+    const {emailOrUsername, password} = authParam
 
     const onChange = (e) => {
-        setProject((prevState) => ({
+        setAuthParam((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value
         }))
@@ -28,7 +28,11 @@ const LoginForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.onSubmit(project)
+
+        let bodyFormData = new FormData();
+        bodyFormData.append('emailOrUsername', authParam["emailOrUsername"].trim());
+        bodyFormData.append('password', authParam["password"].trim());
+        props.onSubmit(bodyFormData)
     }
 
     return (
@@ -49,6 +53,14 @@ const LoginForm = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12}>
+                                {props.msg["hasErrors"] &&
+                                    <Alert
+                                        color={'error'}
+                                        sx={{mb: 4}}>
+                                        {props.msg["data"]["message"]}
+                                    </Alert>
+                                }
+
                                 <form onSubmit={handleSubmit}>
                                     <TextField
                                         fullWidth
@@ -56,7 +68,7 @@ const LoginForm = (props) => {
                                         type="text"
                                         name='email'
                                         label='Email Address'
-                                        value={email}
+                                        value={emailOrUsername}
                                         onChange={onChange}
                                     />
                                     <TextField

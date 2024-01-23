@@ -17,6 +17,8 @@ const POSITION_GAP = 65535;
 const ACTIVITIES_LIMIT = 50;
 
 const SHOW_DEBUG_API = true
+const USE_WEB_ORI = true
+
 export default {
   VERSION,
   BASE_PATH,
@@ -27,5 +29,6 @@ export default {
   ACCESS_TOKEN_VERSION,
   POSITION_GAP,
   ACTIVITIES_LIMIT,
-  SHOW_DEBUG_API
+  SHOW_DEBUG_API,
+  USE_WEB_ORI
 };

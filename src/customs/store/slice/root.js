@@ -34,9 +34,9 @@ const dataSlice = createSlice({
             state.isInitializing = false
             state.config = action.payload.config
         },
-        AUTHENTICATE__SUCCESS(state, action) {
-            state.isInitializing = true
-        },
+        // AUTHENTICATE__SUCCESS(state, action) {
+        //     state.isInitializing = true
+        // },
         CORE_INITIALIZE(state, action) {
             state.isInitializing = false
         },
@@ -49,7 +49,7 @@ const dataSlice = createSlice({
 const {reducer, actions} = dataSlice;
 export const {
     LOGIN_INITIALIZE,
-    AUTHENTICATE__SUCCESS,
+    // AUTHENTICATE__SUCCESS,
     CORE_INITIALIZE,
     CORE_INITIALIZE__CONFIG_FETCH
 } = actions;

@@ -7,9 +7,10 @@ import {LOCATION_CHANGE_HANDLE} from "../../../../store/slice/router";
 import {dispatch} from "../../../../store";
 import {useSelector} from "react-redux";
 import React from "react";
-import {httpGet} from "../../../../service/http-api";
-import {getRouterApi} from "../../../../router";
+import {httpGet, httpPost} from "../../../../service/http-api";
+import {getRouterApi, getRouterUrl} from "../../../../router";
 import {LOGIN_INITIALIZE} from "../../../../store/slice/root";
+import {AUTHENTICATE, AUTHENTICATE__FAILURE, AUTHENTICATE__SUCCESS} from "../../../../store/slice/auth";
 
 const UiLogin = (props) => {
     const history = useLocation()
@@ -18,20 +19,33 @@ const UiLogin = (props) => {
     const styles = {}
 
     const storeRoot = useSelector((state) => state["root"])
+    const [msg, setMsg] = React.useState({hasErrors: false, data: null});
+
     useEffect(() => {
-        dispatch(LOCATION_CHANGE_HANDLE({location: history}))
+        // dispatch(AUTHENTICATE())
+        // dispatch(LOCATION_CHANGE_HANDLE({location: history}))
         get_data().then(r => {
         });
     }, []);
 
     const get_data = async () => {
-        await httpGet(getRouterApi("api-config"), {}).then((v) => {
+        await httpGet(getRouterApi("config"), {}).then((v) => {
             dispatch(LOGIN_INITIALIZE({config: v.data}))
         });
     }
 
-    const onLoginSubmit = (e) => {
-        console.log(e)
+    const onLoginSubmit = async (bodyFormData) => {
+        await httpPost(getRouterApi("access-tokens"), bodyFormData).then((v) => {
+            if(v.hasErrors) {
+                setMsg({hasErrors: v.hasErrors, data: v.data})
+                dispatch(AUTHENTICATE__FAILURE())
+            }
+            else {
+                setMsg({hasErrors: v.hasErrors, data: null})
+                dispatch(AUTHENTICATE__SUCCESS({accessToken: v.data["item"]}))
+                navigate(getRouterUrl("root"))
+            }
+        });
     }
 
     return (
@@ -59,7 +73,7 @@ const UiLogin = (props) => {
                         >
                             <Grid item>
                                 {
-                                    storeRoot.isInitializing ? <CircularProgress/> : <LoginForm onSubmit={onLoginSubmit}/>
+                                    storeRoot.isInitializing ? <CircularProgress/> : <LoginForm msg={msg} onSubmit={onLoginSubmit}/>
                                 }
                             </Grid>
                         </Grid>
