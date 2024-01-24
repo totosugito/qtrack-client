@@ -16,7 +16,6 @@ export function* goToRoot() {
 
 export function* handleLocationChange() {
   const pathsMatch = yield select(selectors.selectPathsMatch);
-
   if (!pathsMatch) {
     return;
   }

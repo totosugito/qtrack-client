@@ -8,6 +8,10 @@ import api from '../../../api';
 import ActionTypes from '../../../constants/ActionTypes';
 import Paths from '../../../constants/Paths';
 
+export function* goToLogin() {
+  yield put(push(Paths.LOGIN));
+}
+
 export function* goToRoot() {
   yield put(push(Paths.ROOT));
 }

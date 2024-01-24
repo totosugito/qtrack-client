@@ -32,7 +32,8 @@ const LoginForm = (props) => {
         let bodyFormData = new FormData();
         bodyFormData.append('emailOrUsername', authParam["emailOrUsername"].trim());
         bodyFormData.append('password', authParam["password"].trim());
-        props.onSubmit(bodyFormData)
+        // props.onSubmit(bodyFormData)
+        props.onSubmit(authParam)
     }
 
     return (
@@ -53,13 +54,21 @@ const LoginForm = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12}>
-                                {props.msg["hasErrors"] &&
+                                {props.msg &&
                                     <Alert
                                         color={'error'}
                                         sx={{mb: 4}}>
-                                        {props.msg["data"]["message"]}
+                                        {props.msg["message"]}
                                     </Alert>
                                 }
+
+                                {/*{props.msg["hasErrors"] &&*/}
+                                {/*    <Alert*/}
+                                {/*        color={'error'}*/}
+                                {/*        sx={{mb: 4}}>*/}
+                                {/*        {props.msg["data"]["message"]}*/}
+                                {/*    </Alert>*/}
+                                {/*}*/}
 
                                 <form onSubmit={handleSubmit}>
                                     <TextField

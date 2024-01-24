@@ -11,6 +11,8 @@ import {httpGet, httpPost} from "../../../../service/http-api";
 import {getRouterApi, getRouterUrl} from "../../../../router";
 import {LOGIN_INITIALIZE} from "../../../../store/slice/root";
 import {AUTHENTICATE, AUTHENTICATE__FAILURE, AUTHENTICATE__SUCCESS} from "../../../../store/slice/auth";
+import entryActions from "../../../../../entry-actions";
+import {useMemo} from "react";
 
 const UiLogin = (props) => {
     const history = useLocation()
@@ -19,6 +21,8 @@ const UiLogin = (props) => {
     const styles = {}
 
     const storeRoot = useSelector((state) => state["root"])
+    const error = useSelector((state) => state["ui"]["authenticateForm"]["error"])
+    const message = useMemo(() => error, [error]);
     const [msg, setMsg] = React.useState({hasErrors: false, data: null});
 
     useEffect(() => {
@@ -29,23 +33,13 @@ const UiLogin = (props) => {
     }, []);
 
     const get_data = async () => {
-        await httpGet(getRouterApi("config"), {}).then((v) => {
-            dispatch(LOGIN_INITIALIZE({config: v.data}))
-        });
+        // await httpGet(getRouterApi("config"), {}).then((v) => {
+        //     dispatch(LOGIN_INITIALIZE({config: v.data}))
+        // });
     }
 
-    const onLoginSubmit = async (bodyFormData) => {
-        await httpPost(getRouterApi("access-tokens"), bodyFormData).then((v) => {
-            if(v.hasErrors) {
-                setMsg({hasErrors: v.hasErrors, data: v.data})
-                dispatch(AUTHENTICATE__FAILURE())
-            }
-            else {
-                setMsg({hasErrors: v.hasErrors, data: null})
-                dispatch(AUTHENTICATE__SUCCESS({accessToken: v.data["item"]}))
-                navigate(getRouterUrl("root"))
-            }
-        });
+    const onLoginSubmit = (bodyFormData) => {
+        dispatch(entryActions.authenticate(bodyFormData))
     }
 
     return (
@@ -73,7 +67,7 @@ const UiLogin = (props) => {
                         >
                             <Grid item>
                                 {
-                                    storeRoot.isInitializing ? <CircularProgress/> : <LoginForm msg={msg} onSubmit={onLoginSubmit}/>
+                                    storeRoot.isInitializing ? <CircularProgress/> : <LoginForm msg={message} onSubmit={onLoginSubmit}/>
                                 }
                             </Grid>
                         </Grid>
