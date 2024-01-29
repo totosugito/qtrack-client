@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useForceUpdate, usePrevious } from '../../lib/hooks';
 
-import { formatStopwatch } from '../../utils/stopwatch';
+import { formatStopwatch } from '../../lib/utils/stopwatch';
 
 import styles from './Stopwatch.module.scss';
 

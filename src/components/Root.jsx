@@ -14,7 +14,7 @@ import 'photoswipe/dist/photoswipe.css';
 import '../lib/easymde-2.18.0/easymde.min.css';
 import '../lib/custom-ui/styles.css';
 import '../styles.module.scss';
-import {PageUiLogin, SkkHome, SkkHomeMap} from "../customs/project/skk";
+import {PageUiLogin, SkkHome, SkkHomeMap} from "../customs/project";
 import {getRouterUrl} from "../customs/router";
 
 function Root({ store, history }) {

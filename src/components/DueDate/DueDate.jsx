@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
-import getDateFormat from '../../utils/get-date-format';
+import getDateFormat from '../../lib/utils/get-date-format';
 
 import styles from './DueDate.module.scss';
 

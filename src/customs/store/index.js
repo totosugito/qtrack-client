@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import reducers from './slice';
 import history from "../../history";
 
-import rootSaga from "../../sagas";
+import rootSaga from "../../redux/sagas";
 import createSagaMiddleware from "redux-saga";
 import {createRouterMiddleware} from "../../lib/redux-router";
 import {applyMiddleware, compose as reduxCompose} from "redux";

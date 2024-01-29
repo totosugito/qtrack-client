@@ -7,7 +7,7 @@ import { useDidUpdate, usePrevious, useToggle } from '../../lib/hooks';
 import { Input, Popup } from '../../lib/custom-ui';
 
 import { useForm } from '../../hooks';
-import { isPassword } from '../../utils/validator';
+import { isPassword } from '../../lib/utils/validator';
 
 import styles from './UserPasswordEditStep.module.scss';
 

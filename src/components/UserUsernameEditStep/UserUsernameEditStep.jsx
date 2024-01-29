@@ -6,7 +6,7 @@ import { useDidUpdate, usePrevious, useToggle } from '../../lib/hooks';
 import { Input, Popup } from '../../lib/custom-ui';
 
 import { useForm } from '../../hooks';
-import { isUsername } from '../../utils/validator';
+import { isUsername } from '../../lib/utils/validator';
 
 import styles from './UserUsernameEditStep.module.scss';
 

@@ -8,7 +8,7 @@ import { useDidUpdate, usePrevious, useToggle } from '../../lib/hooks';
 import { Input } from '../../lib/custom-ui';
 
 import { useForm } from '../../hooks';
-import { isUsername } from '../../utils/validator';
+import { isUsername } from '../../lib/utils/validator';
 
 import styles from './Login.module.scss';
 

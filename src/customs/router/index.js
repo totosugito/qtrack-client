@@ -1,4 +1,4 @@
-import {baseURL, isDebug} from "../config"
+// import {baseURL, isDebug} from "../config"
 import Config from "../../constants/Config";
 
 export function getRouterUrl(key, prefix="/", param={}) {
@@ -47,7 +47,7 @@ export function getRouterApi(key, param={}) {
         "access-tokens": Config.SERVER_BASE_URL + "/api/access-tokens",
     }
     let url = apis[key]
-    if (isDebug)
-        console.log(url)
+    // if (isDebug)
+    //     console.log(url)
     return(url)
 }

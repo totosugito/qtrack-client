@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useTranslation, Trans } from 'react-i18next';
 import { Comment } from 'semantic-ui-react';
 
-import getDateFormat from '../../../utils/get-date-format';
+import getDateFormat from '../../../lib/utils/get-date-format';
 import { ActivityTypes } from '../../../constants/Enums';
 import ItemComment from './ItemComment';
 import User from '../../User';

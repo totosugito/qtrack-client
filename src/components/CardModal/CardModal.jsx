@@ -6,7 +6,7 @@ import { Button, Grid, Icon, Modal } from 'semantic-ui-react';
 import { usePopup } from '../../lib/popup';
 import { Markdown } from '../../lib/custom-ui';
 
-import { startStopwatch, stopStopwatch } from '../../utils/stopwatch';
+import { startStopwatch, stopStopwatch } from '../../lib/utils/stopwatch';
 import NameField from './NameField';
 import DescriptionEdit from './DescriptionEdit';
 import Tasks from './Tasks';

@@ -7,7 +7,7 @@ import { usePrevious } from '../../lib/hooks';
 import { Input, Popup } from '../../lib/custom-ui';
 
 import { useForm } from '../../hooks';
-import { isPassword, isUsername } from '../../utils/validator';
+import { isPassword, isUsername } from '../../lib/utils/validator';
 
 import styles from './UserAddStep.module.scss';
 

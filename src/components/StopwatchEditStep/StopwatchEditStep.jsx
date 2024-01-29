@@ -13,7 +13,7 @@ import {
   startStopwatch,
   stopStopwatch,
   updateStopwatch,
-} from '../../utils/stopwatch';
+} from '../../lib/utils/stopwatch';
 
 import styles from './StopwatchEditStep.module.scss';
 

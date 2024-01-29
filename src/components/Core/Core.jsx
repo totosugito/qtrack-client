@@ -13,7 +13,7 @@ import Background from '../Background';
 
 import styles from './Core.module.scss';
 import {AppBar, Box, Drawer, Grid, IconButton, Toolbar} from '@mui/material';
-import DrawerWeb from "../../customs/project/skk/page/base-ui/component/drawer-web";
+import DrawerWeb from "../../customs/project/page/base-auth/Views/drawer-web";
 import {Menu as MenuIcon} from "@mui/icons-material";
 import HeaderContainer from "../../containers/HeaderContainer";
 

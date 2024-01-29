@@ -6,7 +6,7 @@ import { Comment } from 'semantic-ui-react';
 import { usePopup } from '../../../lib/popup';
 import { Markdown } from '../../../lib/custom-ui';
 
-import getDateFormat from '../../../utils/get-date-format';
+import getDateFormat from '../../../lib/utils/get-date-format';
 import CommentEdit from './CommentEdit';
 import User from '../../User';
 import DeleteStep from '../../DeleteStep';

@@ -97,11 +97,10 @@ export default (Step, props) => {
           onClose={handleClose}
           onMouseDown={handleMouseDown}
           onClick={handleClick}
-          {...props} // eslint-disable-line react/jsx-props-no-spreading
+          {...props}
         >
           <div ref={handleContentRef}>
             <Button icon="close" onClick={handleClose} className={styles.closeButton} />
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <Step {...stepProps} onClose={handleClose} />
           </div>
         </SemanticUIPopup>

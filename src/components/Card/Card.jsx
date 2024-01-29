@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Draggable } from 'react-beautiful-dnd';
 import { usePopup } from '../../lib/popup';
 
-import { startStopwatch, stopStopwatch } from '../../utils/stopwatch';
+import { startStopwatch, stopStopwatch } from '../../lib/utils/stopwatch';
 import Paths from '../../constants/Paths';
 import Tasks from './Tasks';
 import NameEdit from './NameEdit';
