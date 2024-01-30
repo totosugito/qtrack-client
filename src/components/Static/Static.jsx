@@ -8,7 +8,7 @@ import ProjectsContainer from '../../containers/ProjectsContainer';
 import BoardContainer from '../../containers/BoardContainer';
 
 import styles from './Static.module.scss';
-import DemoGantt from "../../customs/project/demo/DemoGantt";
+import DemoGantt from "../../customs/test/DemoGantt";
 
 function Static({ projectId, cardId, ganttId, board }) {
   const [t] = useTranslation();

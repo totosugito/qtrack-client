@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button, Form, TextArea } from 'semantic-ui-react';
 
-import { useField } from '../../../hooks';
+import { useField } from '../../../lib/hooks-ui';
 
 import styles from './NameEdit.module.scss';
 

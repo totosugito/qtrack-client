@@ -232,5 +232,9 @@ export default {
       uploadNewAvatar: 'Upload new avatar',
       uploadNewImage: 'Upload new image',
     },
+
+    custom: {
+      "membersCount": "Members ({{count}})"
+    }
   },
 };

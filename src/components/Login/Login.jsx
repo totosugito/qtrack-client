@@ -7,7 +7,7 @@ import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
 import { useDidUpdate, usePrevious, useToggle } from '../../lib/hooks';
 import { Input } from '../../lib/custom-ui';
 
-import { useForm } from '../../hooks';
+import { useForm } from '../../lib/hooks-ui';
 import { isUsername } from '../../lib/utils/validator';
 
 import styles from './Login.module.scss';

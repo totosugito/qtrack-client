@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu } from 'semantic-ui-react';
 import { Popup } from '../../lib/custom-ui';
 
-import { useSteps } from '../../hooks';
+import { useSteps } from '../../lib/hooks-ui';
 import DeleteStep from '../DeleteStep';
 
 import styles from './ActionsStep.module.scss';

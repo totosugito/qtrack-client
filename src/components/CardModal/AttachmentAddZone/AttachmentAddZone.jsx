@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import { closePopup } from '../../../lib/popup';
 
-import { useModal } from '../../../hooks';
+import { useModal } from '../../../lib/hooks-ui';
 import TextFileAddModal from './TextFileAddModal';
 
 import styles from './AttachmentAddZone.module.scss';

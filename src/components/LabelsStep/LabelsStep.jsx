@@ -6,7 +6,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Button } from 'semantic-ui-react';
 import { Input, Popup } from '../../lib/custom-ui';
 
-import { useField, useSteps } from '../../hooks';
+import { useField, useSteps } from '../../lib/hooks-ui';
 import DroppableTypes from '../../constants/DroppableTypes';
 import AddStep from './AddStep';
 import EditStep from './EditStep';

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Dropdown, Form } from 'semantic-ui-react';
 import { Popup } from '../../lib/custom-ui';
 
-import { useForm } from '../../hooks';
+import { useForm } from '../../lib/hooks-ui';
 
 import styles from './CardMoveStep.module.scss';
 

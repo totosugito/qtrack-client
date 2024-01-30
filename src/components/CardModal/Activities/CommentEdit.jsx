@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button, Form, TextArea } from 'semantic-ui-react';
 
-import { useForm } from '../../../hooks';
+import { useForm } from '../../../lib/hooks-ui';
 
 import styles from './CommentEdit.module.scss';
 

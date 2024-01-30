@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu } from 'semantic-ui-react';
 import { Input, Popup } from '../../lib/custom-ui';
 
-import { useField } from '../../hooks';
+import { useField } from '../../lib/hooks-ui';
 import Item from './Item';
 
 import styles from './BoardMembershipsStep.module.scss';

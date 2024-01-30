@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import {Route, Routes} from 'react-router-dom';
 import {ReduxRouter} from '../lib/redux-router';
-import {UiLogin, UiHome, UiHomeMap, UiProjectList} from "./project";
-import {getRouterUrl} from "./router";
+import {UiLogin, UiHome, UiHomeMap, UiProjectList} from "./page";
 import NotFound from "../components/NotFound";
 import Paths from "../constants/Paths";
 import CoreContainer from "../containers/CoreContainer";
@@ -16,7 +15,7 @@ function Root({store, history}) {
         <Provider store={store}>
             <ReduxRouter history={history}>
                 <Routes>
-                    <Route path={getRouterUrl("page-login")} element={<UiLogin/>}/>
+                    <Route path={Paths.LOGIN} element={<UiLogin/>}/>
                     <Route path={Paths.ROOT} element={<UiProjectList/>}/>
                     <Route path={Paths.HOME_MAP} element={<UiHomeMap/>}/>
                     <Route path={Paths.PROJECTS_LIST} element={<UiProjectList />} />

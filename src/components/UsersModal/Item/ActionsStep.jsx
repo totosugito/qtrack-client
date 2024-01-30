@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu } from 'semantic-ui-react';
 import { Popup } from '../../../lib/custom-ui';
 
-import { useSteps } from '../../../hooks';
+import { useSteps } from '../../../lib/hooks-ui';
 import UserInformationEditStep from '../../UserInformationEditStep';
 import UserUsernameEditStep from '../../UserUsernameEditStep';
 import UserEmailEditStep from '../../UserEmailEditStep';

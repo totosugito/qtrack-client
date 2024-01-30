@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'semantic-ui-react';
 
-import { useForm } from '../../../hooks';
+import { useForm } from '../../../lib/hooks-ui';
 
 import styles from './InformationEdit.module.scss';
 

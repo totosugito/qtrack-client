@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Form, Header, Modal } from 'semantic-ui-react';
 import { Input } from '../../../lib/custom-ui';
 
-import { useForm } from '../../../hooks';
+import { useForm } from '../../../lib/hooks-ui';
 
 import styles from './TextFileAddModal.module.scss';
 

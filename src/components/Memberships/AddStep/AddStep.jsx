@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Input, Popup } from '../../../lib/custom-ui';
 
-import { useField, useSteps } from '../../../hooks';
+import { useField, useSteps } from '../../../lib/hooks-ui';
 import UserItem from './UserItem';
 
 import styles from './AddStep.module.scss';

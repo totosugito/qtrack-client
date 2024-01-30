@@ -6,7 +6,7 @@ import { Button, Form } from 'semantic-ui-react';
 import { useToggle } from '../../lib/hooks';
 import { Input, Popup } from '../../lib/custom-ui';
 
-import { useForm } from '../../hooks';
+import { useForm } from '../../lib/hooks-ui';
 import {
   createStopwatch,
   getStopwatchParts,

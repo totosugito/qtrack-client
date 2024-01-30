@@ -5,7 +5,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { Button, Form, TextArea } from 'semantic-ui-react';
 import { useDidUpdate, useToggle } from '../../../lib/hooks';
 
-import { useClosableForm, useForm } from '../../../hooks';
+import { useClosableForm, useForm } from '../../../lib/hooks-ui';
 
 import styles from './CommentAdd.module.scss';
 

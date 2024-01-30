@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
 import { TextArea } from 'semantic-ui-react';
 
-import { useField } from '../../hooks';
+import { useField } from '../../lib/hooks-ui';
 
 import styles from './NameEdit.module.scss';
 

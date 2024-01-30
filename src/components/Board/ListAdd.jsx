@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'semantic-ui-react';
 import { useDidUpdate, useToggle } from '../../lib/hooks';
 
-import { useClosableForm, useForm } from '../../hooks';
+import { useClosableForm, useForm } from '../../lib/hooks-ui';
 
 import styles from './ListAdd.module.scss';
 

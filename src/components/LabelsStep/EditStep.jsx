@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'semantic-ui-react';
 import { Popup } from '../../lib/custom-ui';
 
-import { useForm, useSteps } from '../../hooks';
+import { useForm, useSteps } from '../../lib/hooks-ui';
 import LabelColors from '../../constants/LabelColors';
 import Editor from './Editor';
 import DeleteStep from '../DeleteStep';
