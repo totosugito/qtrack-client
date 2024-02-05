@@ -1,9 +1,9 @@
 ## Component
 
-| From                                 | Container                     | To                   | Status | Desc                          |
-|--------------------------------------|-------------------------------|----------------------|--------|-------------------------------|
+| From                                 | Container                     | To                   | Status | Desc                            |
+|--------------------------------------|-------------------------------|----------------------|--------|---------------------------------|
 | Background                           |                               |
-| Board                                | BoardContainer                |                      |
+| Board                                | BoardContainer                | view                 | ✔      | board toolbar contents          | 
 | BoardActions                         | BoardActionsContainer         |                      |
 | BoardMembershipPermissionsSelectStep |                               |
 | BoardMembershipsStep                 |                               |
@@ -12,32 +12,32 @@
 | CardModal                            | CardModalContainer            |                      |
 | CardMoveStep                         |                               |                      |
 | Core                                 | CoreContainer                 |                      |
-| DeleteStep                           |                               | view                 | ✔      | delete dialog                 |
+| DeleteStep                           |                               | view                 | ✔      | dialog delete question          |
 | DueDate                              |                               |
 | DueDateEditStep                      |                               |
-| Fixed                                | FixedContainer                |                      |
-| Header                               | HeaderContainer               | page/base-auth       | ✔      | auth toolbar                  |
+| Fixed                                | FixedContainer                | -                    |        | project, __board, __card header |
+| Header                               | HeaderContainer               | page/base-auth       | ✔      | auth toolbar                    |
 | Label                                |                               |
 | LabelsStep                           |                               |                      |
 | List                                 | ListContainer                 |                      |
 | Login                                | LoginContainer                |                      |
 | Memberships                          |                               |
-| Project                              | ProjectContainer              |                      |
-| ProjectAddModal                      | ProjectAddModalContainer      |                      |
-| Projects                             | ProjectsContainer             | page/ui-project-list | ✔      | list of projects              |
-| ProjectSettingsModal                 | ProjectSettingsModalContainer |                      |
-| Static                               | StaticContainer               |                      |
+| Project                              | ProjectContainer              | view                 | ✔      | board toolbar container         |
+| ProjectAddModal                      | ProjectAddModalContainer      | page/ui-project-list | ✔      | dialog create new project       |
+| Projects                             | ProjectsContainer             | page/ui-project-list | ✔      | list of projects                |
+| ProjectSettingsModal                 | ProjectSettingsModalContainer | view                 | !!!    | dialog project settings         |
+| Static                               | StaticContainer               | -                    |        | project, __board, __card view   |
 | Stopwatch                            |                               |
 | StopwatchEditStep                    |                               |
-| User                                 |                               | view                 | ✔      |                               |
-| UserAddStep                          | UserAddStepContainer          | view                 | ✔      | dialog members create         |
-| UserEmailEditStep                    |                               | view                 | ✔      | dialog members edit email     |
-| UserInformationEdit                  |                               | view                 | ✔      | dialog members edit user info |
-| UserPasswordEditStep                 |                               | view                 | ✔      | dialog members edit password  |
-| UserSettingsModal                    | UserSettingsModalContainer    | view                 | ✔      | dialog user settings          |
-| UsersModal                           | UsersModal                    | view                 | ✔      | dialog project members        |
-| UserStep                             |                               | page/base-auth       | ✔      | toolbar user menu             |
-| UserUsernameEditStep                 |                               | view                 | ✔      | dialog members edit username  |
+| User                                 |                               | view                 | ✔      | user name + avatar view         |
+| UserAddStep                          | UserAddStepContainer          | view                 | ✔      | dialog members create           |
+| UserEmailEditStep                    |                               | view                 | ✔      | dialog members edit email       |
+| UserInformationEdit                  |                               | view                 | ✔      | dialog members edit user info   |
+| UserPasswordEditStep                 |                               | view                 | ✔      | dialog members edit password    |
+| UserSettingsModal                    | UserSettingsModalContainer    | view                 | ✔      | dialog user settings            |
+| UsersModal                           | UsersModalContainer           | view                 | ✔      | dialog project members          |
+| UserStep                             |                               | page/base-auth       | ✔      | toolbar user menu               |
+| UserUsernameEditStep                 |                               | view                 | ✔      | dialog members edit username    |
 
 # Planka client
 

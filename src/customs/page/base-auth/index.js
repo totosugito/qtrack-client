@@ -83,7 +83,8 @@ const BaseAuth = (props) => {
                                     <MenuIcon sx={stylesMui.toolbarIcon} style={{color: 'white'}}/>
                                 </IconButton>
                             </Box>
-                            <Typography sx={stylesMui.title}>{props.title}</Typography>
+                            {/*<Typography sx={stylesMui.title}>{props.title}</Typography>*/}
+                            <div style={{display: 'block'}}>{props.leftToolbar}</div>
                         </Grid>
                         <Grid item>
                             <Stack direction={'row'}>

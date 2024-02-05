@@ -11,7 +11,7 @@ import Paths from '../../../../constants/Paths';
 import {ProjectBackgroundTypes} from '../../../../constants/Enums';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-import styles from './styles.module.scss';
+import styles from './index.module.scss';
 import globalStyles from '../../../../styles.module.scss';
 import selectors from "../../../../redux/selectors";
 import {bindActionCreators} from "redux";
@@ -21,6 +21,7 @@ import {Box, Button} from "@mui/material";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import ModalTypes from "../../../../constants/ModalTypes";
 import UsersModal from "../../../view/UsersModal";
+import ProjectAddModal from "../ProjectAddModal";
 
 const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
     const [t] = useTranslation();
@@ -89,6 +90,7 @@ const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
             </Grid>
 
             {currentModal === ModalTypes.USERS && <UsersModal/>}
+            {currentModal === ModalTypes.PROJECT_ADD && <ProjectAddModal/>}
         </div>
     );
 });
