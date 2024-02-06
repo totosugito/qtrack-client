@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tab } from 'semantic-ui-react';
 import styles from './ManagersPane.module.scss';
-import Memberships from "../../../components/Memberships";
+import Memberships from "../Memberships";
 
 const ManagersPane = React.memo(({ items, allUsers, onCreate, onDelete }) => {
   return (

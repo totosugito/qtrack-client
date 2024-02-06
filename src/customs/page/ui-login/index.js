@@ -1,26 +1,21 @@
-import {useLocation, useNavigate} from "react-router-dom";
 import {Box, CircularProgress, Grid, useTheme} from "@mui/material";
 import {AuthFooter, WebLogo} from "../../component";
 import LoginForm from "./component/login-form";
 import {dispatch} from "../../../redux/store-reduxjs";
-import {useSelector} from "react-redux";
+import {connect} from "react-redux";
 import React from "react";
 import entryActions from "../../../redux/entry-actions";
-import {useMemo} from "react";
+import selectors from "../../../redux/selectors";
+import {bindActionCreators} from "redux";
 
-const UiLogin = (props) => {
+const UiLogin = React.memo(({ isInitializing,
+                                defaultData,
+                                isSubmitting,
+                                error,
+                                onAuthenticate,
+                                onMessageDismiss}) => {
     const theme = useTheme()
     const styles = {}
-
-    const storeRoot = useSelector((state) => state["root"])
-    const error = useSelector((state) => state["ui"]["authenticateForm"]["error"])
-    const message = useMemo(() => error, [error]);
-    const [msg, setMsg] = React.useState({hasErrors: false, data: null});
-
-
-    const onLoginSubmit = (bodyFormData) => {
-        dispatch(entryActions.authenticate(bodyFormData))
-    }
 
     return (
         <>
@@ -47,7 +42,7 @@ const UiLogin = (props) => {
                         >
                             <Grid item>
                                 {
-                                    storeRoot.isInitializing ? <CircularProgress/> : <LoginForm msg={message} onSubmit={onLoginSubmit}/>
+                                    isInitializing ? <CircularProgress/> : <LoginForm msg={error} onSubmit={onAuthenticate}/>
                                 }
                             </Grid>
                         </Grid>
@@ -58,5 +53,31 @@ const UiLogin = (props) => {
                 </Grid>
             </Box>
         </>)
-}
-export default UiLogin
+})
+
+const mapStateToProps = (state) => {
+    const {
+        ui: {
+            authenticateForm: { data: defaultData, isSubmitting, error },
+        },
+    } = state;
+
+    const isInitializing = selectors.selectIsInitializing(state);
+    return {
+        isInitializing,
+        defaultData,
+        isSubmitting,
+        error,
+    };
+};
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+            onAuthenticate: entryActions.authenticate,
+            onMessageDismiss: entryActions.clearAuthenticateError,
+        },
+        dispatch,
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(UiLogin);

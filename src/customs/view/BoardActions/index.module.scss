@@ -1,0 +1,23 @@
+:global(#app) {
+  .action {
+    flex: 0 0 auto;
+    margin-right: 20px;
+  }
+
+  .actions {
+    align-items: center;
+    display: flex;
+    margin: 5px 10px;
+  }
+
+  .wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background: rgba(0, 0, 0, 0.2);
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

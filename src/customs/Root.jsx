@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import {Route, Routes} from 'react-router-dom';
 import {ReduxRouter} from '../lib/redux-router';
-import {UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen} from "./page";
-import NotFound from "../components/NotFound";
+import {Error404, UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen, UiProjectBoard} from "./page";
 import Paths from "../constants/Paths";
-import CoreContainer from "../containers/CoreContainer";
 import '../lib/easymde-2.18.0/easymde.min.css';
 import '../lib/custom-ui/styles.css';
 import '../styles.module.scss';
@@ -20,8 +18,9 @@ function Root({store, history}) {
                     <Route path={Paths.HOME_MAP} element={<UiHomeMap/>}/>
                     <Route path={Paths.PROJECTS_LIST} element={<UiProjectList />} />
                     <Route path={Paths.PROJECTS} element={<UiProjectOpen />} />
-                    <Route path={Paths.BOARDS} element={<CoreContainer />} />
-                    {/*<Route path="*" element={<NotFound />} />*/}
+                    <Route path={Paths.BOARDS} element={<UiProjectBoard />} />
+                    <Route path={Paths.CARDS} element={<UiProjectBoard />} />
+                    <Route path="*" element={<Error404 />} />
                 </Routes>
             </ReduxRouter>
         </Provider>

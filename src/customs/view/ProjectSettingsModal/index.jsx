@@ -81,7 +81,7 @@ const ProjectSettingsModal = React.memo(
     ];
 
     return (
-      <Modal open closeIcon size="small" centered={false} onClose={onClose}>
+      <Modal open closeIcon size="small" centered={false} onClose={onClose} style={{position: 'relative', 'marginLeft': '240px', 'marginTop': '72px'}}>
         <Modal.Content>
           <Tab
             menu={{

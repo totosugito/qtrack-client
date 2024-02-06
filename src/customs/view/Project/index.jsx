@@ -10,7 +10,7 @@ import ProjectSettingsModal from "../ProjectSettingsModal";
 const Project = React.memo(({ isSettingsModalOpened }) => {
   return (
     <>
-      <div className={styles.wrapper1}>
+      <div className={styles.wrapper}>
         <Boards/>
       </div>
       {isSettingsModalOpened && <ProjectSettingsModal/>}

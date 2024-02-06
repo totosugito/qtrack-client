@@ -1,7 +1,7 @@
 import {
     AppBar,
     Box, Drawer,
-    Grid, IconButton, Stack,
+    Grid, IconButton,
     Typography, useTheme,
 } from "@mui/material";
 import DrawerWeb from "./Views/drawer-web";
@@ -29,7 +29,8 @@ const BaseAuth = (props) => {
             color: 'white',
             fontSize: '25px'
         },
-        boxContainer: {},
+        boxContainer: {
+        },
         appBar: {
             width: {sm: `calc(100% - ${drawerWidth}px)`},
             marginLeft: {sm: `${drawerWidth}px`},
@@ -69,9 +70,11 @@ const BaseAuth = (props) => {
 
     return (
         <>
+            { props.hasBg && props.background}
             <Box sx={stylesMui.boxContainer}>
-                <AppBar position="static">
-                    <Grid container direction="row" alignItems="flex-end" justifyContent="space-between">
+                <AppBar position="static" style={{ background: props.hasBg ? "rgba(0, 0, 0, 0.4)" : theme.palette.primary.main,
+                    boxShadow: props.hasBg ? 'none' : 'inherit'}}>
+                    <Grid container direction="row" justifyContent="space-between" alignItems="stretch" display={'flex'}>
                         <Grid item>
                             <Box sx={{
                                 ml: 2,
@@ -83,14 +86,13 @@ const BaseAuth = (props) => {
                                     <MenuIcon sx={stylesMui.toolbarIcon} style={{color: 'white'}}/>
                                 </IconButton>
                             </Box>
-                            {/*<Typography sx={stylesMui.title}>{props.title}</Typography>*/}
-                            <div style={{display: 'block'}}>{props.leftToolbar}</div>
+                            <Typography sx={stylesMui.title}>{props.title}</Typography>
                         </Grid>
-                        <Grid item>
-                            <Stack direction={'row'}>
-                                {props.toolbar}
+                        <Grid item sx={{width: {sm: `calc(100% - ${drawerWidth}px)`}}}>
+                            {/*<Stack direction={'row'}>*/}
+                            {/*    {props.toolbar}*/}
                                 {!isInitializing && <AuthHeader/>}
-                            </Stack>
+                            {/*</Stack>*/}
                         </Grid>
                     </Grid>
                 </AppBar>
