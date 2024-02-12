@@ -8,12 +8,12 @@ import { Popup } from '../../lib/custom-ui';
 import { useSteps } from '../../lib/hooks-ui';
 import BoardMembershipsStep from '../BoardMembershipsStep';
 import LabelsStep from '../LabelsStep';
-import DueDateEditStep from '../DueDateEditStep';
 import StopwatchEditStep from '../StopwatchEditStep';
 import CardMoveStep from '../CardMoveStep';
 import DeleteStep from '../DeleteStep';
 
 import styles from './ActionsStep.module.scss';
+import DateTimeRangeStep from "../DateTimeRangeStep";
 
 const StepTypes = {
   USERS: 'USERS',
@@ -81,8 +81,9 @@ const ActionsStep = React.memo(
     }, [openStep]);
 
     const handleDueDateUpdate = useCallback(
-      (dueDate) => {
+      (startDate, dueDate) => {
         onUpdate({
+          startDate,
           dueDate,
         });
       },
@@ -126,12 +127,7 @@ const ActionsStep = React.memo(
           );
         case StepTypes.EDIT_DUE_DATE:
           return (
-            <DueDateEditStep
-              defaultValue={card.dueDate}
-              onUpdate={handleDueDateUpdate}
-              onBack={handleBack}
-              onClose={onClose}
-            />
+            <DateTimeRangeStep startDate={card.startDate} dueDate={card.dueDate} onUpdate={handleDueDateUpdate} showCloseButton={false} onClose={onClose}/>
           );
         case StepTypes.EDIT_STOPWATCH:
           return (

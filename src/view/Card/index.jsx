@@ -13,7 +13,6 @@ import NameEdit from './NameEdit';
 import ActionsStep from './ActionsStep';
 import User from '../User';
 import Label from '../Label';
-import DueDate from '../DueDate';
 import Stopwatch from '../Stopwatch';
 
 import styles from './index.module.scss';
@@ -22,12 +21,14 @@ import {BoardMembershipRoles} from "../../constants/Enums";
 import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
+import DateTimeRange from "../DateTimeRange";
 
 const Card = React.memo(
   ({
     id,
     index,
     name,
+    startDate,
     dueDate,
     stopwatch,
     coverUrl,
@@ -124,7 +125,7 @@ const Card = React.memo(
               )}
               {dueDate && (
                 <span className={classNames(styles.attachment, styles.attachmentLeft)}>
-                  <DueDate value={dueDate} size="tiny" />
+                  <DateTimeRange startDate={startDate} dueDate={dueDate} size="tiny"/>
                 </span>
               )}
               {stopwatch && (
@@ -175,6 +176,7 @@ const Card = React.memo(
                     {canEdit && (
                       <ActionsPopup
                         card={{
+                          startDate,
                           dueDate,
                           stopwatch,
                           boardId,
@@ -223,6 +225,7 @@ Card.propTypes = {
   id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  startDate: PropTypes.instanceOf(Date),
   dueDate: PropTypes.instanceOf(Date),
   stopwatch: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   coverUrl: PropTypes.string,
@@ -256,6 +259,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  startDate: undefined,
   dueDate: undefined,
   stopwatch: undefined,
   coverUrl: undefined,
@@ -275,7 +279,7 @@ const makeMapStateToProps = () => {
         const allLabels = selectors.selectLabelsForCurrentBoard(state);
         const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
-        const { name, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted } = selectCardById(
+        const { name, startDate, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted } = selectCardById(
             state,
             id,
         );
@@ -292,6 +296,7 @@ const makeMapStateToProps = () => {
             id,
             index,
             name,
+            startDate,
             dueDate,
             stopwatch,
             coverUrl,

@@ -9,7 +9,6 @@ import { Input, Popup } from '../../lib/custom-ui';
 import { useForm } from '../../lib/hooks-ui';
 
 import styles from './index.module.scss';
-
 const DueDateEditStep = React.memo(({ defaultValue, onUpdate, onBack, onClose }) => {
   const [t] = useTranslation();
 

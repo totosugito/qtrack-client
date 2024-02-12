@@ -16,11 +16,9 @@ import AttachmentAddStep from './AttachmentAddStep';
 import Activities from './Activities';
 import User from '../../../view/User';
 import Label from '../../../view/Label';
-import DueDate from '../../../view/DueDate';
 import Stopwatch from '../../../view/Stopwatch';
 import BoardMembershipsStep from '../../../view/BoardMembershipsStep';
 import LabelsStep from '../../../view/LabelsStep';
-import DueDateEditStep from '../../../view/DueDateEditStep';
 import StopwatchEditStep from '../../../view/StopwatchEditStep';
 import CardMoveStep from '../../../view/CardMoveStep';
 import DeleteStep from '../../../view/DeleteStep';
@@ -34,11 +32,14 @@ import {push} from "../../../lib/redux-router";
 import omit from "lodash/omit";
 import Paths from "../../../constants/Paths";
 import {connect} from "react-redux";
+import DateTimeRangeStep from "../../../view/DateTimeRangeStep";
+import DateTimeRange from "../../../view/DateTimeRange";
 
 const CardModal = React.memo(
   ({
     name,
     description,
+    startDate,
     dueDate,
     stopwatch,
     isSubscribed,
@@ -116,8 +117,9 @@ const CardModal = React.memo(
     );
 
     const handleDueDateUpdate = useCallback(
-      (newDueDate) => {
+      (newStartDate, newDueDate) => {
         onUpdate({
+          startDate: newStartDate,
           dueDate: newDueDate,
         });
       },
@@ -167,7 +169,7 @@ const CardModal = React.memo(
     const AttachmentAddPopup = usePopup(AttachmentAddStep);
     const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
     const LabelsPopup = usePopup(LabelsStep);
-    const DueDateEditPopup = usePopup(DueDateEditStep);
+    const DueDateEditPopup = usePopup(DateTimeRangeStep);
     const StopwatchEditPopup = usePopup(StopwatchEditStep);
     const CardMovePopup = usePopup(CardMoveStep);
     const DeletePopup = usePopup(DeleteStep);
@@ -286,18 +288,15 @@ const CardModal = React.memo(
                 )}
                 {dueDate && (
                   <div className={styles.attachments}>
-                    <div className={styles.text}>
-                      {t('common.dueDate', {
-                        context: 'title',
-                      })}
-                    </div>
                     <span className={styles.attachment}>
                       {canEdit ? (
-                        <DueDateEditPopup defaultValue={dueDate} onUpdate={handleDueDateUpdate}>
-                          <DueDate value={dueDate} />
+                        <>
+                        <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate} showCloseButton={false}>
+                          <DateTimeRange startDate={startDate} dueDate={dueDate}/>
                         </DueDateEditPopup>
+                        </>
                       ) : (
-                        <DueDate value={dueDate} />
+                        <DateTimeRange startDate={startDate} dueDate={dueDate}/>
                       )}
                     </span>
                   </div>
@@ -450,7 +449,7 @@ const CardModal = React.memo(
                     {t('common.labels')}
                   </Button>
                 </LabelsPopup>
-                <DueDateEditPopup defaultValue={dueDate} onUpdate={handleDueDateUpdate}>
+                <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate} showCloseButton={false}>
                   <Button fluid className={styles.actionButton}>
                     <Icon name="calendar check outline" className={styles.actionIcon} />
                     {t('common.dueDate', {
@@ -534,6 +533,7 @@ const CardModal = React.memo(
 CardModal.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
+  startDate: PropTypes.instanceOf(Date),
   dueDate: PropTypes.instanceOf(Date),
   stopwatch: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   isSubscribed: PropTypes.bool.isRequired,
@@ -587,6 +587,7 @@ CardModal.propTypes = {
 
 CardModal.defaultProps = {
   description: undefined,
+  startDate: undefined,
   dueDate: undefined,
   stopwatch: undefined,
 };
@@ -602,6 +603,7 @@ const mapStateToProps = (state) => {
     const {
         name,
         description,
+        startDate,
         dueDate,
         stopwatch,
         isSubscribed,
@@ -630,6 +632,7 @@ const mapStateToProps = (state) => {
     return {
         name,
         description,
+        startDate,
         dueDate,
         stopwatch,
         isSubscribed,

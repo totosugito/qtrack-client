@@ -5,7 +5,10 @@ import { transformAttachment } from './attachments';
 
 export const transformCard = (card) => ({
   ...card,
-  ...(card.dueDate && {
+  ...(card.startDate && {
+    startDate: new Date(card.startDate),
+  }),
+  ...(card.startDate && {
     dueDate: new Date(card.dueDate),
   }),
   ...(card.stopwatch && {
@@ -20,6 +23,9 @@ export const transformCard = (card) => ({
 
 export const transformCardData = (data) => ({
   ...data,
+  ...(data.startDate && {
+    startDate: data.startDate.toISOString(),
+  }),
   ...(data.dueDate && {
     dueDate: data.dueDate.toISOString(),
   }),

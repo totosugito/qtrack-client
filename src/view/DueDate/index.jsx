@@ -28,7 +28,6 @@ const FULL_DATE_FORMAT_BY_SIZE = {
 
 const DueDate = React.memo(({ value, size, isDisabled, onClick }) => {
   const [t] = useTranslation();
-
   const dateFormat = getDateFormat(
     value,
     LONG_DATE_FORMAT_BY_SIZE[size],
