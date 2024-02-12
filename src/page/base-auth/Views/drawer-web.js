@@ -29,7 +29,7 @@ const DrawerMenu = ({open, path, icon, text}) => {
     return (
         <>
             <Link underline={'none'} href={path}>
-                <ListItem disablePadding>
+                <ListItem disablePadding={true} disableGutters={true}>
                     <ListItemButton sx={styles.menuItem}>
                         {icon}
                         <ListItemText primary={text} sx={{ml: '5px', opacity: open ? 1 : 0}}/>
