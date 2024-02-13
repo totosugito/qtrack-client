@@ -1,6 +1,6 @@
 import {
-    Box,
-    Grid, IconButton,
+    Box, Container,
+    Grid, IconButton, Stack,
     Typography, useTheme,
 } from "@mui/material";
 import MuiDrawer from '@mui/material/Drawer';
@@ -129,29 +129,29 @@ const BaseAuth = (props) => {
         <>
             { props.hasBg && props.background}
             <Box sx={stylesMui.boxContainer} display={'flex'}>
-                <AppBar position="fixed" open={open} style={{ background: props.hasBg ? "rgba(0, 0, 0, 0.4)" : theme.palette.primary.main,
+                <AppBar position="fixed" open={open} style={{ background: props.hasBg ? theme.palette.primary.main : theme.palette.primary.main,
                     boxShadow: props.hasBg ? 'none' : 'inherit'}}>
-                    <Grid container direction="row" justifyContent="space-between" alignItems="stretch" display={'flex'}>
-                        <Grid item>
-                            {/*<Box sx={{*/}
-                            {/*    ml: 2,*/}
-                            {/*    display: {sm: 'none'},*/}
-                            {/*    alignContent: 'center',*/}
-                            {/*    alignItems: 'center',*/}
-                            {/*}}>*/}
-                            {/*    <IconButton edge="start" onClick={handleDrawerOpen}>*/}
-                            {/*        <MenuIcon sx={stylesMui.toolbarIcon} style={{color: 'white'}}/>*/}
-                            {/*    </IconButton>*/}
-                            {/*</Box>*/}
-                            <Typography sx={stylesMui.title}>{props.title}</Typography>
-                        </Grid>
-                        <Grid item>
-                            {/*<Stack direction={'row'}>*/}
-                            {/*    {props.toolbar}*/}
-                                {!isInitializing && <AuthHeader/>}
+                    {/*<Grid container direction="row" justifyContent="space-between" alignItems="stretch" display={'flex'}>*/}
+                        {/*<Grid item>*/}
+                {/*            /!*<Box sx={{*!/*/}
+                {/*            /!*    ml: 2,*!/*/}
+                {/*            /!*    display: {sm: 'none'},*!/*/}
+                {/*            /!*    alignContent: 'center',*!/*/}
+                {/*            /!*    alignItems: 'center',*!/*/}
+                {/*            /!*}}>*!/*/}
+                {/*            /!*    <IconButton edge="start" onClick={handleDrawerOpen}>*!/*/}
+                {/*            /!*        <MenuIcon sx={stylesMui.toolbarIcon} style={{color: 'white'}}/>*!/*/}
+                {/*            /!*    </IconButton>*!/*/}
+                {/*            /!*</Box>*!/*/}
+                {/*            <Typography sx={stylesMui.title}>{props.title}</Typography>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid item>*/}
+                {/*            <Stack direction={'row'}>*/}
+                {/*                {props.toolbar}*/}
+                                {!isInitializing && <AuthHeader openDrawer={open}/>}
                             {/*</Stack>*/}
-                        </Grid>
-                    </Grid>
+                {/*        </Grid>*/}
+                {/*    </Grid>*/}
                 </AppBar>
 
                     <Drawer

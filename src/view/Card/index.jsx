@@ -123,7 +123,7 @@ const Card = React.memo(
                   {notificationsTotal}
                 </span>
               )}
-              {dueDate && (
+              {(startDate && dueDate) && (
                 <span className={classNames(styles.attachment, styles.attachmentLeft)}>
                   <DateTimeRange startDate={startDate} dueDate={dueDate} size="tiny"/>
                 </span>

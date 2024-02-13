@@ -13,7 +13,13 @@ import UserEmailEditStep from '../../../../../view/UserEmailEditStep';
 import UserPasswordEditStep from '../../../../../view/UserPasswordEditStep';
 
 import styles from './index.module.scss';
+import gb from "../../../../../assets/flags/gb.svg"
+import id from "../../../../../assets/flags/id.svg"
 
+export const flags = {
+  "gb": gb,
+  "id": id
+}
 const AccountPane = React.memo(
   ({
     email,
@@ -99,6 +105,7 @@ const AccountPane = React.memo(
               value: locale.language,
               flag: locale.country,
               text: locale.name,
+              image: {height: '20px', src: flags[locale.country]},
             })),
           ]}
           value={language || 'auto'}

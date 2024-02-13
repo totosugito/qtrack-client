@@ -7,7 +7,7 @@ import styles from './Popup.module.css';
 
 export default (Step, props) => {
   return useMemo(() => {
-    const Popup = React.memo(({ children, onClose, showCloseButton, ...stepProps }) => {
+    const Popup = React.memo(({ children, onClose, ...stepProps }) => {
       const [isOpened, setIsOpened] = useState(false);
 
       const wrapper = useRef(null);
@@ -100,9 +100,7 @@ export default (Step, props) => {
           {...props}
         >
           <div ref={handleContentRef}>
-            {showCloseButton &&
             <Button icon="close" onClick={handleClose} className={styles.closeButton} />
-            }
             <Step {...stepProps} onClose={handleClose} />
           </div>
         </SemanticUIPopup>
@@ -112,12 +110,10 @@ export default (Step, props) => {
     Popup.propTypes = {
       children: PropTypes.node.isRequired,
       onClose: PropTypes.func,
-      showCloseButton: PropTypes.bool
     };
 
     Popup.defaultProps = {
       onClose: undefined,
-      showCloseButton: true
     };
 
     return Popup;

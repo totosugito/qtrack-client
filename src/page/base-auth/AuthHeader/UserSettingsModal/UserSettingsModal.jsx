@@ -71,7 +71,7 @@ const UserSettingsModal = React.memo(
           context: 'title',
         }),
         render: () => (
-          <PreferencesPane subscribeToOwnCards={subscribeToOwnCards} onUpdate={onUpdate} />
+          <PreferencesPane subscribeToOwnCards={subscribeToOwnCards ?? false} onUpdate={onUpdate} />
         ),
       },
       {

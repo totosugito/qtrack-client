@@ -286,12 +286,12 @@ const CardModal = React.memo(
                     )}
                   </div>
                 )}
-                {dueDate && (
+                {(startDate && dueDate) && (
                   <div className={styles.attachments}>
                     <span className={styles.attachment}>
                       {canEdit ? (
                         <>
-                        <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate} showCloseButton={false}>
+                        <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
                           <DateTimeRange startDate={startDate} dueDate={dueDate}/>
                         </DueDateEditPopup>
                         </>
@@ -449,10 +449,10 @@ const CardModal = React.memo(
                     {t('common.labels')}
                   </Button>
                 </LabelsPopup>
-                <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate} showCloseButton={false}>
+                <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
                   <Button fluid className={styles.actionButton}>
                     <Icon name="calendar check outline" className={styles.actionIcon} />
-                    {t('common.dueDate', {
+                    {t('common.dateRange', {
                       context: 'title',
                     })}
                   </Button>

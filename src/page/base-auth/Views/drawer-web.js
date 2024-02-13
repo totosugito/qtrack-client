@@ -54,15 +54,16 @@ export default function DrawerWeb(props) {
             justifyContent: 'right'
         },
         headerContainer: {
-            background: 'transparent',
+            background: theme.palette.background.default,
+            color: 'transparent',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
         }
     }
 
     return (
         <div>
-            <Grid container direction='row' sx={styles.headerAppbar} style={{height: '50px'}}>
+            <Grid container direction='row' sx={styles.headerContainer} style={{height: '50px', color: 'white', backgroundColor: 'white'}}>
                 {props.header && props.header}
             </Grid>
             {

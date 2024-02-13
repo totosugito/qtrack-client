@@ -7,8 +7,6 @@ import {Error404, UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen, UiPr
 import Paths from "./constants/Paths";
 import './lib/easymde-2.18.0/easymde.min.css';
 import './lib/custom-ui/styles.css';
-import './styles.module.scss';
-import "react-datepicker/dist/react-datepicker.css";
 function Root({store, history}) {
     return (
         <Provider store={store}>

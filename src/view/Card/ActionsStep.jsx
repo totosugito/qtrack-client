@@ -127,7 +127,7 @@ const ActionsStep = React.memo(
           );
         case StepTypes.EDIT_DUE_DATE:
           return (
-            <DateTimeRangeStep startDate={card.startDate} dueDate={card.dueDate} onUpdate={handleDueDateUpdate} showCloseButton={false} onClose={onClose}/>
+            <DateTimeRangeStep startDate={card.startDate} dueDate={card.dueDate} onUpdate={handleDueDateUpdate} onClose={onClose}/>
           );
         case StepTypes.EDIT_STOPWATCH:
           return (
@@ -189,7 +189,7 @@ const ActionsStep = React.memo(
               })}
             </Menu.Item>
             <Menu.Item className={styles.menuItem} onClick={handleEditDueDateClick}>
-              {t('action.editDueDate', {
+              {t('action.editDateRange', {
                 context: 'title',
               })}
             </Menu.Item>
