@@ -1,12 +1,12 @@
-import React, { useCallback, useRef } from 'react';
+import React, {useCallback, useRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useTranslation } from 'react-i18next';
-import { Button, Grid, Icon, Modal } from 'semantic-ui-react';
-import { usePopup } from '../../../lib/popup';
-import { Markdown } from '../../../lib/custom-ui';
+import {useTranslation} from 'react-i18next';
+import {Button, Grid, Modal} from 'semantic-ui-react';
+import {usePopup} from '../../../lib/popup';
+import {Markdown} from '../../../lib/custom-ui';
 
-import { startStopwatch, stopStopwatch } from '../../../lib/utils/stopwatch';
+import {startStopwatch, stopStopwatch} from '../../../lib/utils/stopwatch';
 import NameField from './NameField';
 import DescriptionEdit from './DescriptionEdit';
 import Tasks from './Tasks';
@@ -47,60 +47,63 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FormatAlignJustifyOutlinedIcon from '@mui/icons-material/FormatAlignJustifyOutlined';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import stylesDialog from '../../../view/index.module.scss';
 
 const CardModal = React.memo(
   ({
-    name,
-    description,
-    startDate,
-    dueDate,
-    stopwatch,
-    isSubscribed,
-    isActivitiesFetching,
-    isAllActivitiesFetched,
-    isActivitiesDetailsVisible,
-    isActivitiesDetailsFetching,
-    listId,
-    boardId,
-    projectId,
-    users,
-    labels,
-    tasks,
-    attachments,
-    activities,
-    allProjectsToLists,
-    allBoardMemberships,
-    allLabels,
-    canEdit,
-    canEditCommentActivities,
-    canEditAllCommentActivities,
-    onUpdate,
-    onMove,
-    onTransfer,
-    onDelete,
-    onUserAdd,
-    onUserRemove,
-    onBoardFetch,
-    onLabelAdd,
-    onLabelRemove,
-    onLabelCreate,
-    onLabelUpdate,
-    onLabelMove,
-    onLabelDelete,
-    onTaskCreate,
-    onTaskUpdate,
-    onTaskMove,
-    onTaskDelete,
-    onAttachmentCreate,
-    onAttachmentUpdate,
-    onAttachmentDelete,
-    onActivitiesFetch,
-    onActivitiesDetailsToggle,
-    onCommentActivityCreate,
-    onCommentActivityUpdate,
-    onCommentActivityDelete,
-    onClose,
-  }) => {
+     name,
+     description,
+     startDate,
+     dueDate,
+     stopwatch,
+     isSubscribed,
+     isActivitiesFetching,
+     isAllActivitiesFetched,
+     isActivitiesDetailsVisible,
+     isActivitiesDetailsFetching,
+     listId,
+     boardId,
+     projectId,
+     users,
+     labels,
+     tasks,
+     attachments,
+     activities,
+     allProjectsToLists,
+     allBoardMemberships,
+     allLabels,
+     canEdit,
+     canEditCommentActivities,
+     canEditAllCommentActivities,
+     onUpdate,
+     onMove,
+     onTransfer,
+     onDelete,
+     onUserAdd,
+     onUserRemove,
+     onBoardFetch,
+     onLabelAdd,
+     onLabelRemove,
+     onLabelCreate,
+     onLabelUpdate,
+     onLabelMove,
+     onLabelDelete,
+     onTaskCreate,
+     onTaskUpdate,
+     onTaskMove,
+     onTaskDelete,
+     onAttachmentCreate,
+     onAttachmentUpdate,
+     onAttachmentDelete,
+     onActivitiesFetch,
+     onActivitiesDetailsToggle,
+     onCommentActivityCreate,
+     onCommentActivityUpdate,
+     onCommentActivityDelete,
+     onClose,
+   }) => {
     const [t] = useTranslation();
 
     const isGalleryOpened = useRef(false);
@@ -198,7 +201,7 @@ const CardModal = React.memo(
               <ListAltOutlinedIcon className={styles.moduleIcon}/>
               <div className={styles.headerTitleWrapper}>
                 {canEdit ? (
-                  <NameField defaultValue={name} onUpdate={handleNameUpdate} />
+                  <NameField defaultValue={name} onUpdate={handleNameUpdate}/>
                 ) : (
                   <div className={styles.headerTitle}>{name}</div>
                 )}
@@ -226,10 +229,10 @@ const CardModal = React.memo(
                             onUserSelect={onUserAdd}
                             onUserDeselect={onUserRemove}
                           >
-                            <User name={user.name} avatarUrl={user.avatarUrl} />
+                            <User name={user.name} avatarUrl={user.avatarUrl}/>
                           </BoardMembershipsPopup>
                         ) : (
-                          <User name={user.name} avatarUrl={user.avatarUrl} />
+                          <User name={user.name} avatarUrl={user.avatarUrl}/>
                         )}
                       </span>
                     ))}
@@ -271,10 +274,10 @@ const CardModal = React.memo(
                             onMove={onLabelMove}
                             onDelete={onLabelDelete}
                           >
-                            <Label name={label.name} color={label.color} />
+                            <Label name={label.name} color={label.color}/>
                           </LabelsPopup>
                         ) : (
-                          <Label name={label.name} color={label.color} />
+                          <Label name={label.name} color={label.color}/>
                         )}
                       </span>
                     ))}
@@ -304,9 +307,9 @@ const CardModal = React.memo(
                     <span className={styles.attachment}>
                       {canEdit ? (
                         <>
-                        <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
-                          <DateTimeRange startDate={startDate} dueDate={dueDate}/>
-                        </DueDateEditPopup>
+                          <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
+                            <DateTimeRange startDate={startDate} dueDate={dueDate}/>
+                          </DueDateEditPopup>
                         </>
                       ) : (
                         <DateTimeRange startDate={startDate} dueDate={dueDate}/>
@@ -327,10 +330,10 @@ const CardModal = React.memo(
                           defaultValue={stopwatch}
                           onUpdate={handleStopwatchUpdate}
                         >
-                          <Stopwatch startedAt={stopwatch.startedAt} total={stopwatch.total} />
+                          <Stopwatch startedAt={stopwatch.startedAt} total={stopwatch.total}/>
                         </StopwatchEditPopup>
                       ) : (
-                        <Stopwatch startedAt={stopwatch.startedAt} total={stopwatch.total} />
+                        <Stopwatch startedAt={stopwatch.startedAt} total={stopwatch.total}/>
                       )}
                     </span>
                     {canEdit && (
@@ -386,7 +389,7 @@ const CardModal = React.memo(
             {(tasks.length > 0 || canEdit) && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <Icon name="check square outline" className={styles.moduleIcon} />
+                  <CheckBoxOutlinedIcon className={styles.moduleIcon}/>
                   <div className={styles.moduleHeader}>{t('common.tasks')}</div>
                   <Tasks
                     items={tasks}
@@ -402,7 +405,7 @@ const CardModal = React.memo(
             {attachments.length > 0 && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <Icon name="attach" className={styles.moduleIcon} />
+                  <AttachmentOutlinedIcon className={styles.moduleIcon}/>
                   <div className={styles.moduleHeader}>{t('common.attachments')}</div>
                   <Attachments
                     items={attachments}
@@ -531,7 +534,11 @@ const CardModal = React.memo(
     );
 
     return (
-      <Modal open closeIcon centered={false} onClose={handleClose} className={styles.wrapper1}>
+      <Modal open closeIcon={
+        <div className={classNames(stylesDialog.dialogCloseButton)}>
+          <CloseOutlinedIcon/>
+        </div>
+      } centered={false} onClose={handleClose} className={classNames(stylesDialog.dialog)}>
         {canEdit ? (
           <AttachmentAddZone onCreate={onAttachmentCreate}>{contentNode}</AttachmentAddZone>
         ) : (
@@ -605,107 +612,107 @@ CardModal.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-    const { projectId } = selectors.selectPath(state);
-    const allProjectsToLists = selectors.selectProjectsToListsForCurrentUser(state);
-    const isCurrentUserManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
-    const allBoardMemberships = selectors.selectMembershipsForCurrentBoard(state);
-    const allLabels = selectors.selectLabelsForCurrentBoard(state);
-    const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
+  const {projectId} = selectors.selectPath(state);
+  const allProjectsToLists = selectors.selectProjectsToListsForCurrentUser(state);
+  const isCurrentUserManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
+  const allBoardMemberships = selectors.selectMembershipsForCurrentBoard(state);
+  const allLabels = selectors.selectLabelsForCurrentBoard(state);
+  const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
-    const {
-        name,
-        description,
-        startDate,
-        dueDate,
-        stopwatch,
-        isSubscribed,
-        isActivitiesFetching,
-        isAllActivitiesFetched,
-        isActivitiesDetailsVisible,
-        isActivitiesDetailsFetching,
-        boardId,
-        listId,
-    } = selectors.selectCurrentCard(state);
+  const {
+    name,
+    description,
+    startDate,
+    dueDate,
+    stopwatch,
+    isSubscribed,
+    isActivitiesFetching,
+    isAllActivitiesFetched,
+    isActivitiesDetailsVisible,
+    isActivitiesDetailsFetching,
+    boardId,
+    listId,
+  } = selectors.selectCurrentCard(state);
 
-    const users = selectors.selectUsersForCurrentCard(state);
-    const labels = selectors.selectLabelsForCurrentCard(state);
-    const tasks = selectors.selectTasksForCurrentCard(state);
-    const attachments = selectors.selectAttachmentsForCurrentCard(state);
-    const activities = selectors.selectActivitiesForCurrentCard(state);
+  const users = selectors.selectUsersForCurrentCard(state);
+  const labels = selectors.selectLabelsForCurrentCard(state);
+  const tasks = selectors.selectTasksForCurrentCard(state);
+  const attachments = selectors.selectAttachmentsForCurrentCard(state);
+  const activities = selectors.selectActivitiesForCurrentCard(state);
 
-    let isCurrentUserEditor = false;
-    let isCurrentUserEditorOrCanComment = false;
+  let isCurrentUserEditor = false;
+  let isCurrentUserEditorOrCanComment = false;
 
-    if (currentUserMembership) {
-        isCurrentUserEditor = currentUserMembership.role === BoardMembershipRoles.EDITOR;
-        isCurrentUserEditorOrCanComment = isCurrentUserEditor || currentUserMembership.canComment;
-    }
+  if (currentUserMembership) {
+    isCurrentUserEditor = currentUserMembership.role === BoardMembershipRoles.EDITOR;
+    isCurrentUserEditorOrCanComment = isCurrentUserEditor || currentUserMembership.canComment;
+  }
 
-    return {
-        name,
-        description,
-        startDate,
-        dueDate,
-        stopwatch,
-        isSubscribed,
-        isActivitiesFetching,
-        isAllActivitiesFetched,
-        isActivitiesDetailsVisible,
-        isActivitiesDetailsFetching,
-        listId,
-        boardId,
-        projectId,
-        users,
-        labels,
-        tasks,
-        attachments,
-        activities,
-        allProjectsToLists,
-        allBoardMemberships,
-        allLabels,
-        canEdit: isCurrentUserEditor,
-        canEditCommentActivities: isCurrentUserEditorOrCanComment,
-        canEditAllCommentActivities: isCurrentUserManager,
-    };
+  return {
+    name,
+    description,
+    startDate,
+    dueDate,
+    stopwatch,
+    isSubscribed,
+    isActivitiesFetching,
+    isAllActivitiesFetched,
+    isActivitiesDetailsVisible,
+    isActivitiesDetailsFetching,
+    listId,
+    boardId,
+    projectId,
+    users,
+    labels,
+    tasks,
+    attachments,
+    activities,
+    allProjectsToLists,
+    allBoardMemberships,
+    allLabels,
+    canEdit: isCurrentUserEditor,
+    canEditCommentActivities: isCurrentUserEditorOrCanComment,
+    canEditAllCommentActivities: isCurrentUserManager,
+  };
 };
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            onUpdate: entryActions.updateCurrentCard,
-            onMove: entryActions.moveCurrentCard,
-            onTransfer: entryActions.transferCurrentCard,
-            onDelete: entryActions.deleteCurrentCard,
-            onUserAdd: entryActions.addUserToCurrentCard,
-            onUserRemove: entryActions.removeUserFromCurrentCard,
-            onBoardFetch: entryActions.fetchBoard,
-            onLabelAdd: entryActions.addLabelToCurrentCard,
-            onLabelRemove: entryActions.removeLabelFromCurrentCard,
-            onLabelCreate: entryActions.createLabelInCurrentBoard,
-            onLabelUpdate: entryActions.updateLabel,
-            onLabelMove: entryActions.moveLabel,
-            onLabelDelete: entryActions.deleteLabel,
-            onTaskCreate: entryActions.createTaskInCurrentCard,
-            onTaskUpdate: entryActions.updateTask,
-            onTaskMove: entryActions.moveTask,
-            onTaskDelete: entryActions.deleteTask,
-            onAttachmentCreate: entryActions.createAttachmentInCurrentCard,
-            onAttachmentUpdate: entryActions.updateAttachment,
-            onAttachmentDelete: entryActions.deleteAttachment,
-            onActivitiesFetch: entryActions.fetchActivitiesInCurrentCard,
-            onActivitiesDetailsToggle: entryActions.toggleActivitiesDetailsInCurrentCard,
-            onCommentActivityCreate: entryActions.createCommentActivityInCurrentCard,
-            onCommentActivityUpdate: entryActions.updateCommentActivity,
-            onCommentActivityDelete: entryActions.deleteCommentActivity,
-            push,
-        },
-        dispatch,
-    );
+  bindActionCreators(
+    {
+      onUpdate: entryActions.updateCurrentCard,
+      onMove: entryActions.moveCurrentCard,
+      onTransfer: entryActions.transferCurrentCard,
+      onDelete: entryActions.deleteCurrentCard,
+      onUserAdd: entryActions.addUserToCurrentCard,
+      onUserRemove: entryActions.removeUserFromCurrentCard,
+      onBoardFetch: entryActions.fetchBoard,
+      onLabelAdd: entryActions.addLabelToCurrentCard,
+      onLabelRemove: entryActions.removeLabelFromCurrentCard,
+      onLabelCreate: entryActions.createLabelInCurrentBoard,
+      onLabelUpdate: entryActions.updateLabel,
+      onLabelMove: entryActions.moveLabel,
+      onLabelDelete: entryActions.deleteLabel,
+      onTaskCreate: entryActions.createTaskInCurrentCard,
+      onTaskUpdate: entryActions.updateTask,
+      onTaskMove: entryActions.moveTask,
+      onTaskDelete: entryActions.deleteTask,
+      onAttachmentCreate: entryActions.createAttachmentInCurrentCard,
+      onAttachmentUpdate: entryActions.updateAttachment,
+      onAttachmentDelete: entryActions.deleteAttachment,
+      onActivitiesFetch: entryActions.fetchActivitiesInCurrentCard,
+      onActivitiesDetailsToggle: entryActions.toggleActivitiesDetailsInCurrentCard,
+      onCommentActivityCreate: entryActions.createCommentActivityInCurrentCard,
+      onCommentActivityUpdate: entryActions.updateCommentActivity,
+      onCommentActivityDelete: entryActions.deleteCommentActivity,
+      push,
+    },
+    dispatch,
+  );
 
 const mergeProps = (stateProps, dispatchProps) => ({
-    ...stateProps,
-    ...omit(dispatchProps, 'push'),
-    onClose: () => dispatchProps.push(Paths.BOARDS.replace(':id', stateProps.boardId)),
+  ...stateProps,
+  ...omit(dispatchProps, 'push'),
+  onClose: () => dispatchProps.push(Paths.BOARDS.replace(':id', stateProps.boardId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(CardModal);

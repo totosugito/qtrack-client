@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Modal, Tab } from 'semantic-ui-react';
+import {Button, Modal, Tab} from 'semantic-ui-react';
 
 import ManagersPane from './ManagersPane';
 import BackgroundPane from './BackgroundPane';
@@ -10,6 +10,9 @@ import selectors from "../../redux/selectors";
 import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import styles from '../index.module.scss';
+import classNames from "classnames";
 
 const ProjectSettingsModal = React.memo(
   ({
@@ -81,7 +84,11 @@ const ProjectSettingsModal = React.memo(
     ];
 
     return (
-      <Modal open closeIcon size="small" centered={false} onClose={onClose} style={{position: 'relative', 'marginLeft': '240px', 'marginTop': '72px'}}>
+      <Modal open closeIcon={
+        <div className={classNames(styles.dialogCloseButton)}>
+            <CloseOutlinedIcon/>
+        </div>
+      } size="small" centered={true} onClose={onClose} className={classNames(styles.dialog)}>
         <Modal.Content>
           <Tab
             menu={{

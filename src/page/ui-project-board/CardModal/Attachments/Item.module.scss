@@ -70,6 +70,9 @@
 
   .optionIcon {
     margin-right: 6px;
+    width: 16px;
+    height: 16px;
+    margin-bottom: -3px;
   }
 
   .optionText {
@@ -119,5 +122,10 @@
 
   .wrapperSubmitting {
     background: rgba(9, 30, 66, 0.04);
+  }
+
+  .buttonIcon {
+    width: 16px;
+    height: 16px;
   }
 }

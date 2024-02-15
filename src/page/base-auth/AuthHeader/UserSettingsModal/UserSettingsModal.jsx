@@ -6,6 +6,9 @@ import { Modal, Tab } from 'semantic-ui-react';
 import AccountPane from './AccountPane';
 import PreferencesPane from './PreferencesPane';
 import AboutPane from './AboutPane';
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import styles from '../../../../view/index.module.scss';
+import classNames from "classnames";
 
 const UserSettingsModal = React.memo(
   ({
@@ -83,7 +86,12 @@ const UserSettingsModal = React.memo(
     ];
 
     return (
-      <Modal open closeIcon size="small" centered={false} onClose={onClose} style={{'marginLeft': '240px', 'marginTop': '72px'}}>
+      // <Modal open closeIcon size="small" centered={false} onClose={onClose} style={{'marginLeft': '240px', 'marginTop': '72px'}}>
+      <Modal open closeIcon={
+        <div className={classNames(styles.dialogCloseButton)}>
+          <CloseOutlinedIcon/>
+        </div>
+      } size="small" centered={true} onClose={onClose} className={classNames(styles.dialog)}>
         <Modal.Content>
           <Tab
             menu={{

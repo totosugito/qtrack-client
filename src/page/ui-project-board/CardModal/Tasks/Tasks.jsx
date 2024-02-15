@@ -67,8 +67,7 @@ const Tasks = React.memo(({ items, canEdit, onCreate, onUpdate, onMove, onDelete
       <DragDropContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <Droppable droppableId="tasks" type={DroppableTypes.TASK}>
           {({ innerRef, droppableProps, placeholder }) => (
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            <div {...droppableProps} ref={innerRef}>
+            <div {...droppableProps} ref={innerRef} style={{marginLeft: '40px'}}>
               {items.map((item, index) => (
                 <Item
                   key={item.id}

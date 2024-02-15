@@ -20,14 +20,15 @@
 
   .moduleIcon {
     color: #17394d;
-    font-size: 17px;
-    height: 32px;
+    //font-size: 10px;
+    //height: 24px;
     left: -40px;
-    line-height: 32px;
+    bottom: 0;
+    line-height: 0;
     margin-right: 0;
     position: absolute;
-    top: 2px;
-    width: 32px;
+    top: 5px;
+    //width: 24px;
   }
 
   .moduleWrapper {

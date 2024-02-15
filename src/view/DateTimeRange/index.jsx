@@ -37,7 +37,7 @@ const DateTimeRange = React.memo(({startDate, dueDate, size, isDisabled, onClick
 
   const contentNode = (
     <div>
-      <table>
+      <table cellPadding="0" cellSpacing="0">
         <tbody>
         {size === SIZES.MEDIUM &&
           <tr>
@@ -58,7 +58,7 @@ const DateTimeRange = React.memo(({startDate, dueDate, size, isDisabled, onClick
           </tr>
         }
         <tr>
-          <td>
+          <td style={{paddingRight: size === SIZES.MEDIUM ? '2px' : '0px'}}>
             <span
               className={classNames(
                 styles.wrapper,
@@ -71,31 +71,29 @@ const DateTimeRange = React.memo(({startDate, dueDate, size, isDisabled, onClick
               })}
             </span>
           </td>
-          {size !== SIZES.MEDIUM &&
-            <td>-</td>
-          }
+          {size !== SIZES.MEDIUM && <td>&nbsp;-&nbsp;</td>}
           <td>
-                  <span
-                    className={classNames(
-                      styles.wrapper,
-                      styles[`wrapper${upperFirst(size)}`],
-                      onClick && styles.wrapperHoverable,
-                    )}
-                  >
-      {t(`format:${dateFormat}`, {
-        value: dueDate,
-        postProcess: 'formatDate',
-      })}
-    </span>
+            <span
+              className={classNames(
+                styles.wrapper,
+                styles[`wrapper${upperFirst(size)}`],
+                onClick && styles.wrapperHoverable,
+              )}
+            >
+            {t(`format:${dateFormat}`, {
+              value: dueDate,
+              postProcess: 'formatDate',
+            })}
+          </span>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
-  );
+);
 
-  return onClick ? (
-    <button type="button" disabled={isDisabled} className={styles.button} onClick={onClick}>
+return onClick ? (
+  <button type="button" disabled={isDisabled} className={styles.button} onClick={onClick}>
       {contentNode}
     </button>
   ) : (
