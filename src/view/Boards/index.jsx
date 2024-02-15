@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { closePopup, usePopup } from '../../lib/popup';
 
 import Paths from '../../constants/Paths';
@@ -17,6 +17,7 @@ import selectors from "../../redux/selectors";
 import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
+import EditIcon from '@mui/icons-material/Edit';
 
 const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMove, onDelete }) => {
   const tabsWrapper = useRef(null);
@@ -87,7 +88,7 @@ const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMo
                     onDelete={() => handleDelete(item.id)}
                   >
                     <Button className={classNames(styles.editButton, styles.target)}>
-                      <Icon fitted name="pencil" size="small" />
+                      <EditIcon fontSize='small'/>
                     </Button>
                   </EditPopup>
                 )}

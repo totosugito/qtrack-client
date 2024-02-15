@@ -7,12 +7,14 @@ import {usePopup} from "../../../lib/popup";
 import NotificationsStep from "./NotificationsStep/NotificationsStep";
 import UserStep from "./UserStep/UserStep";
 import styles from "./index.module.scss";
-import {Button, Icon, Menu} from "semantic-ui-react";
+import {Button, Menu} from "semantic-ui-react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Paths from "../../../constants/Paths";
 import {Link} from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EditIcon from '@mui/icons-material/Edit';
 
 const POPUP_PROPS = {
   position: 'bottom right',
@@ -51,7 +53,7 @@ const Header = React.memo(
                 as={Link}
                 to={Paths.PROJECTS_LIST}
                 className={classNames(styles.item, styles.itemHoverable)}>
-                <Icon fitted name="arrow left"/>
+                <ArrowBackIcon/>
               </Menu.Item>
               <Menu.Item className={classNames(styles.item, styles.title)}>
                 {project.name}
@@ -60,7 +62,7 @@ const Header = React.memo(
                     className={classNames(styles.editButton, styles.target)}
                     onClick={handleProjectSettingsClick}
                   >
-                    <Icon fitted name="pencil" size="small"/>
+                    <EditIcon fontSize='small'/>
                   </Button>
                 )}
               </Menu.Item>

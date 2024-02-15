@@ -9,6 +9,7 @@ import { useForm, useSteps } from '../../../lib/hooks-ui';
 import ImportStep from './ImportStep';
 
 import styles from './AddStep.module.scss';
+// import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const StepTypes = {
   IMPORT: 'IMPORT',
@@ -95,10 +96,7 @@ const AddStep = React.memo(({ onCreate, onClose }) => {
           <div className={styles.controls}>
             <Button positive content={t('action.createBoard')} className={styles.createButton} />
             <Button type="button" className={styles.importButton} onClick={handleImportClick}>
-              <Icon
-                name={data.import ? data.import.type : 'arrow down'}
-                className={styles.importButtonIcon}
-              />
+              {/*<ArrowDownwardIcon fontSize='small'/>*/}
               {data.import ? data.import.file.name : t('action.import')}
             </Button>
           </div>

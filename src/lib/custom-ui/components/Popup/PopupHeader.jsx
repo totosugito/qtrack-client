@@ -6,7 +6,7 @@ import styles from './PopupHeader.module.css';
 
 const PopupHeader = React.memo(({ children, onBack }) => (
   <SemanticUIPopup.Header className={styles.wrapper}>
-    {onBack && <Button icon="angle left" onClick={onBack} className={styles.backButton} />}
+    {onBack && <Button icon="angle left" onClick={onBack} className={styles.backButton}></Button>}
     <div className={styles.content}>{children}</div>
   </SemanticUIPopup.Header>
 ));

@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { Draggable } from 'react-beautiful-dnd';
 import { usePopup } from '../../lib/popup';
@@ -22,6 +22,7 @@ import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
 import DateTimeRange from "../DateTimeRange";
+import EditIcon from '@mui/icons-material/Edit';
 
 const Card = React.memo(
   ({
@@ -204,7 +205,7 @@ const Card = React.memo(
                         onLabelDelete={onLabelDelete}
                       >
                         <Button className={classNames(styles.actionsButton, styles.target)}>
-                          <Icon fitted name="pencil" size="small" />
+                          <EditIcon fontSize='small'/>
                         </Button>
                       </ActionsPopup>
                     )}

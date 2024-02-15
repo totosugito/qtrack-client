@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Icon, Radio, Table } from 'semantic-ui-react';
+import { Button, Radio, Table } from 'semantic-ui-react';
 import { usePopup } from '../../../lib/popup';
 
 import ActionsStep from './ActionsStep';
 import User from '../../User';
 import styles from './Item.module.scss';
+import EditIcon from "@mui/icons-material/Edit";
 
 const Item = React.memo(
   ({
@@ -75,7 +76,7 @@ const Item = React.memo(
             onDelete={onDelete}
           >
             <Button className={styles.button}>
-              <Icon fitted name="pencil" />
+              <EditIcon fontSize='small'/>
             </Button>
           </ActionsPopup>
         </Table.Cell>
