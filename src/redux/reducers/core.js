@@ -4,7 +4,7 @@ import ActionTypes from '../../constants/ActionTypes';
 import ModalTypes from '../../constants/ModalTypes';
 
 const initialState = {
-  isLogouting: false,
+  isLogOuting: false,
   currentModal: null,
 };
 
@@ -20,7 +20,7 @@ export default (state = initialState, { type, payload }) => {
     case ActionTypes.LOGOUT__ACCESS_TOKEN_INVALIDATE:
       return {
         ...state,
-        isLogouting: true,
+        isLogOuting: true,
       };
     case ActionTypes.MODAL_OPEN:
       return {

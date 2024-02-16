@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Comment } from 'semantic-ui-react';
 import { usePopup } from '../../../../lib/popup';
-import { Markdown } from '../../../../lib/custom-ui';
 
 import getDateFormat from '../../../../lib/utils/get-date-format';
 import CommentEdit from './CommentEdit';
@@ -43,7 +42,7 @@ const ItemComment = React.memo(
           <CommentEdit ref={commentEdit} defaultData={data} onUpdate={onUpdate}>
             <>
               <div className={styles.text}>
-                <Markdown linkTarget="_blank">{data.text}</Markdown>
+                {data.text}
               </div>
               {canEdit && (
                 <Comment.Actions>

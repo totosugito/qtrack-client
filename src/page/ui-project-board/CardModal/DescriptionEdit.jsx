@@ -1,12 +1,11 @@
-import React, { useCallback, useImperativeHandle, useMemo, useState } from 'react';
+import React, {useCallback, useImperativeHandle, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { Button, Form } from 'semantic-ui-react';
-import SimpleMDE from 'react-simplemde-editor';
-
+import {useTranslation} from 'react-i18next';
+import {Button} from 'semantic-ui-react';
 import styles from './DescriptionEdit.module.scss';
+import {QuillEditor} from "../../../lib";
 
-const DescriptionEdit = React.forwardRef(({ children, defaultValue, onUpdate }, ref) => {
+const DescriptionEdit = React.forwardRef(({children, defaultValue, onUpdate}, ref) => {
   const [t] = useTranslation();
   const [isOpened, setIsOpened] = useState(false);
   const [value, setValue] = useState(null);
@@ -17,7 +16,15 @@ const DescriptionEdit = React.forwardRef(({ children, defaultValue, onUpdate }, 
   }, [defaultValue, setValue]);
 
   const close = useCallback(() => {
-    const cleanValue = value.trim() || null;
+    let cleanValue = value.trim() || null;
+    if(cleanValue !== null) {
+      let tempElement = document.createElement('div'); // Create a temporary element
+      tempElement.innerHTML = cleanValue; // Set the innerHTML of the temporary element with your string
+      let textContent = tempElement.textContent || tempElement.innerText; // Get the text content of the temporary element
+      if(textContent === "") {
+        cleanValue = null;
+      }
+    }
 
     if (cleanValue !== defaultValue) {
       onUpdate(cleanValue);
@@ -89,20 +96,23 @@ const DescriptionEdit = React.forwardRef(({ children, defaultValue, onUpdate }, 
     });
   }
 
+  const onCancel = () => {
+    setIsOpened(false);
+  }
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <SimpleMDE
-        value={value}
-        options={mdEditorOptions}
+    <>
+      <QuillEditor
         placeholder={t('common.enterDescription')}
-        className={styles.field}
-        onKeyDown={handleFieldKeyDown}
+        defaultValue={value}
         onChange={setValue}
+        // onKeyDown={handleFieldKeyDown}
       />
       <div className={styles.controls}>
-        <Button positive content={t('action.save')} />
+        <Button positive content={t('action.save')} onClick={handleSubmit}/>
+        <Button content={t('action.cancel')} onClick={onCancel}/>
       </div>
-    </Form>
+    </>
   );
 });
 

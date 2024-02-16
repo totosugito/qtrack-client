@@ -5,7 +5,6 @@ import {Route, Routes} from 'react-router-dom';
 import {ReduxRouter} from './lib/redux-router';
 import {Error404, UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen, UiProjectBoard} from "./page";
 import Paths from "./constants/Paths";
-import './lib/easymde-2.18.0/easymde.min.css';
 import './lib/custom-ui/styles.css';
 function Root({store, history}) {
     return (

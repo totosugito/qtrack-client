@@ -113,7 +113,7 @@ Header.defaultProps = {
 
 const mapStateToProps = (state) => {
   const currentProject = selectors.selectCurrentProject(state);
-  const isLogOuting = selectors.selectIsLogouting(state);
+  const isLogOuting = selectors.selectIsLogOuting(state);
   const currentUser = selectors.selectCurrentUser(state);
   const notifications = selectors.selectNotificationsForCurrentUser(state);
   const isCurrentUserManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);

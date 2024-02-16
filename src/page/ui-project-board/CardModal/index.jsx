@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 import {Button, Grid, Modal} from 'semantic-ui-react';
 import {usePopup} from '../../../lib/popup';
-import {Markdown} from '../../../lib/custom-ui';
+import {QuillViewer} from '../../../lib';
 
 import {startStopwatch, stopStopwatch} from '../../../lib/utils/stopwatch';
 import NameField from './NameField';
 import DescriptionEdit from './DescriptionEdit';
 import Tasks from './Tasks';
 import Attachments from './Attachments';
-import AttachmentAddZone from './AttachmentAddZone';
+// import AttachmentAddZone from './AttachmentAddZone';
 import AttachmentAddStep from './AttachmentAddStep';
 import Activities from './Activities';
 import User from '../../../view/User';
@@ -364,9 +364,7 @@ const CardModal = React.memo(
                           type="button"
                           className={classNames(styles.descriptionText, styles.cursorPointer)}
                         >
-                          <Markdown linkStopPropagation linkTarget="_blank">
-                            {description}
-                          </Markdown>
+                          <QuillViewer content={description}/>
                         </button>
                       ) : (
                         <button type="button" className={styles.descriptionButton}>
@@ -378,9 +376,7 @@ const CardModal = React.memo(
                     </DescriptionEdit>
                   ) : (
                     <div className={styles.descriptionText}>
-                      <Markdown linkStopPropagation linkTarget="_blank">
-                        {description}
-                      </Markdown>
+                      <QuillViewer content={description}/>
                     </div>
                   )}
                 </div>
@@ -540,7 +536,8 @@ const CardModal = React.memo(
         </div>
       } centered={false} onClose={handleClose} className={classNames(stylesDialog.dialog)}>
         {canEdit ? (
-          <AttachmentAddZone onCreate={onAttachmentCreate}>{contentNode}</AttachmentAddZone>
+          // <AttachmentAddZone onCreate={onAttachmentCreate}>{contentNode}</AttachmentAddZone>
+          <div>{contentNode}</div>
         ) : (
           contentNode
         )}
