@@ -4,13 +4,13 @@
     border-radius: 50%;
     box-shadow: none;
     color: #fff;
-    line-height: 36px;
+    //line-height: 42px;
     margin: 0;
     padding: 0;
     transition: all 0.1s ease 0s;
     vertical-align: top;
     width: 36px;
-
+    height: 36px;
     &:hover {
       background: rgba(0, 0, 0, 0.32);
     }
@@ -26,5 +26,10 @@
   .users {
     display: inline-block;
     vertical-align: top;
+  }
+
+  .iconUser {
+    position: relative;
+    top: 2px
   }
 }

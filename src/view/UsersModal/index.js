@@ -90,7 +90,7 @@ const UsersModal = React.memo(
             <div className={classNames(styles.dialogCloseButton)}>
               <CloseOutlinedIcon/>
             </div>
-          } size="small" centered={true} onClose={onClose}>
+          } size="small" centered={false} onClose={onClose}>
                 <Modal.Header>
                     {t('common.users', {
                         context: 'title',

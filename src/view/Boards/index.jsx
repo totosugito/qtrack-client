@@ -18,6 +18,7 @@ import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
 import EditIcon from '@mui/icons-material/Edit';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMove, onDelete }) => {
   const tabsWrapper = useRef(null);
@@ -117,7 +118,7 @@ const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMo
                 {placeholder}
                 {canEdit && (
                   <AddPopup onCreate={onCreate}>
-                    <Button icon="plus" className={styles.addButton} />
+                    <Button className={styles.addButton}><AddOutlinedIcon/></Button>
                   </AddPopup>
                 )}
               </div>

@@ -63,8 +63,8 @@ export default function DrawerWeb(props) {
 
     return (
         <div>
-            <Grid container direction='row' sx={styles.headerContainer} style={{height: '50px', color: 'white', backgroundColor: 'white'}}>
-                {props.header && props.header}
+            <Grid container direction='row' sx={styles.headerContainer} style={{height: '50px'}}>
+                {(props.header && props.open) && props.header}
             </Grid>
             {
                 !props.open && (

@@ -8,6 +8,7 @@ import ActionsStep from './ActionsStep';
 import User from '../User';
 
 import styles from './index.module.scss';
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 
 const Memberships = React.memo(
   ({
@@ -71,7 +72,7 @@ const Memberships = React.memo(
             title={addTitle}
             onCreate={onCreate}
           >
-            <Button icon="add user" className={styles.addUser} />
+            <Button className={styles.addUser}><PersonAddAltOutlinedIcon className={styles.iconUser}/></Button>
           </AddPopup>
         )}
       </>

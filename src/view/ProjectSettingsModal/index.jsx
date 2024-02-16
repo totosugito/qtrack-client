@@ -88,7 +88,7 @@ const ProjectSettingsModal = React.memo(
         <div className={classNames(styles.dialogCloseButton)}>
             <CloseOutlinedIcon/>
         </div>
-      } size="small" centered={true} onClose={onClose} className={classNames(styles.dialog)}>
+      } size="small" centered={false} onClose={onClose} className={classNames(styles.dialog)}>
         <Modal.Content>
           <Tab
             menu={{

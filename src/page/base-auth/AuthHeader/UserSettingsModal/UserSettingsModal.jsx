@@ -86,12 +86,11 @@ const UserSettingsModal = React.memo(
     ];
 
     return (
-      // <Modal open closeIcon size="small" centered={false} onClose={onClose} style={{'marginLeft': '240px', 'marginTop': '72px'}}>
       <Modal open closeIcon={
         <div className={classNames(styles.dialogCloseButton)}>
           <CloseOutlinedIcon/>
         </div>
-      } size="small" centered={true} onClose={onClose} className={classNames(styles.dialog)}>
+      } size="small" centered={false} onClose={onClose} className={classNames(styles.dialog)}>
         <Modal.Content>
           <Tab
             menu={{

@@ -129,7 +129,7 @@ const BaseAuth = (props) => {
         <>
             { props.hasBg && props.background}
             <Box sx={stylesMui.boxContainer} display={'flex'}>
-                <AppBar position="fixed" open={open} style={{ background: props.hasBg ? theme.palette.primary.main : theme.palette.primary.main,
+                <AppBar position="fixed" open={open} style={{ background: props.hasBg ? "rgba(0, 0, 0, 0.4)" : theme.palette.primary.main,
                     boxShadow: props.hasBg ? 'none' : 'inherit'}}>
                     {/*<Grid container direction="row" justifyContent="space-between" alignItems="stretch" display={'flex'}>*/}
                         {/*<Grid item>*/}
@@ -163,7 +163,7 @@ const BaseAuth = (props) => {
 
                         <DrawerWeb open={open} header={
                             <IconButton onClick={handleDrawer}>
-                                {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                                {open ? <ChevronLeftIcon /> : <ChevronRightIcon/>}
                             </IconButton>
                         }/>
                     </Drawer>
