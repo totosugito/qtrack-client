@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { Button } from 'semantic-ui-react';
-import { closePopup, usePopup } from '../../lib/popup';
+import { closePopup, usePopup } from '../../lib/use-popup';
 
 import Paths from '../../constants/Paths';
 import DroppableTypes from '../../constants/DroppableTypes';

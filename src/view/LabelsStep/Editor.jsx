@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'semantic-ui-react';
-import { Input } from '../../lib/custom-ui';
+import { Input } from '../../lib';
 
 import LabelColors from '../../constants/LabelColors';
 

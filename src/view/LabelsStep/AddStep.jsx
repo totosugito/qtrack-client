@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'semantic-ui-react';
-import { Popup } from '../../lib/custom-ui';
+import { Popup } from '../../lib';
 
 import { useForm } from '../../lib/hooks-ui';
 import LabelColors from '../../constants/LabelColors';

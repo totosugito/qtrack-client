@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
-import { usePopup } from '../../lib/popup';
+import { usePopup } from '../../lib/use-popup';
 
 import AddStep from './AddStep';
 import ActionsStep from './ActionsStep';

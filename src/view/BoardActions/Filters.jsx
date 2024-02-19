@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { usePopup } from '../../lib/popup';
+import { usePopup } from '../../lib/use-popup';
 
 import User from '../User';
 import Label from '../Label';

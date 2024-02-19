@@ -594,9 +594,9 @@ const CalendarBody = memo(
             "react-minimal-datetime-range-calendar__table-cel",
             "react-minimal-datetime-range-calendar__date-item",
             isDisabled && "disabled",
-            DATE == item.name &&
-            MONTH == item.month &&
-            YEAR == item.year &&
+            DATE === item.name &&
+            MONTH === item.month &&
+            YEAR === item.year &&
             "today",
             markedDatesHash[`${item.year}-${item.month}-${item.name}`] &&
             "marked",

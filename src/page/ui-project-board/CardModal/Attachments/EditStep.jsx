@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'semantic-ui-react';
-import { Input, Popup } from '../../../../lib/custom-ui';
+import { Input, Popup } from '../../../../lib';
 
 import { useForm, useSteps } from '../../../../lib/hooks-ui';
 import DeleteStep from '../../../../view/DeleteStep';

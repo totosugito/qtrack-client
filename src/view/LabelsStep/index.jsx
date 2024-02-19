@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Button } from 'semantic-ui-react';
-import { Input, Popup } from '../../lib/custom-ui';
+import { Input, Popup } from '../../lib';
 
 import { useField, useSteps } from '../../lib/hooks-ui';
 import DroppableTypes from '../../constants/DroppableTypes';

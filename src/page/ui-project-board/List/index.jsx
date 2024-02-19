@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 import {Draggable, Droppable} from 'react-beautiful-dnd';
 import {Button} from 'semantic-ui-react';
-import {usePopup} from '../../../lib/popup';
+import {usePopup} from '../../../lib/use-popup';
 
 import DroppableTypes from '../../../constants/DroppableTypes';
 import NameEdit from './NameEdit';

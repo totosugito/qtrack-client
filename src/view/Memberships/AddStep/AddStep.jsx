@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Input, Popup } from '../../../lib/custom-ui';
+import { Input, Popup } from '../../../lib';
 
 import { useField, useSteps } from '../../../lib/hooks-ui';
 import UserItem from './UserItem';

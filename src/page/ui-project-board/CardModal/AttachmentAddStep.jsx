@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Menu } from 'semantic-ui-react';
-import { FilePicker, Popup } from '../../../lib/custom-ui';
+import { FilePicker, Popup } from '../../../lib';
 
 import styles from './AttachmentAddStep.module.scss';
 

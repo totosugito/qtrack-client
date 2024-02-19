@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';
 import {Button, Form, Message} from 'semantic-ui-react';
 import {usePrevious} from '../../lib/hooks';
-import {Input, Popup} from '../../lib/custom-ui';
+import {Input, Popup} from '../../lib';
 
 import {useForm} from '../../lib/hooks-ui';
 import {isPassword, isUsername} from '../../lib/utils/validator';

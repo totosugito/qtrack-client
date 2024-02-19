@@ -61,35 +61,6 @@ const DescriptionEdit = React.forwardRef(({children, defaultValue, onUpdate}, re
   const handleSubmit = useCallback(() => {
     close();
   }, [close]);
-
-  const mdEditorOptions = useMemo(
-    () => ({
-      autofocus: true,
-      spellChecker: false,
-      status: false,
-      toolbar: [
-        'bold',
-        'italic',
-        'heading',
-        'strikethrough',
-        '|',
-        'quote',
-        'unordered-list',
-        'ordered-list',
-        'table',
-        '|',
-        'link',
-        'image',
-        '|',
-        'undo',
-        'redo',
-        '|',
-        'guide',
-      ],
-    }),
-    [],
-  );
-
   if (!isOpened) {
     return React.cloneElement(children, {
       onClick: handleChildrenClick,

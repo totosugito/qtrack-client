@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Radio, Table } from 'semantic-ui-react';
-import { usePopup } from '../../../lib/popup';
+import { usePopup } from '../../../lib/use-popup';
 
 import ActionsStep from './ActionsStep';
 import User from '../../User';

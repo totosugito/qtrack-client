@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
-import {closePopup} from '../../../lib/popup';
+import {closePopup} from '../../../lib/use-popup';
 
 import DroppableTypes from '../../../constants/DroppableTypes';
 import ListAdd from './ListAdd';

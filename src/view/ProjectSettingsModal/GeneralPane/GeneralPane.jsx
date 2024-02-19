@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Divider, Header, Tab } from 'semantic-ui-react';
-import { usePopup } from '../../../lib/popup';
+import { usePopup } from '../../../lib/use-popup';
 
 import InformationEdit from './InformationEdit';
 import DeleteStep from '../../DeleteStep';

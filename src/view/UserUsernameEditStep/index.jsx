@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Message } from 'semantic-ui-react';
 import { useDidUpdate, usePrevious, useToggle } from '../../lib/hooks';
-import { Input, Popup } from '../../lib/custom-ui';
+import { Input, Popup } from '../../lib';
 
 import { useForm } from '../../lib/hooks-ui';
 import { isUsername } from '../../lib/utils/validator';

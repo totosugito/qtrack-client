@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Divider, Dropdown, Header, Tab } from 'semantic-ui-react';
-import { usePopup } from '../../../../../lib/popup';
+import { usePopup } from '../../../../../lib/use-popup';
 
 import locales from '../../../../../locales';
 import AvatarEditStep from './AvatarEditStep';

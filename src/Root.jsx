@@ -5,7 +5,8 @@ import {Route, Routes} from 'react-router-dom';
 import {ReduxRouter} from './lib/redux-router';
 import {Error404, UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen, UiProjectBoard} from "./page";
 import Paths from "./constants/Paths";
-import './lib/custom-ui/styles.css';
+// import './assets/styles.css';
+import 'semantic-ui-css/semantic.min.css'
 function Root({store, history}) {
     return (
         <Provider store={store}>

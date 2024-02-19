@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Menu } from 'semantic-ui-react';
-import { Popup } from '../../../lib/custom-ui';
+import { Popup } from '../../../lib';
 
 import { useSteps } from '../../../lib/hooks-ui';
 import UserInformationEditStep from '../../UserInformationEditStep';

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { Draggable } from 'react-beautiful-dnd';
-import { usePopup } from '../../lib/popup';
+import { usePopup } from '../../lib/use-popup';
 
 import { startStopwatch, stopStopwatch } from '../../lib/utils/stopwatch';
 import Paths from '../../constants/Paths';

@@ -323,10 +323,10 @@
     cursor: default;
     transition: all 0.3s;
     background-color: #fff;
-    /*color: var(--oc-gray-7);*/
     min-width: var(--item-width);
     width: var(--item-width);
     height: var(--item-height);
+    border: 1px solid #DCDCDC;
 
     &.disabled {
         color: #adb5bd;
@@ -394,7 +394,8 @@
 }
 
 .react-minimal-datetime-range-calendar__table-caption {
-    /*color: var(--oc-gray-7);*/
+    border: 1px solid #DCDCDC;
+    background: #F5F5F5;
 }
 
 .react-minimal-datetime-range-calendar__mask {

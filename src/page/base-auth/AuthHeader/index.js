@@ -3,7 +3,7 @@ import {bindActionCreators} from "redux";
 import entryActions from "../../../redux/entry-actions";
 import {connect} from "react-redux";
 import React, {useCallback} from "react";
-import {usePopup} from "../../../lib/popup";
+import {usePopup} from "../../../lib/use-popup";
 import NotificationsStep from "./NotificationsStep/NotificationsStep";
 import UserStep from "./UserStep/UserStep";
 import styles from "./index.module.scss";

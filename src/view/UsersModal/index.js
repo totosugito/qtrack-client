@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 import {Button, Modal, Table} from "semantic-ui-react";
 import Item from "./Item/Item";
 import PropTypes from "prop-types";
-import {usePopup} from "../../lib/popup";
+import {usePopup} from "../../lib/use-popup";
 import UserAddStep from "../UserAddStep";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import classNames from "classnames";

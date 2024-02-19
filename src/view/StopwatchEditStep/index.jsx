@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'semantic-ui-react';
 import { useToggle } from '../../lib/hooks';
-import { Input, Popup } from '../../lib/custom-ui';
+import { Input, Popup } from '../../lib';
 
 import { useForm } from '../../lib/hooks-ui';
 import {

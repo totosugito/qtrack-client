@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Draggable } from 'react-beautiful-dnd';
 import { Button, Checkbox} from 'semantic-ui-react';
-import { usePopup } from '../../../../lib/popup';
+import { usePopup } from '../../../../lib/use-popup';
 
 import NameEdit from './NameEdit';
 import ActionsStep from './ActionsStep';

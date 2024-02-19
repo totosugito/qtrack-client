@@ -362,7 +362,7 @@ const RangeDate = memo(
     const captionHtml = LOCALE_DATA.weeks.map((item, key) => {
       return (
         <div
-          className={`react-minimal-datetime-range-calendar__table-caption react-minimal-datetime-range-calendar__table-cel no-border`}
+          className={`react-minimal-datetime-range-calendar__table-caption react-minimal-datetime-range-calendar__table-cel`}
           key={key}
         >
           {item}

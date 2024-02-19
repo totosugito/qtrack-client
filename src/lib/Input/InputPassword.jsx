@@ -2,7 +2,7 @@ import zxcvbn from 'zxcvbn';
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Icon, Input, Progress } from 'semantic-ui-react';
-import { useToggle } from '../../../hooks';
+import { useToggle } from '../hooks';
 
 import styles from './InputPassword.module.css';
 

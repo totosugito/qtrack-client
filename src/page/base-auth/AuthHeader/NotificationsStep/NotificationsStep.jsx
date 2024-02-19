@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation, Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import { Popup } from '../../../../lib/custom-ui';
+import { Popup } from '../../../../lib';
 
 import Paths from '../../../../constants/Paths';
 import { ActivityTypes } from '../../../../constants/Enums';

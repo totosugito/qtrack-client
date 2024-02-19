@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 import {Button, Grid, Modal} from 'semantic-ui-react';
-import {usePopup} from '../../../lib/popup';
+import {usePopup} from '../../../lib/use-popup';
 import {QuillViewer} from '../../../lib';
 
 import {startStopwatch, stopStopwatch} from '../../../lib/utils/stopwatch';
@@ -11,7 +11,6 @@ import NameField from './NameField';
 import DescriptionEdit from './DescriptionEdit';
 import Tasks from './Tasks';
 import Attachments from './Attachments';
-// import AttachmentAddZone from './AttachmentAddZone';
 import AttachmentAddStep from './AttachmentAddStep';
 import Activities from './Activities';
 import User from '../../../view/User';
@@ -536,7 +535,6 @@ const CardModal = React.memo(
         </div>
       } centered={false} onClose={handleClose} className={classNames(stylesDialog.dialog)}>
         {canEdit ? (
-          // <AttachmentAddZone onCreate={onAttachmentCreate}>{contentNode}</AttachmentAddZone>
           <div>{contentNode}</div>
         ) : (
           contentNode
