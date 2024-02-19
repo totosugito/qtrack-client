@@ -1,4 +1,4 @@
-import { dequal } from 'dequal';
+import { dequal } from '../../lib/external';
 import omit from 'lodash/omit';
 import pickBy from 'lodash/pickBy';
 import React, { useCallback, useMemo, useRef } from 'react';

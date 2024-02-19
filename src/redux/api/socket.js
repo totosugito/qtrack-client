@@ -1,5 +1,5 @@
 import socketIOClient from 'socket.io-client';
-import sailsIOClient from '../../../node_modules/sails.io.js/sails.io';
+import sailsIOClient from 'sails.io.js/sails.io';
 
 import Config from '../../constants/Config';
 

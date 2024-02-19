@@ -29,7 +29,7 @@ import {BrLabel, BrProjectList} from "../component";
 import dummy_data from "./data/demo_project.json"
 import BrLink from "../component/breadcrumbs/br-link";
 import {read, utils} from "xlsx";
-import LTT from "list-to-tree";
+import { LTT } from "../lib/external";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NHaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZiWH1ZcHdQRWJZWE12Xg==");
 const DemoGantt = ({ganttId}) => {

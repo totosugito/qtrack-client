@@ -1,5 +1,4 @@
 import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import formatDate from 'date-fns/format';
 import parseDate from 'date-fns/parse';
@@ -52,7 +51,6 @@ const parseDatePostProcessor = {
 };
 
 i18n
-  .use(LanguageDetector)
   .use(formatDatePostProcessor)
   .use(parseDatePostProcessor)
   .use(initReactI18next)
@@ -77,7 +75,7 @@ i18n
       useSuspense: true,
     },
     debug: process.env.NODE_ENV !== 'production',
-  });
+  }).then(r => {});
 
 i18n.loadCoreLocale = async (language = i18n.resolvedLanguage) => {
   if (language === 'en') {

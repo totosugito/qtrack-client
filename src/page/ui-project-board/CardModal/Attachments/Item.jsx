@@ -65,6 +65,7 @@ const Item = React.forwardRef(
     const filename = url.split('/').pop();
     const extension = filename.slice((Math.max(0, filename.lastIndexOf('.')) || Infinity) + 1);
 
+    // noinspection JSAnnotator
     return (
       <div ref={ref} className={styles.wrapper} onClick={handleClick}>
         <div
@@ -93,7 +94,8 @@ const Item = React.forwardRef(
         <div className={styles.details}>
           <span className={styles.name}>{name}</span>
           <span className={styles.date}>
-            {t('format:longDateTime', {
+            {
+              t('format:longDateTime', {
               postProcess: 'formatDate',
               value: createdAt,
             })}

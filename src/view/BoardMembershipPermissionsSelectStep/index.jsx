@@ -1,4 +1,4 @@
-import { dequal } from 'dequal';
+import { dequal } from '../../lib/external';
 import omit from 'lodash/omit';
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';

@@ -9,6 +9,7 @@ import { useToggle } from '../../../../lib/hooks';
 import Item from './Item';
 
 import styles from './Attachments.module.scss';
+import 'photoswipe/dist/photoswipe.css'
 
 const INITIALLY_VISIBLE = 4;
 

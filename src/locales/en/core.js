@@ -243,4 +243,7 @@ export default {
       "membersCount": "Members ({{count}})"
     }
   },
+  custom: {
+    membersCount: ''
+  }
 };

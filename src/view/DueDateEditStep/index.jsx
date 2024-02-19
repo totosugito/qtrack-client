@@ -4,12 +4,9 @@ import { useTranslation } from 'react-i18next';
 import DatePicker from 'react-datepicker';
 import { Button, Form } from 'semantic-ui-react';
 import { useDidUpdate, useToggle } from '../../lib/hooks';
-import { Input, Popup } from '../../lib/custom-ui';
-
+import { Input, Popup } from '../../lib';
 import { useForm } from '../../lib/hooks-ui';
-
 import styles from './index.module.scss';
-// import "react-datepicker/dist/react-datepicker.css";
 
 const DueDateEditStep = React.memo(({ defaultValue, onUpdate, onBack, onClose }) => {
   const [t] = useTranslation();
@@ -17,6 +14,7 @@ const DueDateEditStep = React.memo(({ defaultValue, onUpdate, onBack, onClose })
   const [data, handleFieldChange, setData] = useForm(() => {
     const date = defaultValue || new Date().setHours(12, 0, 0, 0);
 
+    // noinspection JSAnnotator
     return {
       date: t('format:date', {
         postProcess: 'formatDate',
@@ -35,6 +33,7 @@ const DueDateEditStep = React.memo(({ defaultValue, onUpdate, onBack, onClose })
   const timeField = useRef(null);
 
   const nullableDate = useMemo(() => {
+    // noinspection JSAnnotator
     const date = t('format:date', {
       postProcess: 'parseDate',
       value: data.date,
@@ -49,6 +48,7 @@ const DueDateEditStep = React.memo(({ defaultValue, onUpdate, onBack, onClose })
 
   const handleDatePickerChange = useCallback(
     (date) => {
+      // noinspection JSAnnotator
       setData((prevData) => ({
         ...prevData,
         date: t('format:date', {
@@ -67,6 +67,7 @@ const DueDateEditStep = React.memo(({ defaultValue, onUpdate, onBack, onClose })
       return;
     }
 
+    // noinspection JSAnnotator
     const value = t('format:dateTime', {
       postProcess: 'parseDate',
       value: `${data.date} ${data.time}`,
