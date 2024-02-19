@@ -1,11 +1,4 @@
 :global(#app) {
-  .dialogCloseButton {
-    position: absolute;
-    right: 0;
-    margin-top: 5px;
-    padding-right: 10px;
-    z-index: 1000;
-  }
   .dialog {
     margin-top: 72px;
     min-height: 350px;

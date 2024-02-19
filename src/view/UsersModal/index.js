@@ -9,9 +9,6 @@ import Item from "./Item/Item";
 import PropTypes from "prop-types";
 import {usePopup} from "../../lib/use-popup";
 import UserAddStep from "../UserAddStep";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import classNames from "classnames";
-import styles from '../index.module.scss';
 const UsersModal = React.memo(
     ({
          items,
@@ -86,11 +83,7 @@ const UsersModal = React.memo(
         const UserAddPopupContainer = usePopup(UserAddStep);
 
         return (
-          <Modal open closeIcon={
-            <div className={classNames(styles.dialogCloseButton)}>
-              <CloseOutlinedIcon/>
-            </div>
-          } size="small" centered={false} onClose={onClose}>
+          <Modal open closeIcon={{ style: { top: '0.5rem', right: '0.5rem' }, color: 'black', name: 'close' }} size="small" centered={false} onClose={onClose}>
                 <Modal.Header>
                     {t('common.users', {
                         context: 'title',

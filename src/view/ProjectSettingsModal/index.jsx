@@ -10,7 +10,6 @@ import selectors from "../../redux/selectors";
 import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import styles from '../index.module.scss';
 import classNames from "classnames";
 
@@ -84,11 +83,7 @@ const ProjectSettingsModal = React.memo(
     ];
 
     return (
-      <Modal open closeIcon={
-        <div className={classNames(styles.dialogCloseButton)}>
-            <CloseOutlinedIcon/>
-        </div>
-      } size="small" centered={false} onClose={onClose} className={classNames(styles.dialog)}>
+      <Modal open closeIcon={{ style: { top: '0.5rem', right: '0.5rem' }, color: 'black', name: 'close' }} size="small" centered={false} onClose={onClose} className={classNames(styles.dialog)}>
         <Modal.Content>
           <Tab
             menu={{

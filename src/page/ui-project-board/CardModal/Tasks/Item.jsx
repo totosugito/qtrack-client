@@ -5,12 +5,9 @@ import classNames from 'classnames';
 import { Draggable } from 'react-beautiful-dnd';
 import { Button, Checkbox} from 'semantic-ui-react';
 import { usePopup } from '../../../../lib/use-popup';
-
 import NameEdit from './NameEdit';
 import ActionsStep from './ActionsStep';
-
 import styles from './Item.module.scss';
-import EditIcon from '@mui/icons-material/Edit';
 
 const Item = React.memo(
   ({ id, index, name, isCompleted, isPersisted, canEdit, onUpdate, onDelete }) => {
@@ -68,9 +65,7 @@ const Item = React.memo(
                   </span>
                   {isPersisted && canEdit && (
                     <ActionsPopup onNameEdit={handleNameEdit} onDelete={onDelete}>
-                      <Button className={classNames(styles.button, styles.target)}>
-                        <EditIcon fontSize='small'/>
-                      </Button>
+                      <Button className={classNames(styles.button, styles.target)} icon='pencil'/>
                     </ActionsPopup>
                   )}
                 </div>

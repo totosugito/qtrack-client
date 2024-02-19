@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 import {Draggable, Droppable} from 'react-beautiful-dnd';
-import {Button} from 'semantic-ui-react';
+import {Button, Icon} from 'semantic-ui-react';
 import {usePopup} from '../../../lib/use-popup';
 
 import DroppableTypes from '../../../constants/DroppableTypes';
 import NameEdit from './NameEdit';
 import CardAdd from './CardAdd';
 import ActionsStep from './ActionsStep';
-import AddIcon from '@mui/icons-material/Add';
 
 import styles from './index.module.scss';
 import selectors from "../../../redux/selectors";
@@ -19,7 +18,6 @@ import {bindActionCreators} from "redux";
 import entryActions from "../../../redux/entry-actions";
 import {connect} from "react-redux";
 import Card from "../../../view/Card";
-import EditIcon from '@mui/icons-material/Edit';
 
 const List = React.memo(
     ({id, index, name, isPersisted, cardIds, canEdit, onUpdate, onDelete, onCardCreate}) => {
@@ -119,9 +117,7 @@ const List = React.memo(
                                         onCardAdd={handleCardAdd}
                                         onDelete={onDelete}
                                     >
-                                        <Button className={classNames(styles.headerButton, styles.target)}>
-                                          <EditIcon fontSize='small'/>
-                                        </Button>
+                                        <Button className={classNames(styles.headerButton, styles.target)} icon='pencil'/>
                                     </ActionsPopup>
                                 )}
                             </div>
@@ -141,7 +137,7 @@ const List = React.memo(
                                     className={classNames(styles.addCardButton)}
                                     onClick={handleAddCardClick}
                                 >
-                                    <AddIcon/>
+                                  <Icon name='plus'/>
                                     <span className={styles.addCardButtonText}>
                     {cardIds.length > 0 ? t('action.addAnotherCard') : t('action.addCard')}
                   </span>

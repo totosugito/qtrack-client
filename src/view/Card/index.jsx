@@ -22,7 +22,6 @@ import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
 import DateTimeRange from "../DateTimeRange";
-import EditIcon from '@mui/icons-material/Edit';
 
 const Card = React.memo(
   ({
@@ -204,9 +203,7 @@ const Card = React.memo(
                         onLabelMove={onLabelMove}
                         onLabelDelete={onLabelDelete}
                       >
-                        <Button className={classNames(styles.actionsButton, styles.target)}>
-                          <EditIcon fontSize='small'/>
-                        </Button>
+                        <Button className={classNames(styles.actionsButton, styles.target)} icon='pencil'/>
                       </ActionsPopup>
                     )}
                   </>

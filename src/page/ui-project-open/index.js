@@ -4,11 +4,10 @@ import classNames from "classnames";
 import styles from "./index.module.scss";
 import React from "react";
 import {Trans, useTranslation} from "react-i18next";
-import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
-import LinkOffIcon from '@mui/icons-material/LinkOff';
 import Project from "../../view/Project";
 import {useTheme} from "@mui/material";
 import BaseProject from "../base-project";
+import {Icon} from "semantic-ui-react";
 
 function UiProjectOpen({currentProject, projectId, board}) {
     const theme = useTheme();
@@ -19,7 +18,7 @@ function UiProjectOpen({currentProject, projectId, board}) {
                 <BaseProject>
                     <div className={classNames(styles.wrapper, styles.wrapperFlex)}>
                         <div className={styles.message} style={{color: theme.palette.text.secondary}}>
-                            <LinkOffIcon style={{fontSize: 50}}/>
+                            <Icon name='unlink' size='huge'/>
                             <h1>
                                 {t('common.projectNotFound', {
                                     context: 'title',
@@ -44,7 +43,7 @@ function UiProjectOpen({currentProject, projectId, board}) {
                         <div className={classNames(styles.wrapper, styles.wrapperFlex)}>
                             <div className={styles.message}
                                  style={{color: currentProject.background ? theme.palette.background.default : theme.palette.text.secondary}}>
-                                <PanToolAltIcon style={{fontSize: 50}}/>
+                                <Icon name='hand point up outline' size='huge'/>
                                 <h1 className={styles.messageTitle}>
                                     {t('common.openBoard', {
                                         context: 'title',

@@ -47,7 +47,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FormatAlignJustifyOutlinedIcon from '@mui/icons-material/FormatAlignJustifyOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import stylesDialog from '../../../view/index.module.scss';
 
 const CardModal = React.memo(
@@ -529,11 +528,7 @@ const CardModal = React.memo(
     );
 
     return (
-      <Modal open closeIcon={
-        <div className={classNames(stylesDialog.dialogCloseButton)}>
-          <CloseOutlinedIcon/>
-        </div>
-      } centered={false} onClose={handleClose} className={classNames(stylesDialog.dialog)}>
+      <Modal open closeIcon={{ style: { top: '0.5rem', right: '0.5rem' }, color: 'black', name: 'close' }} centered={false} onClose={handleClose} className={classNames(stylesDialog.dialog)}>
         {canEdit ? (
           <div>{contentNode}</div>
         ) : (

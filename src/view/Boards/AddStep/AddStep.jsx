@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Icon } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import { useDidUpdate, useToggle } from '../../../lib/hooks';
 import { Input, Popup } from '../../../lib';
 
@@ -9,7 +9,6 @@ import { useForm, useSteps } from '../../../lib/hooks-ui';
 import ImportStep from './ImportStep';
 
 import styles from './AddStep.module.scss';
-// import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const StepTypes = {
   IMPORT: 'IMPORT',

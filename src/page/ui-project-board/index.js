@@ -2,11 +2,10 @@ import selectors from "../../redux/selectors";
 import {useTheme} from "@mui/material";
 import BaseProject from "../base-project";
 import {useTranslation} from "react-i18next";
-import LinkOffIcon from '@mui/icons-material/LinkOff';
 import {connect} from "react-redux";
 import styles from "../ui-project-open/index.module.scss"
 import classNames from "classnames";
-import {Loader} from "semantic-ui-react";
+import {Icon, Loader} from "semantic-ui-react";
 import Project from "../../view/Project";
 import React from "react";
 import BoardActions from "../../view/BoardActions";
@@ -22,7 +21,7 @@ function UiProjectBoard({projectId, board}) {
                 <BaseProject>
                     <div className={classNames(styles.wrapper, styles.wrapperFlex)}>
                         <div className={styles.message} style={{color: theme.palette.text.secondary}}>
-                            <LinkOffIcon style={{fontSize: 50}}/>
+                            <Icon name='unlink' size='huge'/>
                             <h1>
                                 {t('common.boardNotFound', {
                                     context: 'title',

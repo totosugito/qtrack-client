@@ -38,7 +38,7 @@ const ProjectAddModal = React.memo(({defaultData, isSubmitting, onCreate, onClos
     }, []);
 
     return (
-        <Modal open closeIcon size="tiny" onClose={onClose} style={{padding: 10}}>
+        <Modal open closeIcon={{ style: { top: '0.5rem', right: '0.5rem' }, color: 'black', name: 'close' }} size="tiny" onClose={onClose} style={{padding: 10}}>
             <Modal.Content>
                 <Header size="huge">
                     {t('common.createProject', {

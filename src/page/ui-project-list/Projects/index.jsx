@@ -9,8 +9,6 @@ import {Button, Grid, Icon} from 'semantic-ui-react';
 
 import Paths from '../../../constants/Paths';
 import {ProjectBackgroundTypes} from '../../../constants/Enums';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
 import styles from './index.module.scss';
 import globalStyles from '../../../styles.module.scss';
 import selectors from "../../../redux/selectors";
@@ -79,7 +77,7 @@ const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
             <button type="button" className={classNames(styles.card, styles.add)} onClick={onAdd}>
               <div className={styles.addTitleWrapper}>
                 <div className={styles.addTitle}>
-                  <div><AddCircleOutlineIcon fontSize={'large'} display={'inline'}/></div>
+                  <div style={{marginBottom: '5px'}}><Icon name='plus circle' size='large'/></div>
                   {t('action.createProject')}
                 </div>
               </div>
