@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Menu } from 'semantic-ui-react';
-import { Input, Popup } from '../../lib';
+import { Input, Popup } from '../../../lib';
 
-import { useField } from '../../lib/hooks-ui';
+import { useField } from '../../../lib/hooks-ui';
 import Item from './Item';
 
 import styles from './index.module.scss';

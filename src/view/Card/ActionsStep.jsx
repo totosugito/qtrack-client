@@ -6,7 +6,7 @@ import { Menu } from 'semantic-ui-react';
 import { Popup } from '../../lib';
 
 import { useSteps } from '../../lib/hooks-ui';
-import BoardMembershipsStep from '../BoardMembershipsStep';
+import BoardMembershipsStep from '../../page/ui-project-board/BoardMembershipsStep';
 import LabelsStep from '../LabelsStep';
 import StopwatchEditStep from '../StopwatchEditStep';
 import CardMoveStep from '../CardMoveStep';

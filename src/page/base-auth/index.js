@@ -1,7 +1,5 @@
 import {
-    Box, Container,
-    Grid, IconButton, Stack,
-    Typography, useTheme,
+    Box, IconButton, useTheme,
 } from "@mui/material";
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -14,9 +12,7 @@ import ModalTypes from "../../constants/ModalTypes";
 import UserSettingsModal from "./AuthHeader/UserSettingsModal";
 import selectors from "../../redux/selectors";
 import {useSelector} from "react-redux";
-import {Loader} from "semantic-ui-react";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import {Icon, Loader} from "semantic-ui-react";
 import {styled} from "@mui/material/styles";
 
 const drawerWidth = 240
@@ -163,7 +159,7 @@ const BaseAuth = (props) => {
 
                         <DrawerWeb open={open} header={
                             <IconButton onClick={handleDrawer}>
-                                {open ? <ChevronLeftIcon /> : <ChevronRightIcon/>}
+                                {open ? <Icon name='angle left'/> : <Icon name='angle right'/>}
                             </IconButton>
                         }/>
                     </Drawer>

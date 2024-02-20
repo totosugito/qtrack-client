@@ -7,14 +7,11 @@ import {usePopup} from "../../../lib/use-popup";
 import NotificationsStep from "./NotificationsStep/NotificationsStep";
 import UserStep from "./UserStep/UserStep";
 import styles from "./index.module.scss";
-import {Button, Menu} from "semantic-ui-react";
+import {Button, Icon, Menu} from "semantic-ui-react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Paths from "../../../constants/Paths";
 import {Link} from 'react-router-dom';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import EditIcon from '@mui/icons-material/Edit';
 
 const POPUP_PROPS = {
   position: 'bottom right',
@@ -53,7 +50,7 @@ const Header = React.memo(
                 as={Link}
                 to={Paths.PROJECTS_LIST}
                 className={classNames(styles.item, styles.itemHoverable)}>
-                <ArrowBackIcon/>
+                <Icon name='arrow left'/>
               </Menu.Item>
               <Menu.Item className={classNames(styles.item, styles.title)}>
                 {project.name}
@@ -62,7 +59,7 @@ const Header = React.memo(
                     className={classNames(styles.editButton, styles.target)}
                     onClick={handleProjectSettingsClick}
                   >
-                    <EditIcon fontSize='small'/>
+                    <Icon fitted name='pencil'/>
                   </Button>
                 )}
               </Menu.Item>
@@ -71,7 +68,7 @@ const Header = React.memo(
           <Menu.Menu position="right">
             <NotificationsPopup items={notifications} onDelete={onNotificationDelete}>
               <Menu.Item className={classNames(styles.item, styles.itemHoverable)}>
-                <NotificationsIcon/>
+                <Icon name='bell'/>
                 {notifications.length > 0 && (
                   <span className={styles.notification}>{notifications.length}</span>
                 )}

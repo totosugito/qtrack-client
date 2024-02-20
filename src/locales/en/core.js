@@ -44,7 +44,9 @@ export default {
       authentication: 'Authentication',
       background: 'Background',
       board: 'Board',
+      gantt: 'Gantt',
       boardNotFound_title: 'Board Not Found',
+      ganttNotFound_title: 'Gantt Not Found',
       canComment: 'Can comment',
       canEditContentOfBoard: 'Can edit the content of the board.',
       canOnlyViewBoard: 'Can only view the board.',
@@ -164,6 +166,8 @@ export default {
       version: 'Version',
       viewer: 'Viewer',
       writeComment: 'Write a comment...',
+      pdfExport: 'PDF Export',
+      excelExport: 'Excel Export'
     },
 
     action: {

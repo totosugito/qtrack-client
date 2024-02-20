@@ -1,13 +1,16 @@
 import {Link} from "@mui/material";
-import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
+import {useTranslation} from "react-i18next";
+import {Icon} from "semantic-ui-react";
 
-const BrProjectList = ({hasClick=true}) => {
-    return (
-        <Link underline="hover" color="inherit" sx={{display: 'flex', alignItems: 'center'}}
-              href={hasClick ? "#" : "#"}>
-            <FolderOutlinedIcon sx={{mr: 0.5}} fontSize="inherit"/>
-            Project
-        </Link>
-    )
+const BrProjectList = ({hasClick = true}) => {
+  const [t] = useTranslation();
+
+  return (
+    <Link underline="hover" color="inherit" sx={{display: 'flex', alignItems: 'center'}}
+          href={hasClick ? "#" : "#"}>
+      <Icon name="folder outline"/>
+      {t('common.project')}
+    </Link>
+  )
 }
 export default BrProjectList

@@ -3,4 +3,54 @@
     margin-top: 72px;
     min-height: 350px;
   }
+
+  .cardModalListTitleIcon {
+    color: #17394d;
+    font-size: 17px;
+    height: 32px;
+    left: -40px;
+    line-height: 32px;
+    margin-right: 0;
+    position: absolute;
+    top: 2px;
+    width: 32px;
+  }
+
+  .toolbarBoardContainer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 10px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .toolbarItemContainer {
+    align-items: center;
+    display: flex;
+  }
+  .toolbarItem {
+    margin-right: 20px;
+  }
+  .toolbarItemSmall {
+    margin-right: 10px;
+  }
+
+  .toolbarButton {
+    color: white;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    padding: 5px 8px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.32);
+      cursor: pointer;
+    }
+  }
+  .toolbarButtonTitle {
+    margin-left: 5px;
+  }
 }

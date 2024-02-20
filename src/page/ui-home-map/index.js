@@ -6,7 +6,7 @@ import * as ReactDOMServer from "react-dom/server";
 import {GeoJSON, MapContainer, TileLayer} from "react-leaflet";
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
-import data from "../../test/data/geojson-map.json";
+import data from "../../assets/test/geojson-map.json";
 
 const UiHomeMap = () => {
     const theme = useTheme()

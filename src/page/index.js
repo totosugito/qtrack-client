@@ -8,5 +8,6 @@ const UiHome = Loadable(lazy(() => import('./ui-home')))
 const UiProjectList = Loadable(lazy(() => import('./ui-project-list')))
 const UiProjectOpen = Loadable(lazy(() => import('./ui-project-open')))
 const UiProjectBoard = Loadable(lazy(() => import('./ui-project-board')))
+const UiBoardGantt = Loadable(lazy(() => import('./ui-board-gantt')))
 const UiHomeMap = Loadable(lazy(() => import('./ui-home-map')))
-export {Error404, UiLogin, UiHome, UiProjectList, UiProjectOpen, UiProjectBoard, UiHomeMap}
+export {Error404, UiLogin, UiHome, UiProjectList, UiProjectOpen, UiProjectBoard, UiBoardGantt, UiHomeMap}

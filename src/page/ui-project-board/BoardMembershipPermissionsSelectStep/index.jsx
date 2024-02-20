@@ -1,12 +1,12 @@
-import { dequal } from '../../lib/external';
+import { dequal } from '../../../lib/external';
 import omit from 'lodash/omit';
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Menu, Radio, Segment } from 'semantic-ui-react';
-import { Popup } from '../../lib';
+import { Popup } from '../../../lib';
 
-import { BoardMembershipRoles } from '../../constants/Enums';
+import { BoardMembershipRoles } from '../../../constants/Enums';
 
 import styles from './index.module.scss';
 

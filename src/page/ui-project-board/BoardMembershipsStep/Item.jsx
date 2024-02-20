@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Menu } from 'semantic-ui-react';
 
-import User from '../User';
+import User from '../../../view/User';
 
 import styles from './Item.module.scss';
 

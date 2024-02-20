@@ -2,7 +2,7 @@ import React, {useCallback, useRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
-import {Button, Grid, Modal} from 'semantic-ui-react';
+import {Button, Grid, Icon, Modal} from 'semantic-ui-react';
 import {usePopup} from '../../../lib/use-popup';
 import {QuillViewer} from '../../../lib';
 
@@ -16,7 +16,7 @@ import Activities from './Activities';
 import User from '../../../view/User';
 import Label from '../../../view/Label';
 import Stopwatch from '../../../view/Stopwatch';
-import BoardMembershipsStep from '../../../view/BoardMembershipsStep';
+import BoardMembershipsStep from '../BoardMembershipsStep';
 import LabelsStep from '../../../view/LabelsStep';
 import StopwatchEditStep from '../../../view/StopwatchEditStep';
 import CardMoveStep from '../../../view/CardMoveStep';
@@ -33,21 +33,8 @@ import Paths from "../../../constants/Paths";
 import {connect} from "react-redux";
 import DateTimeRangeStep from "../../../view/DateTimeRangeStep";
 import DateTimeRange from "../../../view/DateTimeRange";
-import DriveFileMoveOutlinedIcon from '@mui/icons-material/DriveFileMoveOutlined';
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
-import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
-import AttachmentOutlinedIcon from '@mui/icons-material/AttachmentOutlined';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
-import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
-import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
-import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import FormatAlignJustifyOutlinedIcon from '@mui/icons-material/FormatAlignJustifyOutlined';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import stylesDialog from '../../../view/index.module.scss';
+import stylesView from '../../../view/index.module.scss'
 
 const CardModal = React.memo(
   ({
@@ -196,7 +183,7 @@ const CardModal = React.memo(
         <Grid.Row className={styles.headerPadding}>
           <Grid.Column width={16} className={styles.headerPadding}>
             <div className={styles.headerWrapper}>
-              <ListAltOutlinedIcon className={styles.moduleIcon}/>
+              <Icon name="list alternate outline" className={stylesView.cardModalListTitleIcon} />
               <div className={styles.headerTitleWrapper}>
                 {canEdit ? (
                   <NameField defaultValue={name} onUpdate={handleNameUpdate}/>
@@ -245,7 +232,7 @@ const CardModal = React.memo(
                           type="button"
                           className={classNames(styles.attachment, styles.dueDate)}
                         >
-                          <AddOutlinedIcon fontSize='small' className={styles.addAttachment}/>
+                          <Icon name="add" size="small" className={styles.addAttachment} />
                         </button>
                       </BoardMembershipsPopup>
                     )}
@@ -294,7 +281,7 @@ const CardModal = React.memo(
                           type="button"
                           className={classNames(styles.attachment, styles.dueDate)}
                         >
-                          <AddOutlinedIcon fontSize='small' className={styles.addAttachment}/>
+                          <Icon name="add" size="small" className={styles.addAttachment} />
                         </button>
                       </LabelsPopup>
                     )}
@@ -340,10 +327,11 @@ const CardModal = React.memo(
                         className={classNames(styles.attachment, styles.dueDate)}
                         onClick={handleToggleStopwatchClick}
                       >
-                        {
-                          stopwatch.startedAt ? <PauseIcon fontSize='small' className={styles.addAttachment}/> :
-                            <PlayArrowIcon fontSize='small' className={styles.addAttachment}/>
-                        }
+                        <Icon
+                          name={stopwatch.startedAt ? 'pause' : 'play'}
+                          size="small"
+                          className={styles.addAttachment}
+                        />
                       </button>
                     )}
                   </div>
@@ -353,7 +341,7 @@ const CardModal = React.memo(
             {(description || canEdit) && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <FormatAlignJustifyOutlinedIcon className={styles.moduleIcon}/>
+                  <Icon name="align justify" className={stylesView.cardModalListTitleIcon} />
                   <div className={styles.moduleHeader}>{t('common.description')}</div>
                   {canEdit ? (
                     <DescriptionEdit defaultValue={description} onUpdate={handleDescriptionUpdate}>
@@ -383,7 +371,7 @@ const CardModal = React.memo(
             {(tasks.length > 0 || canEdit) && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <CheckBoxOutlinedIcon className={styles.moduleIcon}/>
+                  <Icon name="check square outline" className={stylesView.cardModalListTitleIcon} />
                   <div className={styles.moduleHeader}>{t('common.tasks')}</div>
                   <Tasks
                     items={tasks}
@@ -399,7 +387,7 @@ const CardModal = React.memo(
             {attachments.length > 0 && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <AttachmentOutlinedIcon className={styles.moduleIcon}/>
+                  <Icon name="attach" className={stylesView.cardModalListTitleIcon} />
                   <div className={styles.moduleHeader}>{t('common.attachments')}</div>
                   <Attachments
                     items={attachments}
@@ -439,7 +427,7 @@ const CardModal = React.memo(
                   onUserDeselect={onUserRemove}
                 >
                   <Button fluid className={styles.actionButton}>
-                    <PeopleOutlineOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    <Icon name="user outline" className={styles.actionIcon} />
                     {t('common.members')}
                   </Button>
                 </BoardMembershipsPopup>
@@ -454,13 +442,13 @@ const CardModal = React.memo(
                   onDelete={onLabelDelete}
                 >
                   <Button fluid className={styles.actionButton}>
-                    <BookmarksOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    <Icon name="bookmark outline" className={styles.actionIcon} />
                     {t('common.labels')}
                   </Button>
                 </LabelsPopup>
                 <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
                   <Button fluid className={styles.actionButton}>
-                    <EventAvailableOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    <Icon name="calendar check outline" className={styles.actionIcon} />
                     {t('common.dateRange', {
                       context: 'title',
                     })}
@@ -468,13 +456,13 @@ const CardModal = React.memo(
                 </DueDateEditPopup>
                 <StopwatchEditPopup defaultValue={stopwatch} onUpdate={handleStopwatchUpdate}>
                   <Button fluid className={styles.actionButton}>
-                    <AccessTimeOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    <Icon name="clock outline" className={styles.actionIcon} />
                     {t('common.stopwatch')}
                   </Button>
                 </StopwatchEditPopup>
                 <AttachmentAddPopup onCreate={onAttachmentCreate}>
                   <Button fluid className={styles.actionButton}>
-                    <AttachmentOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    <Icon name="attach" className={styles.actionIcon} />
                     {t('common.attachment')}
                   </Button>
                 </AttachmentAddPopup>
@@ -486,7 +474,7 @@ const CardModal = React.memo(
                   className={styles.actionButton}
                   onClick={handleToggleSubscriptionClick}
                 >
-                  <SendOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                  <Icon name="paper plane outline" className={styles.actionIcon} />
                   {isSubscribed ? t('action.unsubscribe') : t('action.subscribe')}
                 </Button>
                 <CardMovePopup
@@ -505,7 +493,7 @@ const CardModal = React.memo(
                     className={styles.actionButton}
                     onClick={handleToggleSubscriptionClick}
                   >
-                    <DriveFileMoveOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    <Icon name="share square outline" className={styles.actionIcon} />
                     {t('action.move')}
                   </Button>
                 </CardMovePopup>
@@ -516,7 +504,8 @@ const CardModal = React.memo(
                   onConfirm={onDelete}
                 >
                   <Button fluid className={styles.actionButton}>
-                    <DeleteSweepOutlinedIcon fontSize='small' className={styles.actionIcon}/>
+                    {/*<DeleteSweepOutlinedIcon fontSize='small' className={styles.actionIcon}/>*/}
+                    <Icon name="trash alternate outline" className={styles.actionIcon} />
                     {t('action.delete')}
                   </Button>
                 </DeletePopup>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import {Route, Routes} from 'react-router-dom';
 import {ReduxRouter} from './lib/redux-router';
-import {Error404, UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen, UiProjectBoard} from "./page";
+import {Error404, UiLogin, UiHome, UiHomeMap, UiProjectList, UiProjectOpen, UiProjectBoard, UiBoardGantt} from "./page";
 import Paths from "./constants/Paths";
 import 'semantic-ui-css/semantic.min.css'
 function Root({store, history}) {
@@ -18,6 +18,7 @@ function Root({store, history}) {
                     <Route path={Paths.PROJECTS} element={<UiProjectOpen />} />
                     <Route path={Paths.BOARDS} element={<UiProjectBoard />} />
                     <Route path={Paths.CARDS} element={<UiProjectBoard />} />
+                    <Route path={Paths.GANTT} element={<UiBoardGantt />} />
                     <Route path="*" element={<Error404 />} />
                 </Routes>
             </ReduxRouter>

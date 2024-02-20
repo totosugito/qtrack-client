@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { usePopup } from '../../lib/use-popup';
+import { usePopup } from '../../../lib/use-popup';
 
-import User from '../User';
-import Label from '../Label';
+import User from '../../../view/User';
+import Label from '../../../view/Label';
 import BoardMembershipsStep from '../BoardMembershipsStep';
-import LabelsStep from '../LabelsStep';
+import LabelsStep from '../../../view/LabelsStep';
 
 import styles from './Filters.module.scss';
 

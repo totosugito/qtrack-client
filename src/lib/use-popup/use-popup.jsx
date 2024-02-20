@@ -2,9 +2,8 @@ import { ResizeObserver } from '@juggle/resize-observer';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Popup as SemanticUIPopup } from 'semantic-ui-react';
-
 import styles from './Popup.module.css';
-import CloseIcon from '@mui/icons-material/Close';
+
 export default (Step, props) => {
   return useMemo(() => {
     const Popup = React.memo(({ children, onClose, ...stepProps }) => {
@@ -100,7 +99,7 @@ export default (Step, props) => {
           {...props}
         >
           <div ref={handleContentRef}>
-            <Button onClick={handleClose} className={styles.closeButton}><CloseIcon/></Button>
+            <Button icon="close" onClick={handleClose} className={styles.closeButton} />
             <Step {...stepProps} onClose={handleClose} />
           </div>
         </SemanticUIPopup>

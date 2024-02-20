@@ -6,8 +6,6 @@ import {closePopup} from '../../../lib/use-popup';
 
 import DroppableTypes from '../../../constants/DroppableTypes';
 import ListAdd from './ListAdd';
-import AddIcon from '@mui/icons-material/Add';
-
 import styles from './index.module.scss';
 import selectors from "../../../redux/selectors";
 import {BoardMembershipRoles} from "../../../constants/Enums";
@@ -16,6 +14,7 @@ import entryActions from "../../../redux/entry-actions";
 import {connect} from "react-redux";
 import List from "../List";
 import CardModal from "../CardModal";
+import {Icon} from "semantic-ui-react";
 
 const parseDndId = (dndId) => dndId.split(':')[1];
 
@@ -152,7 +151,7 @@ const Board = React.memo(
                                                         className={styles.addListButton}
                                                         onClick={handleAddListClick}
                                                     >
-                                                        <AddIcon/>
+                                                        <Icon name='plus' style={{marginRight: '5px'}}/>
                                                         <span className={styles.addListButtonText}>
                               {listIds.length > 0
                                   ? t('action.addAnotherList')

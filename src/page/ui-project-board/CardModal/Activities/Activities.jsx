@@ -8,7 +8,7 @@ import CommentAdd from './CommentAdd';
 import Item from './Item';
 
 import styles from './Activities.module.scss';
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import stylesView from '../../../../view/index.module.scss';
 
 const Activities = React.memo(
   ({
@@ -48,7 +48,7 @@ const Activities = React.memo(
     return (
       <div className={styles.contentModule}>
         <div className={styles.moduleWrapper}>
-          <FormatListBulletedOutlinedIcon size='small' className={styles.moduleIcon}/>
+          <Icon name="list ul" className={stylesView.cardModalListTitleIcon} />
           <div className={styles.moduleHeader}>
             {t('common.actions')}
             <Button

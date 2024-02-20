@@ -2,14 +2,10 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { Button, Label, Loader } from 'semantic-ui-react';
+import {Button, Icon, Label, Loader} from 'semantic-ui-react';
 import { usePopup } from '../../../../lib/use-popup';
-
 import EditStep from './EditStep';
-
 import styles from './Item.module.scss';
-import VideoLabelOutlinedIcon from '@mui/icons-material/VideoLabelOutlined';
-import EditIcon from '@mui/icons-material/Edit';
 
 const Item = React.forwardRef(
   (
@@ -103,7 +99,12 @@ const Item = React.forwardRef(
           {coverUrl && canEdit && (
             <span className={styles.options}>
               <button type="button" className={styles.option} onClick={handleToggleCoverClick}>
-                <VideoLabelOutlinedIcon size='small' className={styles.optionIcon}/>
+                <Icon
+                  name="window maximize outline"
+                  flipped="vertically"
+                  size="small"
+                  className={styles.optionIcon}
+                />
                 <span className={styles.optionText}>
                   {isCover
                     ? t('action.removeCover', {
@@ -125,9 +126,7 @@ const Item = React.forwardRef(
             onUpdate={onUpdate}
             onDelete={onDelete}
           >
-            <Button className={classNames(styles.button, styles.target)}>
-              <EditIcon size='small' className={classNames(styles.buttonIcon)}/>
-            </Button>
+            <Button className={classNames(styles.button, styles.target)} icon='pencil'/>
           </EditPopup>
         )}
       </div>

@@ -62,7 +62,7 @@ export const selectPath = createReduxOrmSelector(
             };
           }
           return {
-            boardId: null,
+            boardId: boardModel.id,
             ganttId: boardModel.id,
             projectId: boardModel.projectId,
           };

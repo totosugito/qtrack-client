@@ -1,17 +1,15 @@
 import selectors from "../../redux/selectors";
-import {useTheme} from "@mui/material";
-import BaseProject from "../base-project";
-import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
-import styles from "../ui-project-open/index.module.scss"
+import {useTheme} from "@mui/material";
+import {useTranslation} from "react-i18next";
+import BaseProject from "../base-project";
 import classNames from "classnames";
+import styles from "../ui-project-open/index.module.scss";
 import {Icon, Loader} from "semantic-ui-react";
-import Project from "../../view/Project";
 import React from "react";
-import BoardActions from "./BoardActions";
-import Board from "./Board";
+import GanttViewer from "./GanttViewer";
 
-function UiProjectBoard({projectId, board}) {
+function UiBoardGantt({currentProject, board}) {
   const theme = useTheme();
   const [t] = useTranslation();
 
@@ -23,7 +21,7 @@ function UiProjectBoard({projectId, board}) {
             <div className={styles.message} style={{color: theme.palette.text.secondary}}>
               <Icon name='unlink' size='huge'/>
               <h1>
-                {t('common.boardNotFound', {
+                {t('common.ganttNotFound_title', {
                   context: 'title',
                 })}
               </h1>
@@ -31,7 +29,7 @@ function UiProjectBoard({projectId, board}) {
           </div>
         </BaseProject>
       </>
-    );
+    )
   }
 
   if (board.isFetching) {
@@ -47,28 +45,24 @@ function UiProjectBoard({projectId, board}) {
   return (
     <>
       <BaseProject>
-        <div style={{height: '100%'}}>
-          <div>
-            {projectId && <Project/>}
-            {board && !board.isFetching && <BoardActions/>}
-          </div>
-          <div className={classNames(styles.wrapper, styles.wrapperFlex, styles.wrapperBoard)}>
-            <Board/>
-          </div>
-        </div>
+        <GanttViewer/>
       </BaseProject>
     </>
   )
 }
 
 const mapStateToProps = (state) => {
-  const {projectId} = selectors.selectPath(state);
-  const currentBoard = selectors.selectCurrentBoard(state);
+  const { boardId } = selectors.selectPath(state);
+  const board = selectors.selectCurrentBoard(state);
+  // const listIds = selectors.selectListIdsForCurrentBoard(state);
+  // console.log(boardId)
+  // console.log(board)
+  // console.log(listIds)
+  // console.log(selectCardIdsByListId)
 
   return {
-    projectId,
-    board: currentBoard,
+    board: board,
   };
 };
 
-export default connect(mapStateToProps)(UiProjectBoard);
+export default connect(mapStateToProps)(UiBoardGantt);

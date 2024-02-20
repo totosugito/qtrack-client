@@ -1,5 +1,4 @@
 import {
-    AppBar,
     Divider, Grid,
     Link,
     List,
@@ -9,15 +8,9 @@ import {
     useTheme
 } from "@mui/material";
 
-import InfoIcon from '@mui/icons-material/Info';
 import React from "react";
-import HomeIcon from '@mui/icons-material/Home';
-import FolderIcon from '@mui/icons-material/Folder';
-import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
-import PinDropIcon from '@mui/icons-material/PinDrop';
 import Paths from "../../../constants/Paths";
+import {Icon} from "semantic-ui-react";
 
 const DrawerMenu = ({open, path, icon, text}) => {
     const theme = useTheme()
@@ -75,18 +68,18 @@ export default function DrawerWeb(props) {
             }
             <Divider/>
             <List>
-                <DrawerMenu open={props.open} path={Paths.ROOT} icon={<HomeIcon/>} text={"Home"}/>
-                <DrawerMenu open={props.open} path={Paths.HOME_MAP} icon={<PinDropIcon/>} text={"Map"}/>
-                <DrawerMenu open={props.open} path={Paths.PROJECTS_LIST} icon={<FolderIcon/>} text={"Projects"}/>
+                <DrawerMenu open={props.open} path={Paths.ROOT} icon={<Icon name='home' size='large'/>} text={"Home"}/>
+                <DrawerMenu open={props.open} path={Paths.HOME_MAP} icon={<Icon name='map marker alternate' size='large'/>} text={"Map"}/>
+                <DrawerMenu open={props.open} path={Paths.PROJECTS_LIST} icon={<Icon name='folder' size='large'/>} text={"Projects"}/>
             </List>
 
             <Divider/>
             <List>
                 {/*<ListItemText primary={"INFO"} sx={styles.title}/>*/}
-                <DrawerMenu open={props.open} path={'#'} icon={<MarkChatReadIcon/>} text={"Testimonials"}/>
-                <DrawerMenu open={props.open} path={'#'} icon={<ApartmentIcon/>} text={"Clients"}/>
-                <DrawerMenu open={props.open} path={'#'} icon={<MarkEmailUnreadIcon/>} text={"Contact Us"}/>
-                <DrawerMenu open={props.open} path={'#'} icon={<InfoIcon/>} text={"About Us"}/>
+                <DrawerMenu open={props.open} path={'#'} icon={<Icon name='comments' size='large'/>} text={"Testimonials"}/>
+                <DrawerMenu open={props.open} path={'#'} icon={<Icon name='building' size='large'/>} text={"Clients"}/>
+                <DrawerMenu open={props.open} path={'#'} icon={<Icon name='envelope' size='large'/>} text={"Contact Us"}/>
+                <DrawerMenu open={props.open} path={'#'} icon={<Icon name='info circle' size='large'/>} text={"About Us"}/>
             </List>
         </div>
     );
