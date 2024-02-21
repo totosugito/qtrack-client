@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import {
   Edit,
   Filter,
@@ -24,8 +24,7 @@ import '@syncfusion/ej2-grids/styles/material.css';
 import '@syncfusion/ej2-treegrid/styles/material.css';
 import '@syncfusion/ej2-react-gantt/styles/material.css';
 import {registerLicense} from "@syncfusion/ej2-base";
-import {read, utils} from "xlsx";
-import {LTT} from "../../../lib/external";
+// import {read, utils} from "xlsx";
 import styles from "./index.module.scss";
 import stylesView from "../../../view/index.module.scss";
 import classNames from "classnames";
@@ -82,6 +81,10 @@ const GanttViewer = React.memo(({gantt}) => {
   //   }
   // }
 
+  const timelineSettings = {
+    timelineUnitSize: 100,
+    timelineViewMode: 'Month'
+  };
   return (
     <div className={classNames(styles.container)}>
       <div className={stylesView.toolbarBoardContainer}>
@@ -117,30 +120,42 @@ const GanttViewer = React.memo(({gantt}) => {
 
       <div className={classNames(styles.gantt)}>
         {gantt !== undefined &&
-          <GanttComponent ref={ganttRef => ganttChart = ganttRef} dataSource={gantt}
+          <GanttComponent ref={ganttRef => ganttChart = ganttRef} dataSource={gantt} timelineSettings={timelineSettings}
                           treeColumnIndex={1}
-                          allowResizing={true} allowSelection={true}
+                          allowResizing={true}
+                          allowSelection={true}
                           toolbarClick={toolbarClick.bind(this)}
                           allowPdfExport={true}
                           allowExcelExport={true}
                           toolbar={['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Indent', 'Outdent']}
                           taskFields={{
-                            id: 'TaskID',
+                            id: 'TaskId',
                             name: 'TaskName',
                             startDate: 'StartDate',
-                            endDate: 'EndDate',
+                            endDate: 'DueDate',
                             duration: 'Duration',
                             progress: 'Progress',
-                            dependency: 'Predecessor',
+                            // dependency: 'Predecessor',
                             child: 'child'
                           }}
                           editSettings={{
-                            allowAdding: true,
-                            allowEditing: true,
-                            allowDeleting: true,
-                            allowTaskbarEditing: true,
-                            showDeleteConfirmDialog: true
-                          }}>
+                            allowAdding: false,
+                            allowEditing: false,
+                            allowDeleting: false,
+                            allowTaskbarEditing: false,
+                            showDeleteConfirmDialog: false
+                          }}
+                          queryTaskbarInfo={(args) => {
+                            args.taskbarBgColor = '#DCDCDC'
+                            if (args.data["Progress"] <= 30) {
+                              args.progressBarBgColor = "red";
+                            } else if (args.data["Progress"] <= 70) {
+                              args.progressBarBgColor = "yellow";
+                            } else if (args.data["Progress"] <= 100) {
+                              args.progressBarBgColor = "lightgreen";
+                            }
+                          }}
+          >
             <Inject services={[Edit, Selection, Toolbar, Filter, Sort, Resize, PdfExport, ExcelExport]}/>
           </GanttComponent>
         }
@@ -152,13 +167,37 @@ const GanttViewer = React.memo(({gantt}) => {
 GanttViewer.propTypes = {
   gantt: PropTypes.array.isRequired
 };
-// export default GanttViewer
 
 const mapStateToProps = (state) => {
-  const gantt = []
   const listIds = selectors.selectListIdsForCurrentBoard(state);
-  console.log(listIds)
-  return({
+  const selectListById = selectors.makeSelectListById();
+  const selectCardForGanttByListId = selectors.makeSelectCardForGanttByListId();
+
+  let taskId = 1
+  const gantt = []
+
+  // -----------------------------
+  // loop list over board
+  // -----------------------------
+  listIds.forEach((id) => {
+    const objList = selectListById(state, id)
+    id = objList.id
+
+    // -----------------------------
+    // loop card over list
+    // -----------------------------
+    const cards = selectCardForGanttByListId(state, id)
+    cards.forEach((card) => {
+      gantt.push({
+        TaskId: taskId,
+        TaskName: card.name,
+        StartDate: card.startDate,
+        DueDate: card.dueDate,
+      })
+      taskId = taskId + 1
+    })
+  })
+  return ({
     gantt
   })
 }

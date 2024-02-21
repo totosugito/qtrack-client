@@ -9,7 +9,7 @@ import {Icon, Loader} from "semantic-ui-react";
 import React from "react";
 import GanttViewer from "./GanttViewer";
 
-function UiBoardGantt({currentProject, board}) {
+function UiBoardGantt({board}) {
   const theme = useTheme();
   const [t] = useTranslation();
 
@@ -52,17 +52,10 @@ function UiBoardGantt({currentProject, board}) {
 }
 
 const mapStateToProps = (state) => {
-  const { boardId } = selectors.selectPath(state);
   const board = selectors.selectCurrentBoard(state);
-  // const listIds = selectors.selectListIdsForCurrentBoard(state);
-  // console.log(boardId)
-  // console.log(board)
-  // console.log(listIds)
-  // console.log(selectCardIdsByListId)
-
   return {
     board: board,
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps)(UiBoardGantt);

@@ -36,34 +36,19 @@ export const selectPath = createReduxOrmSelector(
             projectId: projectModel.id,
           };
         }
-        case Paths.BOARDS: {
-          const boardModel = Board.withId(pathsMatch.params.id);
-
-          if (!boardModel || !boardModel.isAvailableForUser(currentUserId)) {
-            return {
-              boardId: null,
-              projectId: null,
-            };
-          }
-
-          return {
-            boardId: boardModel.id,
-            projectId: boardModel.projectId,
-          };
-        }
+        case Paths.BOARDS:
         case Paths.GANTT: {
           const boardModel = Board.withId(pathsMatch.params.id);
 
           if (!boardModel || !boardModel.isAvailableForUser(currentUserId)) {
             return {
               boardId: null,
-              ganttId: null,
               projectId: null,
             };
           }
+
           return {
             boardId: boardModel.id,
-            ganttId: boardModel.id,
             projectId: boardModel.projectId,
           };
         }

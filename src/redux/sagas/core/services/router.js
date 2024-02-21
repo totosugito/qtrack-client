@@ -37,9 +37,7 @@ export function* handleLocationChange() {
 
   switch (pathsMatch.pattern.path) {
     case Paths.LOGIN:
-    case Paths.OIDC_CALLBACK:
       yield call(goToRoot);
-
       return;
     default:
   }
@@ -65,7 +63,8 @@ export function* handleLocationChange() {
 
   switch (pathsMatch.pattern.path) {
     case Paths.BOARDS:
-    case Paths.CARDS: {
+    case Paths.CARDS:
+    case Paths.GANTT: {
       const currentBoard = yield select(selectors.selectCurrentBoard);
 
       if (currentBoard && currentBoard.isFetching === null) {

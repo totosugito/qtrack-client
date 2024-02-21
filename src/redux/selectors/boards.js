@@ -132,14 +132,6 @@ export const selectListIdsForCurrentBoard = createSelector(
       return boardModel;
     }
 
-    // console.log("---xx---------" + id)
-    // console.log(JSON.stringify(boardModel))
-    // console.log(boardModel
-    //   .getOrderedListsQuerySet()
-    //   .toRefArray()
-    //   .map((list) => list.id))
-    // console.log("---yy---------" + id)
-
     return boardModel
       .getOrderedListsQuerySet()
       .toRefArray()
@@ -199,5 +191,5 @@ export default {
   selectListIdsForCurrentBoard,
   selectFilterUsersForCurrentBoard,
   selectFilterLabelsForCurrentBoard,
-  selectIsBoardWithIdExists,
+  selectIsBoardWithIdExists
 };

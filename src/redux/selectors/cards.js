@@ -73,7 +73,7 @@ export const makeSelectTasksByCardId = () =>
 
       return cardModel.getOrderedTasksQuerySet().toRefArray();
     },
-  );
+  )
 
 export const selectTasksByCardId = makeSelectTasksByCardId();
 
@@ -283,6 +283,30 @@ export const selectNotificationIdsForCurrentCard = createSelector(
   },
 );
 
+export const makeSelectTasksForGanttByCardId = () =>
+  createSelector(
+    orm,
+    (_, id) => id,
+    ({ Card }, id) => {
+      const cardModel = Card.withId(id);
+
+      if (!cardModel) {
+        return cardModel;
+      }
+
+      return cardModel
+        .getOrderedTasksQuerySet()
+        .toRefArray()
+        .map(function (task) {
+          return({
+            id: task.id,
+            name: task.name,
+            isCompleted: task.isCompleted
+          })
+      })
+    },
+  )
+
 export default {
   makeSelectCardById,
   selectCardById,
@@ -305,4 +329,5 @@ export default {
   selectAttachmentsForCurrentCard,
   selectActivitiesForCurrentCard,
   selectNotificationIdsForCurrentCard,
+  makeSelectTasksForGanttByCardId
 };

@@ -7,7 +7,7 @@ const PROJECTS_LIST = `${Config.BASE_PATH}/projects-list`;
 const PROJECTS = `${Config.BASE_PATH}/projects/:id`;
 const BOARDS = `${Config.BASE_PATH}/boards/:id`;
 const CARDS = `${Config.BASE_PATH}/cards/:id`;
-const GANTT = `${Config.BASE_PATH}/gantt/:id`;
+const GANTT = `${Config.BASE_PATH}/boards/:id/gantt`;
 
 export default {
   ROOT,
