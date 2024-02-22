@@ -7,6 +7,7 @@ import "../../lib/react-minimal-datetime-range-2.1.0/react-minimal-datetime-rang
 const DateTimeRangeStep = React.memo(({startDate, dueDate, onUpdate, onBack, onClose}) => {
   const [t] = useTranslation();
   const date2String = (dt) => {
+    // noinspection JSAnnotator
     let dateText = t('format:dateTimePicker', {
       postProcess: 'formatDate',
       value: dt,
@@ -25,10 +26,12 @@ const DateTimeRangeStep = React.memo(({startDate, dueDate, onUpdate, onBack, onC
   const defaultDate_ = date2String(new Date().setFullYear(0, 0, 0))
 
   const handleSubmit = useCallback((v) => {
+    // noinspection JSAnnotator
     let startDt = t('format:dateTimePicker', {
       postProcess: 'parseDate',
       value: v[0],
     })
+    // noinspection JSAnnotator
     let dueDt = t('format:dateTimePicker', {
       postProcess: 'parseDate',
       value: v[1],

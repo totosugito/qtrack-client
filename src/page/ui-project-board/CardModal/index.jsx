@@ -35,9 +35,12 @@ import DateTimeRangeStep from "../../../view/DateTimeRangeStep";
 import DateTimeRange from "../../../view/DateTimeRange";
 import stylesDialog from '../../../view/index.module.scss';
 import stylesView from '../../../view/index.module.scss'
+import GanttCardLabel from "../../../view/GanttCardLabel";
+import GanttCardLabelStep from "../../../view/GanttCardLabelStep";
 
 const CardModal = React.memo(
   ({
+     eT,
      name,
      description,
      startDate,
@@ -167,6 +170,21 @@ const CardModal = React.memo(
       onClose();
     }, [onClose]);
 
+    const getGanttVar = () => {
+      return (eT.gantt ? eT.gantt : {isEnable: false, progress: 0})
+    }
+    const gantt = getGanttVar();
+    const handleGanttUpdate = useCallback(
+      (gantt) => {
+        onUpdate({
+          eT: {
+            gantt
+          }
+        })
+      },
+      [onUpdate],
+    );
+    const GanttPopup = usePopup(GanttCardLabelStep)
     const AttachmentAddPopup = usePopup(AttachmentAddStep);
     const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
     const LabelsPopup = usePopup(LabelsStep);
@@ -183,7 +201,7 @@ const CardModal = React.memo(
         <Grid.Row className={styles.headerPadding}>
           <Grid.Column width={16} className={styles.headerPadding}>
             <div className={styles.headerWrapper}>
-              <Icon name="list alternate outline" className={stylesView.cardModalListTitleIcon} />
+              <Icon name="list alternate outline" className={stylesView.cardModalListTitleIcon}/>
               <div className={styles.headerTitleWrapper}>
                 {canEdit ? (
                   <NameField defaultValue={name} onUpdate={handleNameUpdate}/>
@@ -232,7 +250,7 @@ const CardModal = React.memo(
                           type="button"
                           className={classNames(styles.attachment, styles.dueDate)}
                         >
-                          <Icon name="add" size="small" className={styles.addAttachment} />
+                          <Icon name="add" size="small" className={styles.addAttachment}/>
                         </button>
                       </BoardMembershipsPopup>
                     )}
@@ -281,7 +299,7 @@ const CardModal = React.memo(
                           type="button"
                           className={classNames(styles.attachment, styles.dueDate)}
                         >
-                          <Icon name="add" size="small" className={styles.addAttachment} />
+                          <Icon name="add" size="small" className={styles.addAttachment}/>
                         </button>
                       </LabelsPopup>
                     )}
@@ -341,7 +359,7 @@ const CardModal = React.memo(
             {(description || canEdit) && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <Icon name="align justify" className={stylesView.cardModalListTitleIcon} />
+                  <Icon name="align justify" className={stylesView.cardModalListTitleIcon}/>
                   <div className={styles.moduleHeader}>{t('common.description')}</div>
                   {canEdit ? (
                     <DescriptionEdit defaultValue={description} onUpdate={handleDescriptionUpdate}>
@@ -371,7 +389,7 @@ const CardModal = React.memo(
             {(tasks.length > 0 || canEdit) && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <Icon name="check square outline" className={stylesView.cardModalListTitleIcon} />
+                  <Icon name="check square outline" className={stylesView.cardModalListTitleIcon}/>
                   <div className={styles.moduleHeader}>{t('common.tasks')}</div>
                   <Tasks
                     items={tasks}
@@ -387,7 +405,7 @@ const CardModal = React.memo(
             {attachments.length > 0 && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
-                  <Icon name="attach" className={stylesView.cardModalListTitleIcon} />
+                  <Icon name="attach" className={stylesView.cardModalListTitleIcon}/>
                   <div className={styles.moduleHeader}>{t('common.attachments')}</div>
                   <Attachments
                     items={attachments}
@@ -427,7 +445,7 @@ const CardModal = React.memo(
                   onUserDeselect={onUserRemove}
                 >
                   <Button fluid className={styles.actionButton}>
-                    <Icon name="user outline" className={styles.actionIcon} />
+                    <Icon name="user outline" className={styles.actionIcon}/>
                     {t('common.members')}
                   </Button>
                 </BoardMembershipsPopup>
@@ -442,13 +460,13 @@ const CardModal = React.memo(
                   onDelete={onLabelDelete}
                 >
                   <Button fluid className={styles.actionButton}>
-                    <Icon name="bookmark outline" className={styles.actionIcon} />
+                    <Icon name="bookmark outline" className={styles.actionIcon}/>
                     {t('common.labels')}
                   </Button>
                 </LabelsPopup>
                 <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
                   <Button fluid className={styles.actionButton}>
-                    <Icon name="calendar check outline" className={styles.actionIcon} />
+                    <Icon name="calendar check outline" className={styles.actionIcon}/>
                     {t('common.dateRange', {
                       context: 'title',
                     })}
@@ -456,27 +474,33 @@ const CardModal = React.memo(
                 </DueDateEditPopup>
                 <StopwatchEditPopup defaultValue={stopwatch} onUpdate={handleStopwatchUpdate}>
                   <Button fluid className={styles.actionButton}>
-                    <Icon name="clock outline" className={styles.actionIcon} />
+                    <Icon name="clock outline" className={styles.actionIcon}/>
                     {t('common.stopwatch')}
                   </Button>
                 </StopwatchEditPopup>
                 <AttachmentAddPopup onCreate={onAttachmentCreate}>
                   <Button fluid className={styles.actionButton}>
-                    <Icon name="attach" className={styles.actionIcon} />
+                    <Icon name="attach" className={styles.actionIcon}/>
                     {t('common.attachment')}
                   </Button>
                 </AttachmentAddPopup>
+                <GanttPopup defaultValue={gantt} onUpdate={handleGanttUpdate}>
+                  <Button fluid className={styles.actionButton}>
+                    <Icon name="calendar alternate outline" className={styles.actionIcon}/>
+                    {t('common.gantt')} {gantt.isEnable ? ("( " + gantt.progress + "% )") : ""}
+                  </Button>
+                </GanttPopup>
               </div>
               <div className={styles.actions}>
                 <span className={styles.actionsTitle}>{t('common.actions')}</span>
-                <Button
-                  fluid
-                  className={styles.actionButton}
-                  onClick={handleToggleSubscriptionClick}
-                >
-                  <Icon name="paper plane outline" className={styles.actionIcon} />
-                  {isSubscribed ? t('action.unsubscribe') : t('action.subscribe')}
-                </Button>
+                {/*<Button*/}
+                {/*  fluid*/}
+                {/*  className={styles.actionButton}*/}
+                {/*  onClick={handleToggleSubscriptionClick}*/}
+                {/*>*/}
+                {/*  <Icon name="paper plane outline" className={styles.actionIcon}/>*/}
+                {/*  {isSubscribed ? t('action.unsubscribe') : t('action.subscribe')}*/}
+                {/*</Button>*/}
                 <CardMovePopup
                   projectsToLists={allProjectsToLists}
                   defaultPath={{
@@ -493,7 +517,7 @@ const CardModal = React.memo(
                     className={styles.actionButton}
                     onClick={handleToggleSubscriptionClick}
                   >
-                    <Icon name="share square outline" className={styles.actionIcon} />
+                    <Icon name="share square outline" className={styles.actionIcon}/>
                     {t('action.move')}
                   </Button>
                 </CardMovePopup>
@@ -505,7 +529,7 @@ const CardModal = React.memo(
                 >
                   <Button fluid className={styles.actionButton}>
                     {/*<DeleteSweepOutlinedIcon fontSize='small' className={styles.actionIcon}/>*/}
-                    <Icon name="trash alternate outline" className={styles.actionIcon} />
+                    <Icon name="trash alternate outline" className={styles.actionIcon}/>
                     {t('action.delete')}
                   </Button>
                 </DeletePopup>
@@ -517,7 +541,8 @@ const CardModal = React.memo(
     );
 
     return (
-      <Modal open closeIcon={{ style: { top: '0.5rem', right: '0.5rem' }, color: 'black', name: 'close' }} centered={false} onClose={handleClose} className={classNames(stylesDialog.dialog)}>
+      <Modal open closeIcon={{style: {top: '0.5rem', right: '0.5rem'}, color: 'black', name: 'close'}} centered={false}
+             onClose={handleClose} className={classNames(stylesDialog.dialog)}>
         {canEdit ? (
           <div>{contentNode}</div>
         ) : (
@@ -529,6 +554,7 @@ const CardModal = React.memo(
 );
 
 CardModal.propTypes = {
+  eT: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   startDate: PropTypes.instanceOf(Date),
@@ -599,6 +625,7 @@ const mapStateToProps = (state) => {
   const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
   const {
+    eT,
     name,
     description,
     startDate,
@@ -612,7 +639,6 @@ const mapStateToProps = (state) => {
     boardId,
     listId,
   } = selectors.selectCurrentCard(state);
-
   const users = selectors.selectUsersForCurrentCard(state);
   const labels = selectors.selectLabelsForCurrentCard(state);
   const tasks = selectors.selectTasksForCurrentCard(state);
@@ -628,6 +654,7 @@ const mapStateToProps = (state) => {
   }
 
   return {
+    eT,
     name,
     description,
     startDate,

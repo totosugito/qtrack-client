@@ -54,7 +54,8 @@ export const makeSelectCardForGanttByListId = () =>
           id: cardModel.id,
           name: cardModel.name,
           startDate: cardModel.startDate,
-          dueDate: cardModel.dueDate
+          dueDate: cardModel.dueDate,
+          eT: cardModel.eT
         })
       }
       )

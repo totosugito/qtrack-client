@@ -26,7 +26,7 @@ const CardAdd = React.memo(({ isOpened, onCreate, onClose }) => {
       const cleanData = {
         ...data,
         name: data.name.trim(),
-      };
+      }
 
       if (!cleanData.name) {
         nameField.current.ref.current.select();

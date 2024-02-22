@@ -1,12 +1,12 @@
-import React, { useCallback, useRef } from 'react';
+import React, {useCallback, useRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import { Draggable } from 'react-beautiful-dnd';
-import { usePopup } from '../../lib/use-popup';
+import {Button} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
+import {Draggable} from 'react-beautiful-dnd';
+import {usePopup} from '../../lib/use-popup';
 
-import { startStopwatch, stopStopwatch } from '../../lib/utils/stopwatch';
+import {startStopwatch, stopStopwatch} from '../../lib/utils/stopwatch';
 import Paths from '../../constants/Paths';
 import Tasks from './Tasks';
 import NameEdit from './NameEdit';
@@ -22,42 +22,44 @@ import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
 import DateTimeRange from "../DateTimeRange";
+import GanttCardLabel from "../GanttCardLabel";
 
 const Card = React.memo(
   ({
-    id,
-    index,
-    name,
-    startDate,
-    dueDate,
-    stopwatch,
-    coverUrl,
-    boardId,
-    listId,
-    projectId,
-    isPersisted,
-    notificationsTotal,
-    users,
-    labels,
-    tasks,
-    allProjectsToLists,
-    allBoardMemberships,
-    allLabels,
-    canEdit,
-    onUpdate,
-    onMove,
-    onTransfer,
-    onDelete,
-    onUserAdd,
-    onUserRemove,
-    onBoardFetch,
-    onLabelAdd,
-    onLabelRemove,
-    onLabelCreate,
-    onLabelUpdate,
-    onLabelMove,
-    onLabelDelete,
-  }) => {
+     eT,
+     id,
+     index,
+     name,
+     startDate,
+     dueDate,
+     stopwatch,
+     coverUrl,
+     boardId,
+     listId,
+     projectId,
+     isPersisted,
+     notificationsTotal,
+     users,
+     labels,
+     tasks,
+     allProjectsToLists,
+     allBoardMemberships,
+     allLabels,
+     canEdit,
+     onUpdate,
+     onMove,
+     onTransfer,
+     onDelete,
+     onUserAdd,
+     onUserRemove,
+     onBoardFetch,
+     onLabelAdd,
+     onLabelRemove,
+     onLabelCreate,
+     onLabelUpdate,
+     onLabelMove,
+     onLabelDelete,
+   }) => {
     const nameEdit = useRef(null);
 
     const handleClick = useCallback(() => {
@@ -94,8 +96,11 @@ const Card = React.memo(
 
     const contentNode = (
       <>
-        {coverUrl && <img src={coverUrl} alt="" className={styles.cover} />}
+        {coverUrl && <img src={coverUrl} alt="" className={styles.cover}/>}
         <div className={styles.details}>
+          {eT &&
+            <GanttCardLabel eT={eT} size="tiny"/>
+          }
           {labels.length > 0 && (
             <span className={styles.labels}>
               {labels.map((label) => (
@@ -103,13 +108,13 @@ const Card = React.memo(
                   key={label.id}
                   className={classNames(styles.attachment, styles.attachmentLeft)}
                 >
-                  <Label name={label.name} color={label.color} size="tiny" />
+                  <Label name={label.name} color={label.color} size="tiny"/>
                 </span>
               ))}
             </span>
           )}
           <div className={styles.name}>{name}</div>
-          {tasks.length > 0 && <Tasks items={tasks} />}
+          {tasks.length > 0 && <Tasks items={tasks}/>}
           {(dueDate || stopwatch || notificationsTotal > 0) && (
             <span className={styles.attachments}>
               {notificationsTotal > 0 && (
@@ -148,7 +153,7 @@ const Card = React.memo(
                   key={user.id}
                   className={classNames(styles.attachment, styles.attachmentRight)}
                 >
-                  <User name={user.name} avatarUrl={user.avatarUrl} size="small" />
+                  <User name={user.name} avatarUrl={user.avatarUrl} size="small"/>
                 </span>
               ))}
             </span>
@@ -159,7 +164,7 @@ const Card = React.memo(
 
     return (
       <Draggable draggableId={`card:${id}`} index={index} isDragDisabled={!isPersisted || !canEdit}>
-        {({ innerRef, draggableProps, dragHandleProps }) => (
+        {({innerRef, draggableProps, dragHandleProps}) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <div {...draggableProps} {...dragHandleProps} ref={innerRef} className={styles.wrapper}>
             <NameEdit ref={nameEdit} defaultValue={name} onUpdate={handleNameUpdate}>
@@ -220,6 +225,7 @@ const Card = React.memo(
 );
 
 Card.propTypes = {
+  eT: PropTypes.object,
   id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
@@ -257,6 +263,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  eT: undefined,
   startDate: undefined,
   dueDate: undefined,
   stopwatch: undefined,
@@ -264,74 +271,75 @@ Card.defaultProps = {
 };
 
 const makeMapStateToProps = () => {
-    const selectCardById = selectors.makeSelectCardById();
-    const selectUsersByCardId = selectors.makeSelectUsersByCardId();
-    const selectLabelsByCardId = selectors.makeSelectLabelsByCardId();
-    const selectTasksByCardId = selectors.makeSelectTasksByCardId();
-    const selectNotificationsTotalByCardId = selectors.makeSelectNotificationsTotalByCardId();
+  const selectCardById = selectors.makeSelectCardById();
+  const selectUsersByCardId = selectors.makeSelectUsersByCardId();
+  const selectLabelsByCardId = selectors.makeSelectLabelsByCardId();
+  const selectTasksByCardId = selectors.makeSelectTasksByCardId();
+  const selectNotificationsTotalByCardId = selectors.makeSelectNotificationsTotalByCardId();
 
-    return (state, { id, index }) => {
-        const { projectId } = selectors.selectPath(state);
-        const allProjectsToLists = selectors.selectProjectsToListsForCurrentUser(state);
-        const allBoardMemberships = selectors.selectMembershipsForCurrentBoard(state);
-        const allLabels = selectors.selectLabelsForCurrentBoard(state);
-        const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
+  return (state, {id, index}) => {
+    const {projectId} = selectors.selectPath(state);
+    const allProjectsToLists = selectors.selectProjectsToListsForCurrentUser(state);
+    const allBoardMemberships = selectors.selectMembershipsForCurrentBoard(state);
+    const allLabels = selectors.selectLabelsForCurrentBoard(state);
+    const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
-        const { name, startDate, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted } = selectCardById(
-            state,
-            id,
-        );
+    const {name, startDate, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted, eT} = selectCardById(
+      state,
+      id,
+    );
 
-        const users = selectUsersByCardId(state, id);
-        const labels = selectLabelsByCardId(state, id);
-        const tasks = selectTasksByCardId(state, id);
-        const notificationsTotal = selectNotificationsTotalByCardId(state, id);
+    const users = selectUsersByCardId(state, id);
+    const labels = selectLabelsByCardId(state, id);
+    const tasks = selectTasksByCardId(state, id);
+    const notificationsTotal = selectNotificationsTotalByCardId(state, id);
 
-        const isCurrentUserEditor =
-            !!currentUserMembership && currentUserMembership.role === BoardMembershipRoles.EDITOR;
+    const isCurrentUserEditor =
+      !!currentUserMembership && currentUserMembership.role === BoardMembershipRoles.EDITOR;
 
-        return {
-            id,
-            index,
-            name,
-            startDate,
-            dueDate,
-            stopwatch,
-            coverUrl,
-            boardId,
-            listId,
-            projectId,
-            isPersisted,
-            notificationsTotal,
-            users,
-            labels,
-            tasks,
-            allProjectsToLists,
-            allBoardMemberships,
-            allLabels,
-            canEdit: isCurrentUserEditor,
-        };
+    return {
+      eT,
+      id,
+      index,
+      name,
+      startDate,
+      dueDate,
+      stopwatch,
+      coverUrl,
+      boardId,
+      listId,
+      projectId,
+      isPersisted,
+      notificationsTotal,
+      users,
+      labels,
+      tasks,
+      allProjectsToLists,
+      allBoardMemberships,
+      allLabels,
+      canEdit: isCurrentUserEditor,
     };
+  };
 };
 
-const mapDispatchToProps = (dispatch, { id }) =>
-    bindActionCreators(
-        {
-            onUpdate: (data) => entryActions.updateCard(id, data),
-            onMove: (listId, index) => entryActions.moveCard(id, listId, index),
-            onTransfer: (boardId, listId) => entryActions.transferCard(id, boardId, listId),
-            onDelete: () => entryActions.deleteCard(id),
-            onUserAdd: (userId) => entryActions.addUserToCard(userId, id),
-            onUserRemove: (userId) => entryActions.removeUserFromCard(userId, id),
-            onBoardFetch: entryActions.fetchBoard,
-            onLabelAdd: (labelId) => entryActions.addLabelToCard(labelId, id),
-            onLabelRemove: (labelId) => entryActions.removeLabelFromCard(labelId, id),
-            onLabelCreate: (data) => entryActions.createLabelInCurrentBoard(data),
-            onLabelUpdate: (labelId, data) => entryActions.updateLabel(labelId, data),
-            onLabelMove: (labelId, index) => entryActions.moveLabel(labelId, index),
-            onLabelDelete: (labelId) => entryActions.deleteLabel(labelId),
-        },
-        dispatch,
-    );
+const mapDispatchToProps = (dispatch, {id}) =>
+  bindActionCreators(
+    {
+      onUpdate: (data) => entryActions.updateCard(id, data),
+      onMove: (listId, index) => entryActions.moveCard(id, listId, index),
+      onTransfer: (boardId, listId) => entryActions.transferCard(id, boardId, listId),
+      onDelete: () => entryActions.deleteCard(id),
+      onUserAdd: (userId) => entryActions.addUserToCard(userId, id),
+      onUserRemove: (userId) => entryActions.removeUserFromCard(userId, id),
+      onBoardFetch: entryActions.fetchBoard,
+      onLabelAdd: (labelId) => entryActions.addLabelToCard(labelId, id),
+      onLabelRemove: (labelId) => entryActions.removeLabelFromCard(labelId, id),
+      onLabelCreate: (data) => entryActions.createLabelInCurrentBoard(data),
+      onLabelUpdate: (labelId, data) => entryActions.updateLabel(labelId, data),
+      onLabelMove: (labelId, index) => entryActions.moveLabel(labelId, index),
+      onLabelDelete: (labelId) => entryActions.deleteLabel(labelId),
+    },
+    dispatch,
+  );
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(Card);

@@ -135,7 +135,7 @@ const GanttViewer = React.memo(({gantt}) => {
                             endDate: 'DueDate',
                             duration: 'Duration',
                             progress: 'Progress',
-                            // dependency: 'Predecessor',
+                            dependency: 'Predecessor',
                             child: 'child'
                           }}
                           editSettings={{
@@ -187,15 +187,23 @@ const mapStateToProps = (state) => {
     // loop card over list
     // -----------------------------
     const cards = selectCardForGanttByListId(state, id)
-    cards.forEach((card) => {
+    for(let i=0; i<cards.length; i++) {
+      let card = cards[i]
+      let eT = card.eT
+      if(!eT.gantt)
+        continue
+
+      if(!eT.gantt.isEnable)
+        continue
+
       gantt.push({
         TaskId: taskId,
         TaskName: card.name,
         StartDate: card.startDate,
         DueDate: card.dueDate,
+        Progress: card.eT.gantt.progress
       })
-      taskId = taskId + 1
-    })
+    }
   })
   return ({
     gantt

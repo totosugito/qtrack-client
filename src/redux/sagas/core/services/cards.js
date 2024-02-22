@@ -16,7 +16,6 @@ export function* createCard(listId, data, autoOpen) {
   };
 
   const localId = yield call(createLocalId);
-
   yield put(
     actions.createCard({
       ...nextData,

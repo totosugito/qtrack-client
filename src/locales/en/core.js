@@ -167,7 +167,9 @@ export default {
       viewer: 'Viewer',
       writeComment: 'Write a comment...',
       pdfExport: 'PDF Export',
-      excelExport: 'Excel Export'
+      excelExport: 'Excel Export',
+      showInTheGanttChart: 'Show in the Gantt chart',
+      setGanttProgress: 'Set progress (0 - 100)'
     },
 
     action: {
