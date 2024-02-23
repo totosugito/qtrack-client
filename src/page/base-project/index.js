@@ -45,7 +45,8 @@ const BaseProject = React.memo(
                         />
                     )
                 }>
-                    <div style={{height: `calc( 100% - 56px )`}}>
+                    {/*<div style={{height: `calc( 100% - 56px )`}}>*/}
+                  <div>
                     {children}
                     </div>
                 </BaseAuth>

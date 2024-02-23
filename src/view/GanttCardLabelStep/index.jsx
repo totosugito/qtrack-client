@@ -25,17 +25,11 @@ const GanttCardLabelStep = React.memo(({defaultValue, onUpdate, onBack, onClose}
 
   const handleInputProgressChange = (e, {value}) => {
     // Remove non-numeric characters using regex
-    const numericValue = value.replace(/[^0-9]/g, '')
+    let numericValue = value.replace(/[^\d.]/g, '')
 
     // Ensure the value is within the desired range (1 to 100 in this example)
-    // const clampedValue = Math.min(Math.max(parseInt(numericValue), 0), 100)
-    let clampedValue = parseInt(numericValue)
-    if (isNaN(clampedValue)) {
-      clampedValue = 0;
-    }
-
-    if (clampedValue <= 100) {
-      setProgress(clampedValue);
+    if (numericValue <= 100.0) {
+      setProgress(numericValue);
     }
   }
 

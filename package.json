@@ -25,6 +25,7 @@
     "@juggle/resize-observer": "^3.4.0",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
+    "@react-pdf/renderer": "^3.3.8",
     "@syncfusion/ej2-base": "^23.2.4",
     "@syncfusion/ej2-react-gantt": "^23.2.4",
     "axios": "^1.6.7",

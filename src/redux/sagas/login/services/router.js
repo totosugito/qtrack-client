@@ -23,7 +23,8 @@ export function* handleLocationChange() {
     case Paths.PROJECTS:
     case Paths.BOARDS:
     case Paths.CARDS:
-    case Paths.GANTT:
+    case Paths.BOARD_GANTT:
+    case Paths.BOARD_REPORT:
       yield call(goToLogin);
       break;
     default:

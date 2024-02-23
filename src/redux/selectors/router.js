@@ -37,7 +37,8 @@ export const selectPath = createReduxOrmSelector(
           };
         }
         case Paths.BOARDS:
-        case Paths.GANTT: {
+        case Paths.BOARD_GANTT:
+        case Paths.BOARD_REPORT: {
           const boardModel = Board.withId(pathsMatch.params.id);
 
           if (!boardModel || !boardModel.isAvailableForUser(currentUserId)) {

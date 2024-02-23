@@ -171,7 +171,8 @@ export default {
       ganttProgress: 'Gantt',
       showInTheGanttChart: 'Show in the Gantt chart',
       setGanttProgress: 'Set progress in % (0 - 100)',
-      backToBoard: 'Back to board'
+      backToBoard: 'Back to board',
+      report: 'Report'
     },
 
     action: {

@@ -64,7 +64,8 @@ export function* handleLocationChange() {
   switch (pathsMatch.pattern.path) {
     case Paths.BOARDS:
     case Paths.CARDS:
-    case Paths.GANTT: {
+    case Paths.BOARD_GANTT:
+    case Paths.BOARD_REPORT: {
       const currentBoard = yield select(selectors.selectCurrentBoard);
 
       if (currentBoard && currentBoard.isFetching === null) {

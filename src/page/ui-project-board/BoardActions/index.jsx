@@ -72,11 +72,20 @@ const BoardActions = React.memo(
             />
           </div>
 
-          <Link to={Paths.GANTT.replace(':id', boardId)}>
+          <Link to={Paths.BOARD_GANTT.replace(':id', boardId)}>
             <div className={classNames(stylesView.toolbarButton)}>
               <Icon name='calendar alternate outline'/>
               <span className={classNames(stylesView.toolbarButtonTitle)}>
               {t('common.gantt')}
+            </span>
+            </div>
+          </Link>
+
+          <Link to={Paths.BOARD_REPORT.replace(':id', boardId)}>
+            <div className={classNames(stylesView.toolbarButton)}>
+              <Icon name='newspaper outline'/>
+              <span className={classNames(stylesView.toolbarButtonTitle)}>
+              {t('common.report')}
             </span>
             </div>
           </Link>
