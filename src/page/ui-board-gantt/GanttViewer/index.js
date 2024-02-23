@@ -34,9 +34,11 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import selectors from "../../../redux/selectors";
+import {Link} from "react-router-dom";
+import Paths from "../../../constants/Paths";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NHaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZiWH1ZcHdQRWJZWE12Xg==");
-const GanttViewer = React.memo(({gantt}) => {
+const GanttViewer = React.memo(({boardId, gantt}) => {
   const [t] = useTranslation();
   let ganttChart;
   // const [gantt, setGantt] = useState([])
@@ -86,7 +88,7 @@ const GanttViewer = React.memo(({gantt}) => {
     timelineViewMode: 'Month'
   };
   return (
-    <div className={classNames(styles.container)}>
+    <div>
       <div className={stylesView.toolbarBoardContainer}>
         <div className={stylesView.toolbarItemContainer}>
           {/*<div className={stylesView.toolbarItemSmall}>*/}
@@ -96,6 +98,15 @@ const GanttViewer = React.memo(({gantt}) => {
           {/*           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>*/}
           {/*  </div>*/}
           {/*</div>*/}
+
+          <div className={stylesView.toolbarItemSmall}>
+            <Link  className={classNames(styles.toolbarButton)} to={Paths.BOARDS.replace(':id', boardId)}>
+              <Icon name='arrow left'/>
+              <span className={classNames(stylesView.toolbarButtonTitle)}>
+                      {t('common.backToBoard')}
+                    </span>
+            </Link>
+          </div>
 
           <div className={stylesView.toolbarItemSmall}>
             <div className={classNames(stylesView.toolbarButton)}
@@ -121,13 +132,13 @@ const GanttViewer = React.memo(({gantt}) => {
       <div className={classNames(styles.gantt)}>
         {gantt !== undefined &&
           <GanttComponent ref={ganttRef => ganttChart = ganttRef} dataSource={gantt} timelineSettings={timelineSettings}
-                          treeColumnIndex={1}
+            // treeColumnIndex={1}
                           allowResizing={true}
                           allowSelection={true}
-                          toolbarClick={toolbarClick.bind(this)}
                           allowPdfExport={true}
                           allowExcelExport={true}
-                          toolbar={['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Indent', 'Outdent']}
+                          // toolbarClick={toolbarClick.bind(this)}
+                          // toolbar={['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Indent', 'Outdent']}
                           taskFields={{
                             id: 'TaskId',
                             name: 'TaskName',
@@ -138,22 +149,24 @@ const GanttViewer = React.memo(({gantt}) => {
                             dependency: 'Predecessor',
                             child: 'child'
                           }}
-                          editSettings={{
-                            allowAdding: false,
-                            allowEditing: false,
-                            allowDeleting: false,
-                            allowTaskbarEditing: false,
-                            showDeleteConfirmDialog: false
-                          }}
+                          // editSettings={{
+                          //   allowAdding: false,
+                          //   allowEditing: false,
+                          //   allowDeleting: false,
+                          //   allowTaskbarEditing: false,
+                          //   showDeleteConfirmDialog: false
+                          // }}
                           queryTaskbarInfo={(args) => {
                             args.taskbarBgColor = '#DCDCDC'
-                            if (args.data["Progress"] <= 30) {
-                              args.progressBarBgColor = "red";
-                            } else if (args.data["Progress"] <= 70) {
-                              args.progressBarBgColor = "yellow";
-                            } else if (args.data["Progress"] <= 100) {
-                              args.progressBarBgColor = "lightgreen";
-                            }
+                            if (args.data["Progress"] <= 25)
+                              args.progressBarBgColor = "red"
+                            else if (args.data["Progress"] <= 50)
+                              args.progressBarBgColor = "yellow"
+                            else if (args.data["Progress"] <= 75)
+                              args.progressBarBgColor = "lightgreen"
+                            else
+                              args.progressBarBgColor = "green"
+
                           }}
           >
             <Inject services={[Edit, Selection, Toolbar, Filter, Sort, Resize, PdfExport, ExcelExport]}/>
@@ -203,6 +216,8 @@ const mapStateToProps = (state) => {
         DueDate: card.dueDate,
         Progress: card.eT.gantt.progress
       })
+
+      taskId = taskId + 1
     }
   })
   return ({

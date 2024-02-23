@@ -168,8 +168,10 @@ export default {
       writeComment: 'Write a comment...',
       pdfExport: 'PDF Export',
       excelExport: 'Excel Export',
+      ganttProgress: 'Gantt',
       showInTheGanttChart: 'Show in the Gantt chart',
-      setGanttProgress: 'Set progress (0 - 100)'
+      setGanttProgress: 'Set progress in % (0 - 100)',
+      backToBoard: 'Back to board'
     },
 
     action: {
@@ -242,7 +244,8 @@ export default {
       unsubscribe: 'Unsubscribe',
       uploadNewAvatar: 'Upload new avatar',
       uploadNewImage: 'Upload new image',
-      cancel: 'Cancel'
+      cancel: 'Cancel',
+      ganttEdit: 'Edit Gantt',
     },
 
     custom: {

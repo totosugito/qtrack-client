@@ -2,7 +2,7 @@ import pick from 'lodash/pick';
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Menu } from 'semantic-ui-react';
+import {Divider, Menu} from 'semantic-ui-react';
 import { Popup } from '../../lib';
 
 import { useSteps } from '../../lib/hooks-ui';
@@ -14,6 +14,7 @@ import DeleteStep from '../DeleteStep';
 
 import styles from './ActionsStep.module.scss';
 import DateTimeRangeStep from "../DateTimeRangeStep";
+import GanttCardLabelStep from "../GanttCardLabelStep";
 
 const StepTypes = {
   USERS: 'USERS',
@@ -22,6 +23,7 @@ const StepTypes = {
   EDIT_STOPWATCH: 'EDIT_STOPWATCH',
   MOVE: 'MOVE',
   DELETE: 'DELETE',
+  GANTT: 'GANTT',
 };
 
 const ActionsStep = React.memo(
@@ -72,6 +74,10 @@ const ActionsStep = React.memo(
       openStep(StepTypes.EDIT_STOPWATCH);
     }, [openStep]);
 
+    const handleEditGanttClick = useCallback(() => {
+      openStep(StepTypes.GANTT);
+    }, [openStep]);
+
     const handleMoveClick = useCallback(() => {
       openStep(StepTypes.MOVE);
     }, [openStep]);
@@ -89,6 +95,17 @@ const ActionsStep = React.memo(
       },
       [onUpdate],
     );
+
+    const handleGanttUpdate = useCallback(
+      (gantt) => {
+        onUpdate({
+          eT: {
+            gantt
+          }
+        })
+      },
+      [onUpdate],
+    )
 
     const handleStopwatchUpdate = useCallback(
       (stopwatch) => {
@@ -137,6 +154,10 @@ const ActionsStep = React.memo(
               onBack={handleBack}
               onClose={onClose}
             />
+          );
+        case StepTypes.GANTT:
+          return (
+            <GanttCardLabelStep defaultValue={card.eT.gantt} onUpdate={handleGanttUpdate} onClose={onClose}/>
           );
         case StepTypes.MOVE:
           return (
@@ -188,6 +209,7 @@ const ActionsStep = React.memo(
                 context: 'title',
               })}
             </Menu.Item>
+            <Divider fitted/>
             <Menu.Item className={styles.menuItem} onClick={handleEditDueDateClick}>
               {t('action.editDateRange', {
                 context: 'title',
@@ -198,6 +220,10 @@ const ActionsStep = React.memo(
                 context: 'title',
               })}
             </Menu.Item>
+            <Menu.Item className={styles.menuItem} onClick={handleEditGanttClick}>
+              {t('action.ganttEdit')}
+            </Menu.Item>
+            <Divider fitted/>
             <Menu.Item className={styles.menuItem} onClick={handleMoveClick}>
               {t('action.moveCard', {
                 context: 'title',

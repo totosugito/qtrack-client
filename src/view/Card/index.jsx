@@ -98,9 +98,6 @@ const Card = React.memo(
       <>
         {coverUrl && <img src={coverUrl} alt="" className={styles.cover}/>}
         <div className={styles.details}>
-          {eT &&
-            <GanttCardLabel eT={eT} size="tiny"/>
-          }
           {labels.length > 0 && (
             <span className={styles.labels}>
               {labels.map((label) => (
@@ -113,6 +110,9 @@ const Card = React.memo(
               ))}
             </span>
           )}
+          {eT &&
+            <GanttCardLabel eT={eT} size="tiny"/>
+          }
           <div className={styles.name}>{name}</div>
           {tasks.length > 0 && <Tasks items={tasks}/>}
           {(dueDate || stopwatch || notificationsTotal > 0) && (
@@ -187,6 +187,7 @@ const Card = React.memo(
                           boardId,
                           listId,
                           projectId,
+                          eT
                         }}
                         projectsToLists={allProjectsToLists}
                         boardMemberships={allBoardMemberships}

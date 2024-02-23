@@ -8,4 +8,17 @@
     padding: 5px 10px;
     height: 100%;
   }
+
+  .toolbarButton {
+    color: white;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    padding: 6px 8px;
+    margin-right: 10px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.32);
+      cursor: pointer;
+    }
+  }
 }

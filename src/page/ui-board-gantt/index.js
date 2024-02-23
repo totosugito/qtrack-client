@@ -45,7 +45,7 @@ function UiBoardGantt({board}) {
   return (
     <>
       <BaseProject>
-        <GanttViewer/>
+        <GanttViewer boardId={board.id}/>
       </BaseProject>
     </>
   )

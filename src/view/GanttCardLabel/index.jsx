@@ -21,6 +21,22 @@ const GanttCardLabel = React.memo(({eT, size, onClick}) => {
   const ContentNode = ({progress}) => {
     return (
       <>
+        <table cellPadding="0" cellSpacing="0">
+          <tbody>
+          {size === SIZES.MEDIUM &&
+            <tr>
+              <td>
+                <div className={styles.text}>
+                  {t('common.ganttProgress')}
+                </div>
+              </td>
+            </tr>
+          }
+          <tr>
+
+          </tr>
+          </tbody>
+        </table>
         <span
           title={'Gantt'}
           className={classNames(
@@ -29,7 +45,7 @@ const GanttCardLabel = React.memo(({eT, size, onClick}) => {
             onClick && styles.wrapperHoverable,
           )}
         >
-          {t('common.gantt')} : {progress}%
+          {size !== SIZES.MEDIUM && (t('common.ganttProgress') + " : ")}{progress}%
         </span>
       </>
     )
@@ -38,9 +54,9 @@ const GanttCardLabel = React.memo(({eT, size, onClick}) => {
   let gantt = getGanttVar()
   let isEnable = gantt.isEnable
   return isEnable ? (onClick ? (
-    <button type="button" className={styles.button} onClick={onClick}>
+    <div className={styles.button} onClick={onClick}>
       <ContentNode progress={gantt.progress}/>
-    </button>
+    </div>
   ) : (
     <ContentNode progress={gantt.progress}/>
   )) : <></>

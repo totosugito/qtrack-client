@@ -93,9 +93,9 @@ const DateTimeRange = React.memo(({startDate, dueDate, size, isDisabled, onClick
 );
 
 return onClick ? (
-  <button type="button" disabled={isDisabled} className={styles.button} onClick={onClick}>
+  <div className={styles.button} onClick={onClick}>
       {contentNode}
-    </button>
+    </div>
   ) : (
     contentNode
   );

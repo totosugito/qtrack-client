@@ -256,10 +256,11 @@ const CardModal = React.memo(
                     )}
                   </div>
                 )}
+
                 {labels.length > 0 && (
                   <div className={styles.attachments}>
                     <div className={styles.text}>
-                      {t('common.labels', {
+                    {t('common.labels', {
                         context: 'title',
                       })}
                     </div>
@@ -303,6 +304,16 @@ const CardModal = React.memo(
                         </button>
                       </LabelsPopup>
                     )}
+                  </div>
+                )}
+                {gantt.isEnable && (
+                  <div className={styles.attachments}>
+                    {canEdit ? (
+                    <GanttPopup defaultValue={gantt} onUpdate={handleGanttUpdate}>
+                      <GanttCardLabel eT={eT}/>
+                    </GanttPopup>) : (
+                        <GanttCardLabel eT={eT}/>
+                      )}
                   </div>
                 )}
                 {(startDate && dueDate) && (
@@ -528,7 +539,6 @@ const CardModal = React.memo(
                   onConfirm={onDelete}
                 >
                   <Button fluid className={styles.actionButton}>
-                    {/*<DeleteSweepOutlinedIcon fontSize='small' className={styles.actionIcon}/>*/}
                     <Icon name="trash alternate outline" className={styles.actionIcon}/>
                     {t('action.delete')}
                   </Button>
