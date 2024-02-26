@@ -21,7 +21,7 @@ function UiBoardReport({board}) {
             <div className={styles.message} style={{color: theme.palette.text.secondary}}>
               <Icon name='unlink' size='huge'/>
               <h1>
-                {t('common.ganttNotFound_title', {
+                {t('common.boardNotFound_title', {
                   context: 'title',
                 })}
               </h1>
@@ -52,10 +52,8 @@ function UiBoardReport({board}) {
 }
 
 const mapStateToProps = (state) => {
-  const project = selectors.selectCurrentProject(state);
   const board = selectors.selectCurrentBoard(state);
   return {
-    project: project,
     board: board,
   }
 }

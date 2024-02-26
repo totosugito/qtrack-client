@@ -62,6 +62,24 @@ export const makeSelectCardForGanttByListId = () =>
     },
   )
 
+export const makeSelectCardByListId = () =>
+  createSelector(
+    orm,
+    (_, id) => id,
+    ({ List }, id) => {
+      const listModel = List.withId(id);
+
+      if (!listModel) {
+        return listModel;
+      }
+
+      return listModel.getFilteredOrderedCardsModelArray().map(function (cardModel) {
+          return (cardModel)
+        }
+      )
+    },
+  )
+
 export const selectCardIdsByListId = makeSelectCardIdsByListId();
 
 export default {
@@ -69,5 +87,6 @@ export default {
   selectListById,
   makeSelectCardIdsByListId,
   selectCardIdsByListId,
-  makeSelectCardForGanttByListId
+  makeSelectCardForGanttByListId,
+  makeSelectCardByListId
 };

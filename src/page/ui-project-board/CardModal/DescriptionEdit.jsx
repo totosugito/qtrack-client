@@ -61,6 +61,7 @@ const DescriptionEdit = React.forwardRef(({children, defaultValue, onUpdate}, re
   const handleSubmit = useCallback(() => {
     close();
   }, [close]);
+
   if (!isOpened) {
     return React.cloneElement(children, {
       onClick: handleChildrenClick,

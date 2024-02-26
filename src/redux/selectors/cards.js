@@ -307,6 +307,57 @@ export const makeSelectTasksForGanttByCardId = () =>
     },
   )
 
+export const makeSelectTasksForCurrentCard = () =>
+  createSelector(
+    orm,
+    (_, id) => id,
+    ({Card}, id) => {
+      if (!id) {
+        return id;
+      }
+
+      const cardModel = Card.withId(id);
+
+      if (!cardModel) {
+        return cardModel;
+      }
+
+      return cardModel
+        .getOrderedTasksQuerySet()
+        .toRefArray()
+        .map((task) => ({
+          ...task,
+          isPersisted: !isLocalId(task.id),
+        }));
+    },
+  );
+
+export const makeSelectAttachmentsForCurrentCard = () =>
+  createSelector(
+    orm,
+    (_, id) => id,
+    ({Card}, id) => {
+      if (!id) {
+        return id;
+      }
+
+      const cardModel = Card.withId(id);
+
+      if (!cardModel) {
+        return cardModel;
+      }
+
+      return cardModel
+        .getOrderedAttachmentsQuerySet()
+        .toRefArray()
+        .map((attachment) => ({
+          ...attachment,
+          isCover: attachment.id === cardModel.coverAttachmentId,
+          isPersisted: !isLocalId(attachment.id),
+        }));
+    },
+  );
+
 export default {
   makeSelectCardById,
   selectCardById,
@@ -329,5 +380,7 @@ export default {
   selectAttachmentsForCurrentCard,
   selectActivitiesForCurrentCard,
   selectNotificationIdsForCurrentCard,
-  makeSelectTasksForGanttByCardId
+  makeSelectTasksForGanttByCardId,
+  makeSelectTasksForCurrentCard,
+  makeSelectAttachmentsForCurrentCard
 };

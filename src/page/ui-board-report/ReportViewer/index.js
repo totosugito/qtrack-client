@@ -2,25 +2,33 @@ import React from "react";
 import {useTranslation} from "react-i18next";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import ReactPDF, { PDFViewer , Page, Text, View, Document } from '@react-pdf/renderer'
-import {styles, TextWithValue} from './styles'
+import {PDFViewer, Page, Document} from '@react-pdf/renderer'
+import {styles} from './styles'
+import selectors from "../../../redux/selectors";
+import ProjectInfo from "./ProjectInfo";
+import BoardInfo from "./BoardInfo";
+import CardList from "./CardList";
 
-const ReportViewer = ({}) => {
+const ReportViewer = ({project, board, cards}) => {
   const [t] = useTranslation();
 
-  const ProjectInfo = () => {
-    return(
-      <View>
-        <TextWithValue label={"Name"} value={"☑Contohae"}/>
-      </View>
-    )
-  }
-  return(
+  const coverUrl='http://localhost:1337/private/attachments/bbf29edb-f71c-4489-a4a4-d5314cd26740/thumbnails/cover-256.jpg'
+  return (
     <>
+      {/*<div*/}
+      {/*  className={styles.thumbnail}*/}
+      {/*  style={{*/}
+      {/*    background: coverUrl && `url("${coverUrl}") center / cover`,*/}
+      {/*  }}*/}
+      {/*/>*/}
       <PDFViewer style={{width: '100%', height: 'calc(100vh - 54px)'}}>
         <Document>
           <Page size='A4' style={styles.page}>
-            <ProjectInfo/>
+            <ProjectInfo project={project}/>
+            <BoardInfo board={board} cards={cards}/>
+            {(cards.length > 0) &&
+              <CardList cards={cards}/>
+            }
           </Page>
         </Document>
       </PDFViewer>
@@ -29,9 +37,41 @@ const ReportViewer = ({}) => {
 }
 
 const mapStateToProps = (state) => {
-  return(
-    {
+  const board = selectors.selectCurrentBoard(state);
+  const listIds = selectors.selectListIdsForCurrentBoard(state);
+  const selectListById = selectors.makeSelectListById();
+  const selectCardByListId = selectors.makeSelectCardByListId()
+  const selectTasksForCurrentCard = selectors.makeSelectTasksForCurrentCard()
+  const selectAttachmentsForCurrentCard = selectors.makeSelectAttachmentsForCurrentCard()
 
+  const cards = []
+
+  // -----------------------------
+  // loop list over board
+  // -----------------------------
+  listIds.forEach((id) => {
+    const objList = selectListById(state, id)
+    id = objList.id
+
+    // -----------------------------
+    // loop card over list
+    // -----------------------------
+    const cards_ = selectCardByListId(state, id)
+    for(let i=0; i<cards_.length; i++) {
+      let card = cards_[i]
+      id = card.id
+      card['tasks_'] = selectTasksForCurrentCard(state, id)
+      card['attachments_'] = selectAttachmentsForCurrentCard(state, id)
+      cards.push(card)
+    }
+  })
+  // console.log(cards[0])
+
+  return (
+    {
+      project: board.project,
+      board: board,
+      cards: cards
     }
   )
 }
