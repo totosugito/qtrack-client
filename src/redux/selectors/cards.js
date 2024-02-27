@@ -382,5 +382,5 @@ export default {
   selectNotificationIdsForCurrentCard,
   makeSelectTasksForGanttByCardId,
   makeSelectTasksForCurrentCard,
-  makeSelectAttachmentsForCurrentCard
+  makeSelectAttachmentsForCurrentCard,
 };

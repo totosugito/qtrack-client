@@ -100,12 +100,14 @@ const GanttViewer = React.memo(({boardId, gantt}) => {
           {/*</div>*/}
 
           <div className={stylesView.toolbarItemSmall}>
-            <Link  className={classNames(styles.toolbarButton)} to={Paths.BOARDS.replace(':id', boardId)}>
-              <Icon name='arrow left'/>
-              <span className={classNames(stylesView.toolbarButtonTitle)}>
+            <div className={classNames(stylesView.toolbarButton)}>
+              <Link className={classNames(stylesView.toolbarLink)} to={Paths.BOARDS.replace(':id', boardId)}>
+                <Icon name='arrow left'/>
+                <span className={classNames(stylesView.toolbarButtonTitle)}>
                       {t('common.backToBoard')}
                     </span>
-            </Link>
+              </Link>
+            </div>
           </div>
 
           <div className={stylesView.toolbarItemSmall}>
@@ -137,8 +139,8 @@ const GanttViewer = React.memo(({boardId, gantt}) => {
                           allowSelection={true}
                           allowPdfExport={true}
                           allowExcelExport={true}
-                          // toolbarClick={toolbarClick.bind(this)}
-                          // toolbar={['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Indent', 'Outdent']}
+            // toolbarClick={toolbarClick.bind(this)}
+            // toolbar={['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Indent', 'Outdent']}
                           taskFields={{
                             id: 'TaskId',
                             name: 'TaskName',
@@ -149,13 +151,13 @@ const GanttViewer = React.memo(({boardId, gantt}) => {
                             dependency: 'Predecessor',
                             child: 'child'
                           }}
-                          // editSettings={{
-                          //   allowAdding: false,
-                          //   allowEditing: false,
-                          //   allowDeleting: false,
-                          //   allowTaskbarEditing: false,
-                          //   showDeleteConfirmDialog: false
-                          // }}
+            // editSettings={{
+            //   allowAdding: false,
+            //   allowEditing: false,
+            //   allowDeleting: false,
+            //   allowTaskbarEditing: false,
+            //   showDeleteConfirmDialog: false
+            // }}
                           queryTaskbarInfo={(args) => {
                             args.taskbarBgColor = '#DCDCDC'
                             if (args.data["Progress"] <= 25)
@@ -200,13 +202,13 @@ const mapStateToProps = (state) => {
     // loop card over list
     // -----------------------------
     const cards = selectCardForGanttByListId(state, id)
-    for(let i=0; i<cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) {
       let card = cards[i]
       let eT = card.eT
-      if(!eT.gantt)
+      if (!eT.gantt)
         continue
 
-      if(!eT.gantt.isEnable)
+      if (!eT.gantt.isEnable)
         continue
 
       gantt.push({

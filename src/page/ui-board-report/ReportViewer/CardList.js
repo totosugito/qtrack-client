@@ -3,6 +3,7 @@ import {GroupLabel, styles} from "./styles";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import TaskItem from "./TaskItem";
+import ActionItem from "./ActionItem";
 
 const CardList = ({cards}) => {
   const [t] = useTranslation()
@@ -65,9 +66,29 @@ const CardList = ({cards}) => {
             )
             }
 
-            {/* actions */}
-            <Text style={styles.textLabelTitle}>Actions :</Text>
-            {/*<Image src={'http://localhost:1337/attachments/65dc422f27bb098b7d7621e9/download/thumbnails/cover-256.jpg'}/>*/}
+            {/*{(card.attachments_.length > 0) && (*/}
+            {/*  <>*/}
+            {/*    <Text style={styles.textLabelTitle}>Attachments :</Text>*/}
+            {/*    {card.attachments_.map((attach_, index) => (*/}
+            {/*      <View key={index}>*/}
+            {/*        <Text>{attach_.coverUrl}</Text>*/}
+            {/*      <Image src={{uri: attach_.coverUrl, method: "GET", headers: { "Cache-Control": "no-cache" }, body: ""}}/>*/}
+            {/*      </View>*/}
+            {/*    ))}*/}
+            {/*  </>*/}
+            {/*)*/}
+            {/*}*/}
+
+             {/*actions */}
+            {/*{(card.actions_.length > 0) && (*/}
+            {/*  <>*/}
+            {/*    <Text style={styles.textLabelTitle}>Actions :</Text>*/}
+            {/*    {card.actions_.map((action_, index) => (*/}
+            {/*      <ActionItem key={index} index={index} item={action_}/>*/}
+            {/*    ))}*/}
+            {/*  </>*/}
+            {/*)*/}
+            {/*}*/}
           </View>
         </View>
       </>

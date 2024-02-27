@@ -114,6 +114,7 @@ const mapStateToProps = (state) => {
   const currentUser = selectors.selectCurrentUser(state);
   const notifications = selectors.selectNotificationsForCurrentUser(state);
   const isCurrentUserManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
+
   return {
     notifications,
     isLogOuting,

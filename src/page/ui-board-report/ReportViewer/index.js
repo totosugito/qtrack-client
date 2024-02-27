@@ -12,15 +12,9 @@ import CardList from "./CardList";
 const ReportViewer = ({project, board, cards}) => {
   const [t] = useTranslation();
 
-  const coverUrl='http://localhost:1337/private/attachments/bbf29edb-f71c-4489-a4a4-d5314cd26740/thumbnails/cover-256.jpg'
   return (
     <>
-      {/*<div*/}
-      {/*  className={styles.thumbnail}*/}
-      {/*  style={{*/}
-      {/*    background: coverUrl && `url("${coverUrl}") center / cover`,*/}
-      {/*  }}*/}
-      {/*/>*/}
+      {/*<img src={cards[0].attachments_[0].coverUrl} alt={''}/>*/}
       <PDFViewer style={{width: '100%', height: 'calc(100vh - 54px)'}}>
         <Document>
           <Page size='A4' style={styles.page}>
@@ -45,7 +39,6 @@ const mapStateToProps = (state) => {
   const selectAttachmentsForCurrentCard = selectors.makeSelectAttachmentsForCurrentCard()
 
   const cards = []
-
   // -----------------------------
   // loop list over board
   // -----------------------------
@@ -60,12 +53,12 @@ const mapStateToProps = (state) => {
     for(let i=0; i<cards_.length; i++) {
       let card = cards_[i]
       id = card.id
+      let currentUserId = '65d6b39f9f6aeb8d9838f22c'
       card['tasks_'] = selectTasksForCurrentCard(state, id)
       card['attachments_'] = selectAttachmentsForCurrentCard(state, id)
       cards.push(card)
     }
   })
-  // console.log(cards[0])
 
   return (
     {

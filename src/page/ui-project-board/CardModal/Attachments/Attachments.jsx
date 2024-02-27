@@ -83,40 +83,40 @@ const Attachments = React.memo(
       const isVisible = isAllVisible || index < INITIALLY_VISIBLE;
 
       return (
-        <GalleryItem
-          {...props} // eslint-disable-line react/jsx-props-no-spreading
-          key={item.id}
-          original={item.url}
-          caption={item.name}
-        >
-          {({ ref, open }) =>
-            isVisible ? (
-              <Item
-                ref={ref}
-                name={item.name}
-                url={item.url}
-                coverUrl={item.coverUrl}
-                createdAt={item.createdAt}
-                isCover={item.isCover}
-                isPersisted={item.isPersisted}
-                canEdit={canEdit}
-                onClick={item.image || isPdf ? open : undefined}
-                onCoverSelect={() => handleCoverSelect(item.id)}
-                onCoverDeselect={handleCoverDeselect}
-                onUpdate={(data) => handleUpdate(item.id, data)}
-                onDelete={() => handleDelete(item.id)}
-              />
-            ) : (
-              <span ref={ref} />
-            )
-          }
-        </GalleryItem>
+          <GalleryItem
+            {...props} // eslint-disable-line react/jsx-props-no-spreading
+            key={item.id}
+            original={item.url}
+            caption={item.name}
+          >
+            {({ref, open}) =>
+              isVisible ? (
+                <Item
+                  ref={ref}
+                  name={item.name}
+                  url={item.url}
+                  coverUrl={item.coverUrl}
+                  createdAt={item.createdAt}
+                  isCover={item.isCover}
+                  isPersisted={item.isPersisted}
+                  canEdit={canEdit}
+                  onClick={item.image || isPdf ? open : undefined}
+                  onCoverSelect={() => handleCoverSelect(item.id)}
+                  onCoverDeselect={handleCoverDeselect}
+                  onUpdate={(data) => handleUpdate(item.id, data)}
+                  onDelete={() => handleDelete(item.id)}
+                />
+              ) : (
+                <span ref={ref}/>
+              )
+            }
+          </GalleryItem>
       );
     });
 
     return (
       <>
-        <Gallery
+      <Gallery
           withCaption
           withDownloadButton
           options={{

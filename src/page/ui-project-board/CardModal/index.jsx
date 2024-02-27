@@ -504,14 +504,14 @@ const CardModal = React.memo(
               </div>
               <div className={styles.actions}>
                 <span className={styles.actionsTitle}>{t('common.actions')}</span>
-                {/*<Button*/}
-                {/*  fluid*/}
-                {/*  className={styles.actionButton}*/}
-                {/*  onClick={handleToggleSubscriptionClick}*/}
-                {/*>*/}
-                {/*  <Icon name="paper plane outline" className={styles.actionIcon}/>*/}
-                {/*  {isSubscribed ? t('action.unsubscribe') : t('action.subscribe')}*/}
-                {/*</Button>*/}
+                <Button
+                  fluid
+                  className={styles.actionButton}
+                  onClick={handleToggleSubscriptionClick}
+                >
+                  <Icon name="paper plane outline" className={styles.actionIcon}/>
+                  {isSubscribed ? t('action.unsubscribe') : t('action.subscribe')}
+                </Button>
                 <CardMovePopup
                   projectsToLists={allProjectsToLists}
                   defaultPath={{

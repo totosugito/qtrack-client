@@ -9,6 +9,7 @@ import { Popup } from '../../../../lib';
 import Paths from '../../../../constants/Paths';
 import { ActivityTypes } from '../../../../constants/Enums';
 import styles from './NotificationsStep.module.scss';
+import User from "../../../../view/User";
 
 const NotificationsStep = React.memo(({ items, onDelete, onClose }) => {
   const [t] = useTranslation();

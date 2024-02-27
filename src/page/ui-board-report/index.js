@@ -8,6 +8,9 @@ import styles from "../ui-project-open/index.module.scss";
 import {Icon, Loader} from "semantic-ui-react";
 import React from "react";
 import ReportViewer from "./ReportViewer";
+import stylesView from "../../view/index.module.scss";
+import {Link} from "react-router-dom";
+import Paths from "../../constants/Paths";
 
 function UiBoardReport({board}) {
   const theme = useTheme();
@@ -45,8 +48,26 @@ function UiBoardReport({board}) {
   return (
     <>
       <BaseProject>
-        <ReportViewer/>
+        <>
+          <div className={stylesView.toolbarBoardContainer}>
+            <div className={stylesView.toolbarItemContainer}>
+              <div className={stylesView.toolbarItemSmall}>
+                <div className={classNames(stylesView.toolbarButton)}>
+                  <Link className={classNames(stylesView.toolbarLink)} to={Paths.BOARDS.replace(':id', board.id)}>
+                    <Icon name='arrow left'/>
+                    <span className={classNames(stylesView.toolbarButtonTitle)}>
+                      {t('common.backToBoard')}
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ReportViewer/>
+        </>
       </BaseProject>
+
     </>
   )
 }
