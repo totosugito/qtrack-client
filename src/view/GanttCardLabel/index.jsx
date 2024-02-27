@@ -11,12 +11,8 @@ const SIZES = {
   MEDIUM: 'medium',
 };
 
-const GanttCardLabel = React.memo(({eT, size, onClick}) => {
+const GanttCardLabel = React.memo(({gantt, size, onClick}) => {
   const [t] = useTranslation();
-
-  const getGanttVar = () => {
-    return (eT.gantt ? eT.gantt : {isEnable: false, progress: 0})
-  }
 
   const ContentNode = ({progress}) => {
     return (
@@ -51,9 +47,7 @@ const GanttCardLabel = React.memo(({eT, size, onClick}) => {
     )
   }
 
-  let gantt = getGanttVar()
-  let isEnable = gantt.isEnable
-  return isEnable ? (onClick ? (
+  return gantt.isEnable ? (onClick ? (
     <div className={styles.button} onClick={onClick}>
       <ContentNode progress={gantt.progress}/>
     </div>
@@ -63,13 +57,12 @@ const GanttCardLabel = React.memo(({eT, size, onClick}) => {
 });
 
 GanttCardLabel.propTypes = {
-  eT: PropTypes.object,
+  gantt: PropTypes.object,
   size: PropTypes.oneOf(Object.values(SIZES)),
   onClick: PropTypes.func,
 };
 
 GanttCardLabel.defaultProps = {
-  eT: undefined,
   size: SIZES.MEDIUM,
   onClick: undefined,
 };

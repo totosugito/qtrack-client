@@ -40,7 +40,7 @@ import GanttCardLabelStep from "../../../view/GanttCardLabelStep";
 
 const CardModal = React.memo(
   ({
-     eT,
+     gantt,
      name,
      description,
      startDate,
@@ -170,16 +170,10 @@ const CardModal = React.memo(
       onClose();
     }, [onClose]);
 
-    const getGanttVar = () => {
-      return (eT.gantt ? eT.gantt : {isEnable: false, progress: 0})
-    }
-    const gantt = getGanttVar();
     const handleGanttUpdate = useCallback(
       (gantt) => {
         onUpdate({
-          eT: {
-            gantt
-          }
+          gantt
         })
       },
       [onUpdate],
@@ -214,7 +208,7 @@ const CardModal = React.memo(
         </Grid.Row>
         <Grid.Row className={styles.modalPadding}>
           <Grid.Column width={canEdit ? 12 : 16} className={styles.contentPadding}>
-            {(users.length > 0 || labels.length > 0 || dueDate || stopwatch) && (
+            {(users.length > 0 || labels.length > 0 || dueDate || stopwatch || gantt.isEnable) && (
               <div className={styles.moduleWrapper}>
                 {users.length > 0 && (
                   <div className={styles.attachments}>
@@ -306,13 +300,14 @@ const CardModal = React.memo(
                     )}
                   </div>
                 )}
+
                 {gantt.isEnable && (
                   <div className={styles.attachments}>
                     {canEdit ? (
                     <GanttPopup defaultValue={gantt} onUpdate={handleGanttUpdate}>
-                      <GanttCardLabel eT={eT}/>
+                      <GanttCardLabel gantt={gantt}/>
                     </GanttPopup>) : (
-                        <GanttCardLabel eT={eT}/>
+                        <GanttCardLabel gantt={gantt}/>
                       )}
                   </div>
                 )}
@@ -635,7 +630,7 @@ const mapStateToProps = (state) => {
   const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
   const {
-    eT,
+    gantt,
     name,
     description,
     startDate,
@@ -664,7 +659,7 @@ const mapStateToProps = (state) => {
   }
 
   return {
-    eT,
+    gantt,
     name,
     description,
     startDate,

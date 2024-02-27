@@ -99,9 +99,7 @@ const ActionsStep = React.memo(
     const handleGanttUpdate = useCallback(
       (gantt) => {
         onUpdate({
-          eT: {
-            gantt
-          }
+          gantt
         })
       },
       [onUpdate],
@@ -157,7 +155,7 @@ const ActionsStep = React.memo(
           );
         case StepTypes.GANTT:
           return (
-            <GanttCardLabelStep defaultValue={card.eT.gantt} onUpdate={handleGanttUpdate} onClose={onClose}/>
+            <GanttCardLabelStep defaultValue={card.gantt} onUpdate={handleGanttUpdate} onClose={onClose}/>
           );
         case StepTypes.MOVE:
           return (

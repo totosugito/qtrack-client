@@ -13,7 +13,7 @@ const GanttCardLabelStep = React.memo(({defaultValue, onUpdate, onBack, onClose}
   const handleSubmit = () => {
     const cleanData = {
       isEnable: isEnable,
-      progress: progress
+      progress: progress*1.0
     }
     onUpdate(cleanData);
     onClose();

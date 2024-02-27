@@ -26,7 +26,7 @@ import GanttCardLabel from "../GanttCardLabel";
 
 const Card = React.memo(
   ({
-     eT,
+     gantt,
      id,
      index,
      name,
@@ -110,8 +110,8 @@ const Card = React.memo(
               ))}
             </span>
           )}
-          {eT &&
-            <GanttCardLabel eT={eT} size="tiny"/>
+          {gantt &&
+            <GanttCardLabel gantt={gantt} size="tiny"/>
           }
           <div className={styles.name}>{name}</div>
           {tasks.length > 0 && <Tasks items={tasks}/>}
@@ -187,7 +187,7 @@ const Card = React.memo(
                           boardId,
                           listId,
                           projectId,
-                          eT
+                          gantt
                         }}
                         projectsToLists={allProjectsToLists}
                         boardMemberships={allBoardMemberships}
@@ -285,7 +285,7 @@ const makeMapStateToProps = () => {
     const allLabels = selectors.selectLabelsForCurrentBoard(state);
     const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
-    const {name, startDate, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted, eT} = selectCardById(
+    const {name, startDate, dueDate, stopwatch, coverUrl, boardId, listId, isPersisted, gantt} = selectCardById(
       state,
       id,
     );
@@ -299,7 +299,7 @@ const makeMapStateToProps = () => {
       !!currentUserMembership && currentUserMembership.role === BoardMembershipRoles.EDITOR;
 
     return {
-      eT,
+      gantt,
       id,
       index,
       name,

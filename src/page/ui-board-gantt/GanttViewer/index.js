@@ -204,11 +204,7 @@ const mapStateToProps = (state) => {
     const cards = selectCardForGanttByListId(state, id)
     for (let i = 0; i < cards.length; i++) {
       let card = cards[i]
-      let eT = card.eT
-      if (!eT.gantt)
-        continue
-
-      if (!eT.gantt.isEnable)
+      if (!card.gantt.isEnable)
         continue
 
       gantt.push({
@@ -216,7 +212,7 @@ const mapStateToProps = (state) => {
         TaskName: card.name,
         StartDate: card.startDate,
         DueDate: card.dueDate,
-        Progress: card.eT.gantt.progress
+        Progress: card.gantt.progress
       })
 
       taskId = taskId + 1
