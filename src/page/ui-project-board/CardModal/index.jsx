@@ -559,7 +559,7 @@ const CardModal = React.memo(
 );
 
 CardModal.propTypes = {
-  eT: PropTypes.object.isRequired,
+  gantt: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   startDate: PropTypes.instanceOf(Date),

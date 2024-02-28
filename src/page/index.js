@@ -1,4 +1,3 @@
-
 import Loadable from "../component/Loadable";
 import {lazy} from "react";
 
@@ -11,4 +10,8 @@ const UiProjectBoard = Loadable(lazy(() => import('./ui-project-board')))
 const UiBoardGantt = Loadable(lazy(() => import('./ui-board-gantt')))
 const UiBoardReport = Loadable(lazy(() => import('./ui-board-report')))
 const UiHomeMap = Loadable(lazy(() => import('./ui-home-map')))
-export {Error404, UiLogin, UiHome, UiProjectList, UiProjectOpen, UiProjectBoard, UiBoardGantt, UiBoardReport, UiHomeMap}
+const UiProjectMap = Loadable(lazy(() => import('./ui-project-map')))
+export {
+  Error404, UiLogin, UiHome, UiProjectList, UiProjectOpen, UiProjectBoard, UiBoardGantt, UiBoardReport, UiHomeMap,
+  UiProjectMap
+}

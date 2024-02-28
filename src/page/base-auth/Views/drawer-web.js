@@ -69,7 +69,7 @@ export default function DrawerWeb(props) {
             <Divider/>
             <List>
                 <DrawerMenu open={props.open} path={Paths.ROOT} icon={<Icon name='home' size='large'/>} text={"Home"}/>
-                <DrawerMenu open={props.open} path={Paths.HOME_MAP} icon={<Icon name='map marker alternate' size='large'/>} text={"Map"}/>
+                <DrawerMenu open={props.open} path={Paths.PROJECT_MAP} icon={<Icon name='map marker alternate' size='large'/>} text={"Map"}/>
                 <DrawerMenu open={props.open} path={Paths.PROJECTS_LIST} icon={<Icon name='folder' size='large'/>} text={"Projects"}/>
             </List>
 

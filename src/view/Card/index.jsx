@@ -226,7 +226,7 @@ const Card = React.memo(
 );
 
 Card.propTypes = {
-  eT: PropTypes.object,
+  gantt: PropTypes.object,
   id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
@@ -264,7 +264,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  eT: undefined,
+  gantt: undefined,
   startDate: undefined,
   dueDate: undefined,
   stopwatch: undefined,

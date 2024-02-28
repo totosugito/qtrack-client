@@ -1,53 +1,131 @@
-import { dequal } from '../../../lib/external';
-import pickBy from 'lodash/pickBy';
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { Button, Form, Input } from 'semantic-ui-react';
-
-import { useForm } from '../../../lib/hooks-ui';
-
+import {useTranslation} from 'react-i18next';
+import {Button, Form, Input} from 'semantic-ui-react';
 import styles from './InformationEdit.module.scss';
+import classNames from "classnames";
 
-const InformationEdit = React.memo(({ defaultData, onUpdate }) => {
+const InformationEdit = React.memo(({defaultData, onUpdate}) => {
   const [t] = useTranslation();
 
-  const [data, handleFieldChange] = useForm(() => ({
-    name: '',
-    ...pickBy(defaultData),
-  }));
+  const [name, setName] = useState(defaultData.name)
+  const [latitude, setLatitude] = useState(defaultData.eT.lat)
+  const [longitude, setLongitude] = useState(defaultData.eT.lon)
+  const [progress, setProgress] = useState(defaultData.eT.progress)
+  const [validName, setValidName] = useState(true)
+  const [validLat, setValidLat] = useState(true)
+  const [validLon, setValidLon] = useState(true)
 
-  const cleanData = useMemo(
-    () => ({
-      ...data,
-      name: data.name.trim(),
-    }),
-    [data],
-  );
+  const handleInputName = (e, {value}) => {
+    let name_ = value.trim()
+    if(name_ === '') {
+      setValidName(false)
+    }
+    else {
+      setValidName(true)
+    }
+    setName(name_)
+  }
 
-  const nameField = useRef(null);
+  const handleInputLatitude = (e, {value}) => {
+    // Remove non-numeric characters using regex
+    let numericValue = value.replace(/[^-\d.]/g, '')
 
-  const handleSubmit = useCallback(() => {
-    if (!cleanData.name) {
-      nameField.current.select();
-      return;
+    // nan number
+    if(isNaN(numericValue*1.0)) {
+      setValidLat(false)
+    }
+    else {
+      setValidLat(true)
     }
 
+    // update value
+    setLatitude(numericValue);
+  }
+
+  const handleInputLongitude = (e, {value}) => {
+    // Remove non-numeric characters using regex
+    let numericValue = value.replace(/[^-\d.]/g, '')
+
+    // nan number
+    if(isNaN(numericValue*1.0)) {
+      setValidLon(false)
+    }
+    else {
+      setValidLon(true)
+    }
+
+    // update value
+    setLongitude(numericValue);
+  }
+
+  const handleInputProgress = (e, {value}) => {
+    // Remove non-numeric characters using regex
+    let numericValue = value.replace(/[^\d.]/g, '')
+
+    // Ensure the value is within the desired range (1 to 100 in this example)
+    if (numericValue <= 100.0) {
+      setProgress(numericValue);
+    }
+  }
+
+  const handleSubmit = () => {
+    const cleanData = {
+      name: name,
+      eT: {
+        lat: latitude * 1.0,
+        lon: longitude * 1.0,
+        progress: progress * 1.0
+      }
+    }
     onUpdate(cleanData);
-  }, [onUpdate, cleanData]);
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
       <div className={styles.text}>{t('common.title')}</div>
       <Input
         fluid
-        ref={nameField}
         name="name"
-        value={data.name}
+        value={name}
         className={styles.field}
-        onChange={handleFieldChange}
+        onChange={handleInputName}
       />
-      <Button positive disabled={dequal(cleanData, defaultData)} content={t('action.save')} />
+      <div className={styles.divContainer}>
+        <div className={styles.divGroup}>
+          <div className={styles.text}>{t('common.latitude')}</div>
+          <Input
+            fluid
+            size='small'
+            value={latitude}
+            onChange={handleInputLatitude}
+          />
+        </div>
+        <div className={classNames(styles.divGroup, styles.divGroupColumn)}>
+          <div className={styles.text}>{t('common.longitude')}</div>
+          <Input
+            fluid
+            size='small'
+            value={longitude}
+            onChange={handleInputLongitude}
+          />
+        </div>
+      </div>
+      <div className={styles.divContainer}>
+        <div className={classNames(styles.divGroup)}>
+          <div className={styles.text}>{t('common.projectProgress')}</div>
+          <Input
+            fluid
+            size='small'
+            value={progress}
+            onChange={handleInputProgress}
+          />
+        </div>
+      </div>
+      <Button positive className={styles.buttonSubmit}
+              disabled={!(validName && validLat && validLon)}
+              // disabled={dequal(cleanData, defaultData)}
+              content={t('action.save')}/>
     </Form>
   );
 });

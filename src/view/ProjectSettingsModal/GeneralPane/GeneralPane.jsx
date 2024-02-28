@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { Button, Divider, Header, Tab } from 'semantic-ui-react';
-import { usePopup } from '../../../lib/use-popup';
+import {useTranslation} from 'react-i18next';
+import {Button, Divider, Header, Tab} from 'semantic-ui-react';
+import {usePopup} from '../../../lib/use-popup';
 
 import InformationEdit from './InformationEdit';
 import DeleteStep from '../../DeleteStep';
 
 import styles from './GeneralPane.module.scss';
 
-const GeneralPane = React.memo(({ name, onUpdate, onDelete }) => {
+const GeneralPane = React.memo(({name, eT, onUpdate, onDelete}) => {
   const [t] = useTranslation();
 
   const DeletePopup = usePopup(DeleteStep);
@@ -19,6 +19,7 @@ const GeneralPane = React.memo(({ name, onUpdate, onDelete }) => {
       <InformationEdit
         defaultData={{
           name,
+          eT,
         }}
         onUpdate={onUpdate}
       />
@@ -49,6 +50,7 @@ const GeneralPane = React.memo(({ name, onUpdate, onDelete }) => {
 
 GeneralPane.propTypes = {
   name: PropTypes.string.isRequired,
+  eT: PropTypes.object.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

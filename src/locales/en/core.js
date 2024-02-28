@@ -172,7 +172,11 @@ export default {
       showInTheGanttChart: 'Show in the Gantt chart',
       setGanttProgress: 'Set progress in % (0 - 100)',
       backToBoard: 'Back to board',
-      report: 'Report'
+      report: 'Report',
+      latitude: 'Latitude',
+      longitude: 'Longitude',
+      projectProgress: 'Project progress in %',
+      open: 'Open'
     },
 
     action: {

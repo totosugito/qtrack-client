@@ -6,13 +6,12 @@ import {ReduxRouter} from './lib/redux-router';
 import {
   Error404,
   UiLogin,
-  UiHome,
-  UiHomeMap,
   UiProjectList,
   UiProjectOpen,
   UiProjectBoard,
   UiBoardGantt,
-  UiBoardReport
+  UiBoardReport,
+  UiProjectMap,
 } from "./page";
 import Paths from "./constants/Paths";
 import 'semantic-ui-css/semantic.min.css'
@@ -24,7 +23,7 @@ function Root({store, history}) {
         <Routes>
           <Route path={Paths.LOGIN} element={<UiLogin/>}/>
           <Route path={Paths.ROOT} element={<UiProjectList/>}/>
-          <Route path={Paths.HOME_MAP} element={<UiHomeMap/>}/>
+          <Route path={Paths.PROJECT_MAP} element={<UiProjectMap/>}/>
           <Route path={Paths.PROJECTS_LIST} element={<UiProjectList/>}/>
           <Route path={Paths.PROJECTS} element={<UiProjectOpen/>}/>
           <Route path={Paths.BOARDS} element={<UiProjectBoard/>}/>

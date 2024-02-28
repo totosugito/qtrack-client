@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import {Button, Modal, Tab} from 'semantic-ui-react';
 
 import ManagersPane from './ManagersPane';
@@ -15,19 +15,20 @@ import classNames from "classnames";
 
 const ProjectSettingsModal = React.memo(
   ({
-    name,
-    background,
-    backgroundImage,
-    isBackgroundImageUpdating,
-    managers,
-    allUsers,
-    onUpdate,
-    onBackgroundImageUpdate,
-    onDelete,
-    onManagerCreate,
-    onManagerDelete,
-    onClose,
-  }) => {
+     name,
+     eT,
+     background,
+     backgroundImage,
+     isBackgroundImageUpdating,
+     managers,
+     allUsers,
+     onUpdate,
+     onBackgroundImageUpdate,
+     onDelete,
+     onManagerCreate,
+     onManagerDelete,
+     onClose,
+   }) => {
     const [t] = useTranslation();
 
     const handleBackgroundUpdate = useCallback(
@@ -50,7 +51,7 @@ const ProjectSettingsModal = React.memo(
         menuItem: t('common.general', {
           context: 'title',
         }),
-        render: () => <GeneralPane name={name} onUpdate={onUpdate} onDelete={onDelete} />,
+        render: () => <GeneralPane name={name} eT={eT} onUpdate={onUpdate} onDelete={onDelete}/>,
       },
       {
         menuItem: t('common.managers', {
@@ -83,7 +84,8 @@ const ProjectSettingsModal = React.memo(
     ];
 
     return (
-      <Modal open closeIcon={{ style: { top: '0.5rem', right: '0.5rem' }, color: 'black', name: 'close' }} size="small" centered={false} onClose={onClose} className={classNames(styles.dialog)}>
+      <Modal open closeIcon={{style: {top: '0.5rem', right: '0.5rem'}, color: 'black', name: 'close'}} size="small"
+             centered={false} onClose={onClose} className={classNames(styles.dialog)}>
         <Modal.Content>
           <Tab
             menu={{
@@ -100,6 +102,7 @@ const ProjectSettingsModal = React.memo(
 
 ProjectSettingsModal.propTypes = {
   name: PropTypes.string.isRequired,
+  eT: PropTypes.object.isRequired,
   /* eslint-disable react/forbid-prop-types */
   background: PropTypes.object,
   backgroundImage: PropTypes.object,
@@ -123,34 +126,35 @@ ProjectSettingsModal.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-    const users = selectors.selectUsers(state);
+  const users = selectors.selectUsers(state);
 
-    const { name, background, backgroundImage, isBackgroundImageUpdating } =
-        selectors.selectCurrentProject(state);
+  const {name, eT, background, backgroundImage, isBackgroundImageUpdating} =
+    selectors.selectCurrentProject(state);
 
-    const managers = selectors.selectManagersForCurrentProject(state);
+  const managers = selectors.selectManagersForCurrentProject(state);
 
-    return {
-        name,
-        background,
-        backgroundImage,
-        isBackgroundImageUpdating,
-        managers,
-        allUsers: users,
-    };
+  return {
+    name,
+    eT,
+    background,
+    backgroundImage,
+    isBackgroundImageUpdating,
+    managers,
+    allUsers: users,
+  };
 };
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            onUpdate: entryActions.updateCurrentProject,
-            onBackgroundImageUpdate: entryActions.updateCurrentProjectBackgroundImage,
-            onDelete: entryActions.deleteCurrentProject,
-            onManagerCreate: entryActions.createManagerInCurrentProject,
-            onManagerDelete: entryActions.deleteProjectManager,
-            onClose: entryActions.closeModal,
-        },
-        dispatch,
-    );
+  bindActionCreators(
+    {
+      onUpdate: entryActions.updateCurrentProject,
+      onBackgroundImageUpdate: entryActions.updateCurrentProjectBackgroundImage,
+      onDelete: entryActions.deleteCurrentProject,
+      onManagerCreate: entryActions.createManagerInCurrentProject,
+      onManagerDelete: entryActions.deleteProjectManager,
+      onClose: entryActions.closeModal,
+    },
+    dispatch,
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectSettingsModal);
