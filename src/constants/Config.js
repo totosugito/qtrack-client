@@ -3,9 +3,7 @@ const VERSION = process.env.REACT_APP_VERSION;
 const { BASE_URL } = window;
 const BASE_PATH = BASE_URL.replace(/^.*\/\/[^/]*(.*)[^?#]*.*$/, '$1');
 
-const SERVER_BASE_URL =
-  process.env.REACT_APP_SERVER_BASE_URL ||
-  (process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SERVER_BASE_URL : process.env.REACT_APP_SERVER_BASE_URL);
+const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL ? process.env.REACT_APP_SERVER_BASE_URL : process.env.REACT_APP_SERVER_BASE_URL_DEVEL
 
 const SERVER_HOST_NAME = SERVER_BASE_URL.replace(/^(.*\/\/[^/?#]*).*$/, '$1');
 
