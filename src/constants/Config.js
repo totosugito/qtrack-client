@@ -17,7 +17,6 @@ const POSITION_GAP = 65535;
 const ACTIVITIES_LIMIT = 50;
 
 const SHOW_DEBUG_API = true
-const USE_WEB_ORI = true
 
 export default {
   VERSION,
@@ -30,5 +29,4 @@ export default {
   POSITION_GAP,
   ACTIVITIES_LIMIT,
   SHOW_DEBUG_API,
-  USE_WEB_ORI
 };

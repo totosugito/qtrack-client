@@ -176,7 +176,11 @@ export default {
       latitude: 'Latitude',
       longitude: 'Longitude',
       projectProgress: 'Project progress in %',
-      open: 'Open'
+      open: 'Open',
+      costAction: 'Cost',
+      costEnable: 'Enable cost',
+      costBudget: 'Budget',
+      costExpense: "Expense"
     },
 
     action: {

@@ -41,7 +41,7 @@ const GanttCardLabelStep = React.memo(({defaultValue, onUpdate, onBack, onClose}
       <Popup.Content>
         <Form onSubmit={handleSubmit}>
           <div className={styles.divGroup}>
-              <span onClick={handleToggleChange}>
+              <span>
                       {t('common.setGanttProgress')}
               </span>
             <Input

@@ -37,10 +37,13 @@ import stylesDialog from '../../../view/index.module.scss';
 import stylesView from '../../../view/index.module.scss'
 import GanttCardLabel from "../../../view/GanttCardLabel";
 import GanttCardLabelStep from "../../../view/GanttCardLabelStep";
+import CostStep from "./CostStep";
+import CostLabel from "./CostLabel";
 
 const CardModal = React.memo(
   ({
      gantt,
+     cost,
      name,
      description,
      startDate,
@@ -178,6 +181,15 @@ const CardModal = React.memo(
       },
       [onUpdate],
     );
+    const handleCostUpdate = useCallback(
+      (newCost) => {
+        onUpdate({
+          cost: newCost
+        })
+      },
+      [onUpdate],
+    )
+
     const GanttPopup = usePopup(GanttCardLabelStep)
     const AttachmentAddPopup = usePopup(AttachmentAddStep);
     const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
@@ -186,6 +198,7 @@ const CardModal = React.memo(
     const StopwatchEditPopup = usePopup(StopwatchEditStep);
     const CardMovePopup = usePopup(CardMoveStep);
     const DeletePopup = usePopup(DeleteStep);
+    const CostPopup = usePopup(CostStep)
 
     const userIds = users.map((user) => user.id);
     const labelIds = labels.map((label) => label.id);
@@ -254,7 +267,7 @@ const CardModal = React.memo(
                 {labels.length > 0 && (
                   <div className={styles.attachments}>
                     <div className={styles.text}>
-                    {t('common.labels', {
+                      {t('common.labels', {
                         context: 'title',
                       })}
                     </div>
@@ -304,11 +317,11 @@ const CardModal = React.memo(
                 {gantt.isEnable && (
                   <div className={styles.attachments}>
                     {canEdit ? (
-                    <GanttPopup defaultValue={gantt} onUpdate={handleGanttUpdate}>
-                      <GanttCardLabel gantt={gantt}/>
-                    </GanttPopup>) : (
+                      <GanttPopup defaultValue={gantt} onUpdate={handleGanttUpdate}>
                         <GanttCardLabel gantt={gantt}/>
-                      )}
+                      </GanttPopup>) : (
+                      <GanttCardLabel gantt={gantt}/>
+                    )}
                   </div>
                 )}
                 {(startDate && dueDate) && (
@@ -408,6 +421,9 @@ const CardModal = React.memo(
                 </div>
               </div>
             )}
+
+            { cost.isEnable && <CostLabel cost={cost} /> }
+
             {attachments.length > 0 && (
               <div className={styles.contentModule}>
                 <div className={styles.moduleWrapper}>
@@ -470,7 +486,8 @@ const CardModal = React.memo(
                     {t('common.labels')}
                   </Button>
                 </LabelsPopup>
-                <DueDateEditPopup startDate={startDate} dueDate={dueDate} onUpdate={handleDueDateUpdate}>
+                <DueDateEditPopup startDate={startDate} dueDate={dueDate}
+                                  onUpdate={handleDueDateUpdate}>
                   <Button fluid className={styles.actionButton}>
                     <Icon name="calendar check outline" className={styles.actionIcon}/>
                     {t('common.dateRange', {
@@ -496,6 +513,13 @@ const CardModal = React.memo(
                     {t('common.gantt')} {gantt.isEnable ? ("( " + gantt.progress + "% )") : ""}
                   </Button>
                 </GanttPopup>
+
+                <CostPopup defaultValue={cost} onUpdate={handleCostUpdate}>
+                  <Button fluid className={styles.actionButton}>
+                    <Icon name="credit card outline" className={styles.actionIcon}/>
+                    {t('common.costAction')}
+                  </Button>
+                </CostPopup>
               </div>
               <div className={styles.actions}>
                 <span className={styles.actionsTitle}>{t('common.actions')}</span>
@@ -546,7 +570,8 @@ const CardModal = React.memo(
     );
 
     return (
-      <Modal open closeIcon={{style: {top: '0.5rem', right: '0.5rem'}, color: 'black', name: 'close'}} centered={false}
+      <Modal open closeIcon={{style: {top: '0.5rem', right: '0.5rem'}, color: 'black', name: 'close'}}
+             centered={false}
              onClose={handleClose} className={classNames(stylesDialog.dialog)}>
         {canEdit ? (
           <div>{contentNode}</div>
@@ -560,6 +585,7 @@ const CardModal = React.memo(
 
 CardModal.propTypes = {
   gantt: PropTypes.object.isRequired,
+  cost: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   startDate: PropTypes.instanceOf(Date),
@@ -631,6 +657,7 @@ const mapStateToProps = (state) => {
 
   const {
     gantt,
+    cost,
     name,
     description,
     startDate,
@@ -660,6 +687,7 @@ const mapStateToProps = (state) => {
 
   return {
     gantt,
+    cost,
     name,
     description,
     startDate,

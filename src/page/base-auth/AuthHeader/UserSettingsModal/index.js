@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import UserSettingsModal from "./UserSettingsModal";
 
 const mapStateToProps = (state) => {
-    const {
+    let {
         email,
         name,
         username,
@@ -20,6 +20,9 @@ const mapStateToProps = (state) => {
         passwordUpdateForm,
         usernameUpdateForm,
     } = selectors.selectCurrentUser(state);
+
+    if(subscribeToOwnCards===undefined)
+      subscribeToOwnCards = false
 
     return {
         email,
