@@ -39,7 +39,7 @@ const LoginForm = (props) => {
     return (
         <>
             <Grid item>
-                <Card sx={styles.authCard}>
+                <div sx={styles.authCard}>
                     <Box sx={{p: {xs: 2, sm: 3, md: 4, xl: 5}}}>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
@@ -94,7 +94,7 @@ const LoginForm = (props) => {
                             </Grid>
                         </Grid>
                     </Box>
-                </Card>
+                </div>
             </Grid>
         </>
     )
