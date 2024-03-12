@@ -4,4 +4,5 @@ import { CalendarPicker, RangePicker } from './react-minimal-datetime-range-2.1.
 import Input from './Input';
 import Popup from './Popup';
 import FilePicker from './FilePicker';
-export { QuillEditor, QuillViewer, CalendarPicker, RangePicker, Input, Popup, FilePicker };
+import ChipInput from "./Input/ChipInput";
+export { QuillEditor, QuillViewer, CalendarPicker, RangePicker, Input, Popup, FilePicker, ChipInput };

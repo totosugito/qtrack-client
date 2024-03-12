@@ -9,7 +9,7 @@ import DeleteStep from '../../DeleteStep';
 
 import styles from './GeneralPane.module.scss';
 
-const GeneralPane = React.memo(({name, eT, onUpdate, onDelete}) => {
+const GeneralPane = React.memo(({name, eT, tags, onUpdate, onDelete}) => {
   const [t] = useTranslation();
 
   const DeletePopup = usePopup(DeleteStep);
@@ -20,6 +20,7 @@ const GeneralPane = React.memo(({name, eT, onUpdate, onDelete}) => {
         defaultData={{
           name,
           eT,
+          tags
         }}
         onUpdate={onUpdate}
       />
@@ -51,6 +52,7 @@ const GeneralPane = React.memo(({name, eT, onUpdate, onDelete}) => {
 GeneralPane.propTypes = {
   name: PropTypes.string.isRequired,
   eT: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

@@ -17,6 +17,7 @@ const ProjectSettingsModal = React.memo(
   ({
      name,
      eT,
+     tags,
      background,
      backgroundImage,
      isBackgroundImageUpdating,
@@ -51,7 +52,7 @@ const ProjectSettingsModal = React.memo(
         menuItem: t('common.general', {
           context: 'title',
         }),
-        render: () => <GeneralPane name={name} eT={eT} onUpdate={onUpdate} onDelete={onDelete}/>,
+        render: () => <GeneralPane name={name} eT={eT} tags={tags} onUpdate={onUpdate} onDelete={onDelete}/>,
       },
       {
         menuItem: t('common.managers', {
@@ -103,6 +104,7 @@ const ProjectSettingsModal = React.memo(
 ProjectSettingsModal.propTypes = {
   name: PropTypes.string.isRequired,
   eT: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
   /* eslint-disable react/forbid-prop-types */
   background: PropTypes.object,
   backgroundImage: PropTypes.object,
@@ -128,7 +130,7 @@ ProjectSettingsModal.defaultProps = {
 const mapStateToProps = (state) => {
   const users = selectors.selectUsers(state);
 
-  const {name, eT, background, backgroundImage, isBackgroundImageUpdating} =
+  const {name, eT, tags, background, backgroundImage, isBackgroundImageUpdating} =
     selectors.selectCurrentProject(state);
 
   const managers = selectors.selectManagersForCurrentProject(state);
@@ -136,6 +138,7 @@ const mapStateToProps = (state) => {
   return {
     name,
     eT,
+    tags,
     background,
     backgroundImage,
     isBackgroundImageUpdating,

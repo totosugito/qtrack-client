@@ -183,6 +183,7 @@ export default {
       costExpense: "Expense",
       cardMode: 'Card Mode',
       importExcelFile: 'Import Excel File',
+      tags: 'Project tags',
     },
 
     action: {
