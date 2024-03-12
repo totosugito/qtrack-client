@@ -39,6 +39,7 @@ import GanttCardLabel from "../../../view/GanttCardLabel";
 import GanttCardLabelStep from "../../../view/GanttCardLabelStep";
 import CostStep from "./CostStep";
 import CostLabel from "./CostLabel";
+import CardModeStep from "./CardModeStep";
 
 const CardModal = React.memo(
   ({
@@ -190,6 +191,11 @@ const CardModal = React.memo(
       [onUpdate],
     )
 
+    const handleCardModeUpdate = (newData, file) => {
+      onUpdate(newData)
+      onAttachmentCreate({file});
+    }
+
     const GanttPopup = usePopup(GanttCardLabelStep)
     const AttachmentAddPopup = usePopup(AttachmentAddStep);
     const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
@@ -199,6 +205,7 @@ const CardModal = React.memo(
     const CardMovePopup = usePopup(CardMoveStep);
     const DeletePopup = usePopup(DeleteStep);
     const CostPopup = usePopup(CostStep)
+    const CardModePopup = usePopup(CardModeStep)
 
     const userIds = users.map((user) => user.id);
     const labelIds = labels.map((label) => label.id);
@@ -422,7 +429,7 @@ const CardModal = React.memo(
               </div>
             )}
 
-            { cost.isEnable && <CostLabel cost={cost} /> }
+            {cost.isEnable && <CostLabel cost={cost}/>}
 
             {attachments.length > 0 && (
               <div className={styles.contentModule}>
@@ -458,6 +465,15 @@ const CardModal = React.memo(
           </Grid.Column>
           {canEdit && (
             <Grid.Column width={4} className={styles.sidebarPadding}>
+              <div className={styles.actions}>
+                <span className={styles.actionsTitle}>{t('action.cardMode')}</span>
+                <CardModePopup onUpdate={handleCardModeUpdate}>
+                  <Button fluid className={styles.actionButton}>
+                    <Icon name="clone outline" className={styles.actionIcon}/>
+                    {t('action.cardMode')}
+                  </Button>
+                </CardModePopup>
+              </div>
               <div className={styles.actions}>
                 <span className={styles.actionsTitle}>{t('action.addToCard')}</span>
                 <BoardMembershipsPopup

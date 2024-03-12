@@ -22,7 +22,7 @@ const CostLabel = React.memo(({ cost }) => {
                             color="green"
                             size="medium"
                             className={styles.progress}
-                            label={cost.expense + " / " + cost.budget}
+                            label={cost.expense.toFixed(0) + " / " + cost.budget.toFixed(0)}
                         />
                     ) : (
                         <Progress

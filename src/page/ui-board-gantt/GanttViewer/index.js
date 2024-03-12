@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import {
   Edit,
   Filter,
@@ -24,7 +24,7 @@ import '@syncfusion/ej2-grids/styles/material.css';
 import '@syncfusion/ej2-treegrid/styles/material.css';
 import '@syncfusion/ej2-react-gantt/styles/material.css';
 import {registerLicense} from "@syncfusion/ej2-base";
-// import {read, utils} from "xlsx";
+import {read, utils} from "xlsx";
 import styles from "./index.module.scss";
 import stylesView from "../../../view/index.module.scss";
 import classNames from "classnames";
@@ -36,12 +36,13 @@ import PropTypes from "prop-types";
 import selectors from "../../../redux/selectors";
 import {Link} from "react-router-dom";
 import Paths from "../../../constants/Paths";
+import {LTT} from "../../../lib/external";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NHaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZiWH1ZcHdQRWJZWE12Xg==");
 const GanttViewer = React.memo(({boardId, gantt}) => {
   const [t] = useTranslation();
   let ganttChart;
-  // const [gantt, setGantt] = useState([])
+  const [gantt1, setGantt1] = useState([])
   const ganttRef = useRef(null);
 
   const toolbarClick = (args) => {
@@ -60,28 +61,28 @@ const GanttViewer = React.memo(({boardId, gantt}) => {
     }
   }
 
-  // const handleImport = ($event) => {
-  //   const files = $event.target.files;
-  //   if (files.length) {
-  //     const file = files[0];
-  //     const reader = new FileReader();
-  //     reader.onload = (event) => {
-  //       const wb = read(event.target.result);
-  //       const sheets = wb.SheetNames;
-  //
-  //       if (sheets.length) {
-  //         const rows = utils.sheet_to_json(wb.Sheets[sheets[0]]);
-  //         let ltt = new LTT(rows, {
-  //           key_id: 'TaskID',
-  //           key_parent: 'ParentID',
-  //         });
-  //         let tree = ltt.GetTree();
-  //         setGantt(tree);
-  //       }
-  //     }
-  //     reader.readAsArrayBuffer(file);
-  //   }
-  // }
+  const handleImport = ($event) => {
+    const files = $event.target.files;
+    if (files.length) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const wb = read(event.target.result);
+        const sheets = wb.SheetNames;
+
+        if (sheets.length) {
+          const rows = utils.sheet_to_json(wb.Sheets[sheets[0]]);
+          let ltt = new LTT(rows, {
+            key_id: 'TaskID',
+            key_parent: 'ParentID',
+          });
+          let tree = ltt.GetTree();
+          setGantt1(tree);
+        }
+      }
+      reader.readAsArrayBuffer(file);
+    }
+  }
 
   const timelineSettings = {
     timelineUnitSize: 100,
@@ -91,13 +92,6 @@ const GanttViewer = React.memo(({boardId, gantt}) => {
     <div>
       <div className={stylesView.toolbarBoardContainer}>
         <div className={stylesView.toolbarItemContainer}>
-          {/*<div className={stylesView.toolbarItemSmall}>*/}
-          {/*  <div className={classNames(stylesView.toolbarButton)}>*/}
-          {/*    <input id="files" type="file" name="file" className="custom-file-input"*/}
-          {/*           required onChange={handleImport}*/}
-          {/*           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
 
           <div className={stylesView.toolbarItemSmall}>
             <div className={classNames(stylesView.toolbarButton)}>
@@ -109,6 +103,14 @@ const GanttViewer = React.memo(({boardId, gantt}) => {
               </Link>
             </div>
           </div>
+
+          {/*<div className={stylesView.toolbarItemSmall}>*/}
+          {/*  <div className={classNames(stylesView.toolbarButton)}>*/}
+          {/*    <input id="files" type="file" name="file" className="custom-file-input"*/}
+          {/*           required onChange={handleImport}*/}
+          {/*           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
 
           <div className={stylesView.toolbarItemSmall}>
             <div className={classNames(stylesView.toolbarButton)}

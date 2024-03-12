@@ -180,7 +180,9 @@ export default {
       costAction: 'Cost',
       costEnable: 'Enable cost',
       costBudget: 'Budget',
-      costExpense: "Expense"
+      costExpense: "Expense",
+      cardMode: 'Card Mode',
+      importExcelFile: 'Import Excel File',
     },
 
     action: {
@@ -255,6 +257,7 @@ export default {
       uploadNewImage: 'Upload new image',
       cancel: 'Cancel',
       ganttEdit: 'Edit Gantt',
+      cardMode: 'Card Mode'
     },
 
     custom: {
