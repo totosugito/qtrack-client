@@ -78,7 +78,6 @@ const InformationEdit = React.memo(({defaultData, onUpdate}) => {
       },
       tags: tags
     }
-    console.log(cleanData)
     onUpdate(cleanData);
   }
 

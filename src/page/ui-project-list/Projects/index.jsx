@@ -1,6 +1,6 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Trans, useTranslation} from 'react-i18next';
@@ -18,15 +18,42 @@ import {connect, useSelector} from "react-redux";
 import ModalTypes from "../../../constants/ModalTypes";
 import UsersModal from "../../../view/UsersModal";
 import ProjectAddModal from "../ProjectAddModal";
+import TagsLabel from "../../../view/TagsLabel";
+import {ChipInput} from "../../../lib";
 
 const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
   const [t] = useTranslation();
   const currentModal = useSelector((state) => selectors.selectCurrentModal(state))
   const users = useSelector((state) => selectors.selectUsers(state))
 
+  const [projects, setProjects] = useState(items)
+  const [tags, setTags] = useState([])
+
+  const handleTags = (newTags) => {
+    setTags(newTags)
+    let projects_ = []
+    for(let i=0; i<items.length; i++) {
+      let isAdded = true
+      let selected = items[i]
+      for(let j=0; j<newTags.length; j++) {
+        isAdded = false
+        if (selected['tags'].includes(newTags[j])) {
+          isAdded = true
+          break
+        }
+      }
+
+      if(isAdded) {
+        projects_.push(selected)
+      }
+    }
+    setProjects(projects_)
+  }
+
   return (
     <div>
-      <div style={{marginTop: '5px', marginLeft: '12px'}}>
+      <div style={{marginTop: '5px', marginLeft: '12px', alignItems: 'center', alignContent: 'center'}}>
+        <div style={{display: 'inline'}}>
         <Button size='small' basic color={canAdd ? 'blue' : 'grey'} disabled={!canAdd} onClick={onUsersClick}>
           <Icon name='user outline'/>
           <Trans
@@ -36,10 +63,14 @@ const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
             }}
           />
         </Button>
+        </div>
+        <div className={styles.searchContainer}>
+            <ChipInput value={tags} onChange={(v) => handleTags(v)} label={t('common.filterByTags')}/>
+        </div>
       </div>
 
       <Grid className={styles.gridFix}>
-        {items.map((item) => (
+        {projects.map((item) => (
           <Grid.Column key={item.id} mobile={8} computer={4}>
             <Link
               to={
@@ -67,7 +98,10 @@ const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
                   <span className={styles.notification}>{item.notificationsTotal}</span>
                 )}
                 <div className={styles.cardOverlay}/>
-                <div className={styles.openTitle}>{item.name}</div>
+                <div className={styles.openTitle}>
+                  {item.name}
+                  <TagsLabel tags={item.tags}/>
+                </div>
               </div>
             </Link>
           </Grid.Column>

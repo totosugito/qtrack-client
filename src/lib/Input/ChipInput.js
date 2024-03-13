@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import styles from './ChipInput.module.scss'
-import {Icon} from "semantic-ui-react";
-const ChipInput = ({value, onChange}) => {
+import {Icon, Input} from "semantic-ui-react";
+
+const ChipInput = ({label, value, onChange}) => {
   const [text, setText] = useState("");
   const [chips, setChips] = useState(value);
   const [validationError, setValidationError] = useState("");
@@ -10,7 +11,7 @@ const ChipInput = ({value, onChange}) => {
     // filtering out the chip that the user wants to remove
     const updatedChips = chips.filter((chip) => chip !== chipToRemove);
     setChips(updatedChips);
-    onChange(chips)
+    onChange(updatedChips)
   }
 
   function handlePressEnter(e) {
@@ -23,10 +24,13 @@ const ChipInput = ({value, onChange}) => {
       return setValidationError("Cannot add the same input more than once");
     }
 
-    onChange((prevState) => [...prevState, e.target.value])
-
     // adding the input value to chips array
     setChips((prevState) => [...prevState, e.target.value]);
+
+    let tmp = [...chips]
+    tmp.push(text)
+    onChange(tmp)
+
     // clearing the input box
     setText("");
     // clearing error message
@@ -35,7 +39,10 @@ const ChipInput = ({value, onChange}) => {
 
 
   return (
-    <div>
+    <div className={styles.chipRoot}>
+      {
+        label && (<span style={{marginRight: '10px'}}>{label}</span>)
+      }
       <div className={styles.inputChipContainer}>
         <ul className={styles.chips}>
           {chips.map((chip) => (
@@ -47,16 +54,10 @@ const ChipInput = ({value, onChange}) => {
             </li>
           ))}
         </ul>
-        <span style={{display: 'inline'}}>
-        <input
-          style={{border: "none"}}
-          type="text"
-          placeholder="Press Enter to add tag"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={handlePressEnter}
-        />
-          </span>
+
+        <Input size={'mini'} transparent={true} value={text} placeholder="Press Enter to add tag"
+               className={styles.inputChip}
+               onKeyDown={handlePressEnter} onChange={(e) => setText(e.target.value)}/>
       </div>
       {validationError && <p className={styles.errorMessage}>{validationError}</p>}
     </div>
