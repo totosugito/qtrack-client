@@ -41,7 +41,7 @@ const ChipInput = ({label, value, onChange}) => {
   return (
     <div className={styles.chipRoot}>
       {
-        label && (<span style={{marginRight: '10px'}}>{label}</span>)
+        label && (<span style={{marginRight: '10px', paddingTop: '10px'}}>{label}</span>)
       }
       <div className={styles.inputChipContainer}>
         <ul className={styles.chips}>

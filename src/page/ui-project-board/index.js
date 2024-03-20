@@ -1,18 +1,16 @@
 import selectors from "../../redux/selectors";
-import {useTheme} from "@mui/material";
 import BaseProject from "../base-project";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import styles from "../ui-project-open/index.module.scss"
 import classNames from "classnames";
 import {Icon, Loader} from "semantic-ui-react";
-import Project from "../../view/Project";
 import React from "react";
 import BoardActions from "./BoardActions";
 import Board from "./Board";
+import BoardToolbar from "../../view/BoardToolbar";
 
 function UiProjectBoard({projectId, board}) {
-  const theme = useTheme();
   const [t] = useTranslation();
 
   if (board === null) {
@@ -20,7 +18,7 @@ function UiProjectBoard({projectId, board}) {
       <>
         <BaseProject>
           <div className={classNames(styles.wrapper, styles.wrapperFlex)}>
-            <div className={styles.message} style={{color: theme.palette.text.secondary}}>
+            <div className={styles.message}>
               <Icon name='unlink' size='huge'/>
               <h1>
                 {t('common.boardNotFound', {
@@ -49,7 +47,7 @@ function UiProjectBoard({projectId, board}) {
       <BaseProject>
         <div style={{height: '100%'}}>
           <div>
-            {projectId && <Project/>}
+            {projectId && <BoardToolbar/>}
             {board && !board.isFetching && <BoardActions/>}
           </div>
           <div className={classNames(styles.wrapper, styles.wrapperFlex, styles.wrapperBoard)}>

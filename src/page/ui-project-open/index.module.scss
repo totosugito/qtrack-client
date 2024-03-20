@@ -1,4 +1,5 @@
 :global(#app) {
+  @import "../../assets/theme/theme";
   .wrapper {
     height: 100%;
     //margin-top: -230px;
@@ -27,7 +28,7 @@
     margin-top: 50px;
     align-content: space-between;
     align-items: center;
-    color: #fff;
+    color: $textSecondaryColor;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;

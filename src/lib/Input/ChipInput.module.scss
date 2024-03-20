@@ -7,7 +7,6 @@
 }
 
 .inputChipContainer {
-  min-height: 33px;
   border-style: solid;
   display: inline-flex;
   flex-wrap: wrap;
@@ -36,6 +35,7 @@
 
 .inputChip {
   margin-bottom: 4px;
+  height: 25px;
 }
 
 .errorMessage {
@@ -49,7 +49,5 @@
 }
 
 .chipRoot {
-  display: inline;
   flex-wrap: wrap;
-  //position: absolute;
 }

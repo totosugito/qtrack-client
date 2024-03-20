@@ -20,6 +20,7 @@ import UsersModal from "../../../view/UsersModal";
 import ProjectAddModal from "../ProjectAddModal";
 import TagsLabel from "../../../view/TagsLabel";
 import {ChipInput} from "../../../lib";
+import stylesView from '../../../view/index.module.scss'
 
 const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
   const [t] = useTranslation();
@@ -52,9 +53,9 @@ const Projects = React.memo(({items, canAdd, onAdd, onUsersClick}) => {
 
   return (
     <div>
-      <div style={{marginTop: '5px', marginLeft: '12px', alignItems: 'center', alignContent: 'center'}}>
+      <div className={stylesView.mainContentStyle}>
         <div style={{display: 'inline'}}>
-        <Button size='small' basic color={canAdd ? 'blue' : 'grey'} disabled={!canAdd} onClick={onUsersClick}>
+        <Button size='small' basic color={'blue'} disabled={!canAdd} onClick={onUsersClick}>
           <Icon name='user outline'/>
           <Trans
             i18nKey="custom.membersCount"

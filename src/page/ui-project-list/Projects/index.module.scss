@@ -1,4 +1,5 @@
 :global(#app) {
+  @import "../../../assets/theme/theme";
   .add {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0 3px 6px, rgba(0, 0, 0, 0.1) 0 6px 12px;
@@ -56,7 +57,6 @@
   }
 
   .gridFix {
-    flex: 1 0 auto;
     margin: 0;
   }
 
@@ -66,7 +66,7 @@
     float: right;
     font-size: 12px;
     line-height: 20px;
-    padding: 0px 6px;
+    padding: 0 6px;
     border: none;
     border-radius: 3px;
     outline: none;
@@ -75,15 +75,15 @@
   }
 
   .open {
-    background: #555;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.1);
+    background: $projectCardBgColor;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
     color: #fff;
     position: relative;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
       box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &:hover {
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1), 0 32px 64px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
       transform: translate(0, -2px);
     }
   }
@@ -113,9 +113,7 @@
   }
 
   .searchContainer {
-    display: inline;
+    display: inline-flex;
     margin-left: 30px;
-    margin-bottom: 10px;
-    position: absolute;
   }
 }

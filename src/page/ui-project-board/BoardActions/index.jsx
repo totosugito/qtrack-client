@@ -18,6 +18,7 @@ import {useTranslation} from "react-i18next";
 
 const BoardActions = React.memo(
   ({
+    project,
      boardId,
      memberships,
      labels,
@@ -40,8 +41,12 @@ const BoardActions = React.memo(
    }) => {
     const [t] = useTranslation();
 
+    const hasBg = () => {
+      return (project && project.background)
+    }
+
     return (
-      <div className={stylesView.toolbarBoardContainer}>
+      <div className={classNames(stylesView.toolbarBoardContainer, hasBg() ? stylesView.appBarBoardActionHasBg : stylesView.appBarBoardActionNoBg)}>
         <div className={stylesView.toolbarItemContainer}>
           <div className={stylesView.toolbarItem}>
             <Memberships
@@ -96,7 +101,7 @@ const BoardActions = React.memo(
 );
 
 BoardActions.propTypes = {
-  /* eslint-disable react/forbid-prop-types */
+  project: PropTypes.object.isRequired,
   memberships: PropTypes.array.isRequired,
   labels: PropTypes.array.isRequired,
   filterUsers: PropTypes.array.isRequired,
@@ -127,11 +132,13 @@ const mapStateToProps = (state) => {
   const filterUsers = selectors.selectFilterUsersForCurrentBoard(state);
   const filterLabels = selectors.selectFilterLabelsForCurrentBoard(state);
   const currentUserMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
+  const currentProject = selectors.selectCurrentProject(state);
 
   const isCurrentUserEditor =
     !!currentUserMembership && currentUserMembership.role === BoardMembershipRoles.EDITOR;
 
   return {
+    project: currentProject,
     boardId,
     memberships,
     labels,

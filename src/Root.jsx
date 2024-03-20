@@ -15,7 +15,6 @@ import {
 } from "./page";
 import Paths from "./constants/Paths";
 import 'semantic-ui-css/semantic.min.css'
-
 function Root({store, history}) {
   return (
     <Provider store={store}>

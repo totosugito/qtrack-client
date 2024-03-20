@@ -4,20 +4,18 @@ import classNames from "classnames";
 import styles from "./index.module.scss";
 import React from "react";
 import {Trans, useTranslation} from "react-i18next";
-import Project from "../../view/Project";
-import {useTheme} from "@mui/material";
 import BaseProject from "../base-project";
 import {Icon} from "semantic-ui-react";
+import BoardToolbar from "../../view/BoardToolbar";
 
-function UiProjectOpen({currentProject, projectId, board}) {
-    const theme = useTheme();
+function UiProjectOpen({projectId, board}) {
     const [t] = useTranslation();
     if (projectId === null) {
         return (
             <>
                 <BaseProject>
                     <div className={classNames(styles.wrapper, styles.wrapperFlex)}>
-                        <div className={styles.message} style={{color: theme.palette.text.secondary}}>
+                        <div className={styles.message}>
                             <Icon name='unlink' size='huge'/>
                             <h1>
                                 {t('common.projectNotFound', {
@@ -37,12 +35,11 @@ function UiProjectOpen({currentProject, projectId, board}) {
                 <BaseProject>
                     <div style={{height: '100%'}}>
                         <div>
-                            {projectId && <Project/>}
+                            {projectId && <BoardToolbar/>}
                         </div>
 
                         <div className={classNames(styles.wrapper, styles.wrapperFlex)}>
-                            <div className={styles.message}
-                                 style={{color: currentProject.background ? theme.palette.background.default : theme.palette.text.secondary}}>
+                            <div className={styles.message}>
                                 <Icon name='hand point up outline' size='huge'/>
                                 <h1 className={styles.messageTitle}>
                                     {t('common.openBoard', {
@@ -67,12 +64,10 @@ function UiProjectOpen({currentProject, projectId, board}) {
 }
 
 const mapStateToProps = (state) => {
-    const currentProject = selectors.selectCurrentProject(state);
     const {projectId} = selectors.selectPath(state);
     const currentBoard = selectors.selectCurrentBoard(state);
 
     return {
-        currentProject,
         projectId,
         board: currentBoard,
     };

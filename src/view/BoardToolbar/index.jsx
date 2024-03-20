@@ -1,11 +1,11 @@
 import pick from 'lodash/pick';
-import React, { useCallback, useRef } from 'react';
+import React, {useCallback, useRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { Button } from 'semantic-ui-react';
-import { closePopup, usePopup } from '../../lib/use-popup';
+import {Link} from 'react-router-dom';
+import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
+import {Button} from 'semantic-ui-react';
+import {closePopup, usePopup} from '../../lib/use-popup';
 
 import Paths from '../../constants/Paths';
 import DroppableTypes from '../../constants/DroppableTypes';
@@ -17,11 +17,23 @@ import selectors from "../../redux/selectors";
 import {bindActionCreators} from "redux";
 import entryActions from "../../redux/entry-actions";
 import {connect} from "react-redux";
+import ProjectSettingsModal from "../ProjectSettingsModal";
+import ModalTypes from "../../constants/ModalTypes";
 
-const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMove, onDelete }) => {
+const BoardToolbar = React.memo(({
+                                   project,
+                                   items,
+                                   currentId,
+                                   canEdit,
+                                   onCreate,
+                                   onUpdate,
+                                   onMove,
+                                   onDelete,
+                                   isSettingsModalOpened
+                                 }) => {
   const tabsWrapper = useRef(null);
 
-  const handleWheel = useCallback(({ deltaY }) => {
+  const handleWheel = useCallback(({deltaY}) => {
     tabsWrapper.current.scrollBy({
       left: deltaY,
     });
@@ -32,7 +44,7 @@ const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMo
   }, []);
 
   const handleDragEnd = useCallback(
-    ({ draggableId, source, destination }) => {
+    ({draggableId, source, destination}) => {
       if (!destination || source.index === destination.index) {
         return;
       }
@@ -66,7 +78,7 @@ const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMo
       index={index}
       isDragDisabled={!item.isPersisted || !canEdit}
     >
-      {({ innerRef, draggableProps, dragHandleProps }) => (
+      {({innerRef, draggableProps, dragHandleProps}) => (
         // eslint-disable-next-line react/jsx-props-no-spreading
         <div {...draggableProps} ref={innerRef} className={styles.tabWrapper}>
           <div className={classNames(styles.tab, item.id === currentId && styles.tabActive)}>
@@ -104,31 +116,39 @@ const Boards = React.memo(({ items, currentId, canEdit, onCreate, onUpdate, onMo
     </Draggable>
   ));
 
+  const hasBg = () => {
+    return (project && project.background)
+  }
+
   return (
-    <div className={styles.wrapper} onWheel={handleWheel}>
-      <div ref={tabsWrapper} className={styles.tabsWrapper}>
-        <DragDropContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-          <Droppable droppableId="boards" type={DroppableTypes.BOARD} direction="horizontal">
-            {({ innerRef, droppableProps, placeholder }) => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <div {...droppableProps} ref={innerRef} className={styles.tabs}>
-                {itemsNode}
-                {placeholder}
-                {canEdit && (
-                  <AddPopup onCreate={onCreate}>
-                    <Button className={styles.addButton} icon='plus'/>
-                  </AddPopup>
-                )}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+    <div className={hasBg() ? styles.toolbarHasBg : styles.toolbarHasNoBg}>
+      <div className={styles.wrapper} onWheel={handleWheel}>
+        <div ref={tabsWrapper} className={styles.tabsWrapper}>
+          <DragDropContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+            <Droppable droppableId="boards" type={DroppableTypes.BOARD} direction="horizontal">
+              {({innerRef, droppableProps, placeholder}) => (
+                <div {...droppableProps} ref={innerRef} className={styles.tabs}>
+                  {itemsNode}
+                  {placeholder}
+                  {canEdit && (
+                    <AddPopup onCreate={onCreate}>
+                      <Button className={styles.addButton} icon='plus'/>
+                    </AddPopup>
+                  )}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
       </div>
+
+      {isSettingsModalOpened && <ProjectSettingsModal/>}
     </div>
   );
 });
 
-Boards.propTypes = {
+BoardToolbar.propTypes = {
+  project: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   currentId: PropTypes.string,
   canEdit: PropTypes.bool.isRequired,
@@ -136,34 +156,39 @@ Boards.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  isSettingsModalOpened: PropTypes.bool.isRequired,
 };
 
-Boards.defaultProps = {
+BoardToolbar.defaultProps = {
   currentId: undefined,
 };
 
 const mapStateToProps = (state) => {
-  const { boardId } = selectors.selectPath(state);
+  const {boardId} = selectors.selectPath(state);
   const boards = selectors.selectBoardsForCurrentProject(state);
   const isCurrentUserManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
+  const currentModal = selectors.selectCurrentModal(state);
+  const currentProject = selectors.selectCurrentProject(state);
 
   return {
+    project: currentProject,
     items: boards,
     currentId: boardId,
     canEdit: isCurrentUserManager,
+    isSettingsModalOpened: currentModal === ModalTypes.PROJECT_SETTINGS,
   };
 };
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-          onCreate: entryActions.createBoardInCurrentProject,
-          onUpdate: entryActions.updateBoard,
-          onMove: entryActions.moveBoard,
-          onDelete: entryActions.deleteBoard,
-        },
-        dispatch,
-    );
+  bindActionCreators(
+    {
+      onCreate: entryActions.createBoardInCurrentProject,
+      onUpdate: entryActions.updateBoard,
+      onMove: entryActions.moveBoard,
+      onDelete: entryActions.deleteBoard,
+    },
+    dispatch,
+  );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Boards);
+export default connect(mapStateToProps, mapDispatchToProps)(BoardToolbar);
 

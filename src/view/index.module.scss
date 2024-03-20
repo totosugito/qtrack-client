@@ -1,4 +1,6 @@
 :global(#app) {
+  @import "../assets/theme/theme";
+
   .dialog {
     margin-top: 72px;
     min-height: 350px;
@@ -21,11 +23,17 @@
     overflow-y: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    background: rgba(0, 0, 0, 0.2);
     padding: 5px 10px;
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .appBarBoardActionHasBg {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .appBarBoardActionNoBg {
+    background: rgba($appBarBgColor, 0.6);
   }
 
   .toolbarItemContainer {
@@ -56,5 +64,10 @@
   }
   .toolbarButtonTitle {
     margin-left: 5px;
+  }
+
+  .mainContentStyle {
+    margin-top: 5px;
+    margin-left: 8px;
   }
 }
