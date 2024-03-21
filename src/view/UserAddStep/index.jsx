@@ -1,4 +1,4 @@
-import isEmail from 'validator/lib/isEmail';
+import isEmail from '../../lib/external/validator-13.11.0/lib/isEmail';
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';

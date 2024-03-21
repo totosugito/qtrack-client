@@ -1,8 +1,9 @@
 import React, {useCallback} from "react";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
-import {RangePicker, Popup} from "../../lib";
-import "../../lib/react-minimal-datetime-range-2.1.0/react-minimal-datetime-range.css";
+import {Popup} from "../../lib";
+import {RangePicker} from "../../lib/external";
+import "../../lib/external/react-minimal-datetime-range-2.1.0/react-minimal-datetime-range.css";
 
 const DateTimeRangeStep = React.memo(({startDate, dueDate, onUpdate, onBack, onClose}) => {
   const [t] = useTranslation();

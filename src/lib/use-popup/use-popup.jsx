@@ -1,4 +1,3 @@
-import { ResizeObserver } from '@juggle/resize-observer';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Popup as SemanticUIPopup } from 'semantic-ui-react';
@@ -10,8 +9,6 @@ export default (Step, props) => {
       const [isOpened, setIsOpened] = useState(false);
 
       const wrapper = useRef(null);
-      const resizeObserver = useRef(null);
-
       const handleOpen = useCallback(() => {
         setIsOpened(true);
       }, []);
@@ -45,29 +42,6 @@ export default (Step, props) => {
         [children],
       );
 
-      const handleContentRef = useCallback((element) => {
-        if (resizeObserver.current) {
-          resizeObserver.current.disconnect();
-        }
-
-        if (!element) {
-          resizeObserver.current = null;
-          return;
-        }
-
-        resizeObserver.current = new ResizeObserver(() => {
-          if (resizeObserver.current.isInitial) {
-            resizeObserver.current.isInitial = false;
-            return;
-          }
-
-          wrapper.current.positionUpdate();
-        });
-
-        resizeObserver.current.isInitial = true;
-        resizeObserver.current.observe(element);
-      }, []);
-
       const tigger = React.cloneElement(children, {
         onClick: handleTriggerClick,
       });
@@ -98,7 +72,7 @@ export default (Step, props) => {
           onClick={handleClick}
           {...props}
         >
-          <div ref={handleContentRef}>
+          <div>
             <Button icon="close" onClick={handleClose} className={styles.closeButton} />
             <Step {...stepProps} onClose={handleClose} />
           </div>

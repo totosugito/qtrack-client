@@ -4,7 +4,7 @@ import { createRouterMiddleware } from '../lib/redux-router';
 
 import rootReducer from './reducers';
 import rootSaga from './sagas';
-import history from '../history';
+import {history} from '../lib/external'
 
 const sagaMiddleware = createSagaMiddleware();
 

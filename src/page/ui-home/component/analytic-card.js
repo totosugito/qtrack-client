@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 // material-ui
 import {Box, Card, Chip, Grid, Stack, Typography} from '@mui/material';
 
-// assets
-import ApiOutlinedIcon from '@mui/icons-material/ApiOutlined';
-import WebhookOutlinedIcon from '@mui/icons-material/WebhookOutlined';
-
 // ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
 
 const AnalyticCard = ({ color, title, count, percentage, isLoss, extra }) => (
@@ -28,8 +24,8 @@ const AnalyticCard = ({ color, title, count, percentage, isLoss, extra }) => (
                             color={color}
                             icon={
                                 <>
-                                    {!isLoss && <ApiOutlinedIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />}
-                                    {isLoss && <WebhookOutlinedIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />}
+                                    {/*{!isLoss && <ApiOutlinedIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />}*/}
+                                    {/*{isLoss && <WebhookOutlinedIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />}*/}
                                 </>
                             }
                             label={`${percentage}%`}

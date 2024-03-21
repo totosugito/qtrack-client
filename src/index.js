@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import history from './history';
+import { history } from './lib/external';
 import './i18n';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

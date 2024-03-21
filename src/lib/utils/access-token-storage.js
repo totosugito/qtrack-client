@@ -1,6 +1,4 @@
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
-
+import {Cookies, jwtDecode} from '../external';
 import Config from '../../constants/Config';
 
 export const setAccessToken = (accessToken) => {
