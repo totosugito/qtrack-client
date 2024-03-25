@@ -39,10 +39,6 @@
 | UserStep                             |                               | page/base-auth         | ✔      | toolbar user menu             |
 | UserUsernameEditStep                 |                               | view                   | ✔      | dialog members edit username  |
 
-# Planka client
+# QTrack client
 
 scp -r -P 23 build/* waviv@222.54.250.85:/var/www/html/qtrack
-
-# server survey
-
-scp -r -P 24 build/* reska@222.54.250.82:/var/www/html/qtrack
